@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'constance',
+    'constance.backends.database',
 ]
 
 MIDDLEWARE = [
@@ -111,12 +114,14 @@ STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
     'compressor.finders.CompressorFinder',
 ]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'core/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,7 +129,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'constance.context_processors.config',
             ],
         },
     },
 ]
+
+
+# EDITABLE SETTINGS
+CONSTANCE_CONFIG = {
+    'ENABLE_AUDIENCIAS': (True, 'Enable audiencias', bool),
+    'AUDIENCIAS_API': ('', 'Audiencias API URL', str),
+    'ENABLE_WIKILEGIS': (True, 'Enable wikilegis', bool),
+    'WIKILEGIS_API': ('', 'Wikilegis API URL', str),
+    'ENABLE_PAUTA': (True, 'Enable pauta participativa', bool),
+}
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
