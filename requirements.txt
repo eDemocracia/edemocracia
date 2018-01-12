@@ -1,0 +1,5 @@
+Django>=2.0.1
+python-decouple>=3.1
+django-compressor>=2.2
+django-compressor-toolkit>=0.6.0
+django-npm>=1.0.0
