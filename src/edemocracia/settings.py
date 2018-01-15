@@ -138,7 +138,9 @@ TEMPLATES = [
 ]
 
 # E-DEMOCRACIA PLUGINS
-ENABLE_WIKILEGIS = config('ENABLE_WIKILEGIS', default=True, cast=bool)
+WIKILEGIS_ENABLED = config('WIKILEGIS_ENABLED', default=True, cast=bool)
+WIKILEGIS_UPSTREAM = config('WIKILEGIS_UPSTREAM',
+                            default='http://localhost:7000')
 
 
 # EDITABLE SETTINGS

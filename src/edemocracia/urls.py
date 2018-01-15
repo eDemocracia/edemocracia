@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-if settings.ENABLE_WIKILEGIS:
+if settings.WIKILEGIS_ENABLED:
     urlpatterns.append(path('wikilegis/', include('apps.wikilegis.urls')))
