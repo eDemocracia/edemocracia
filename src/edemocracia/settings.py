@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     'apps.core',
     'apps.wikilegis',
+    'apps.accounts',
 ]
 
 MIDDLEWARE = [
