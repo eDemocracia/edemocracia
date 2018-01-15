@@ -19,6 +19,7 @@ django-compressor-toolkit = "*"
 django-npm = "*"
 django-constance = "*"
 django-picklefield = "*"
+django-revproxy = {extras = ["diazo"]}
 
 
 [requires]
