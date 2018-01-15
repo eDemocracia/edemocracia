@@ -40,6 +40,8 @@ WSGI_APPLICATION = 'edemocracia.wsgi.application'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -85,6 +87,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REGISTRATION
+INCLUDE_REGISTER_URL = False
 
 # INTERNATIONALIZATION
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')
