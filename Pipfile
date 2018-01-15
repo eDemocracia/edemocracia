@@ -1,0 +1,26 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[dev-packages]
+
+ipdb = "*"
+
+
+[packages]
+
+django = "*"
+python-decouple = "*"
+django-compressor = "*"
+django-compressor-toolkit = "*"
+django-npm = "*"
+django-constance = "*"
+django-picklefield = "*"
+
+
+[requires]
+
+python_version = "3.6"

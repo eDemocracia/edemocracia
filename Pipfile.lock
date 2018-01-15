@@ -1,0 +1,152 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "c3d727e93fe9dd2ce309bc9833f5c63dfb7d37efdcedb35fe49565fad3bd31f8"
+        },
+        "host-environment-markers": {
+            "implementation_name": "cpython",
+            "implementation_version": "3.6.3",
+            "os_name": "posix",
+            "platform_machine": "x86_64",
+            "platform_python_implementation": "CPython",
+            "platform_release": "4.14.6-200.fc26.x86_64",
+            "platform_system": "Linux",
+            "platform_version": "#1 SMP Thu Dec 14 15:32:26 UTC 2017",
+            "python_full_version": "3.6.3",
+            "python_version": "3.6",
+            "sys_platform": "linux"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.6"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "django": {
+            "hashes": [],
+            "version": "==2.0.1"
+        },
+        "django-appconf": {
+            "hashes": [],
+            "version": "==1.0.2"
+        },
+        "django-compressor": {
+            "hashes": [],
+            "version": "==2.2"
+        },
+        "django-compressor-toolkit": {
+            "hashes": [],
+            "version": "==0.6.0"
+        },
+        "django-constance": {
+            "hashes": [],
+            "version": "==2.0.0"
+        },
+        "django-npm": {
+            "hashes": [],
+            "version": "==1.0.0"
+        },
+        "django-picklefield": {
+            "hashes": [],
+            "version": "==1.0.0"
+        },
+        "python-decouple": {
+            "hashes": [],
+            "version": "==3.1"
+        },
+        "pytz": {
+            "hashes": [],
+            "version": "==2017.3"
+        },
+        "rcssmin": {
+            "hashes": [],
+            "version": "==1.0.6"
+        },
+        "rjsmin": {
+            "hashes": [],
+            "version": "==1.0.12"
+        }
+    },
+    "develop": {
+        "backports.shutil-get-terminal-size": {
+            "hashes": [],
+            "markers": "python_version == '2.7'",
+            "version": "==1.0.0"
+        },
+        "decorator": {
+            "hashes": [],
+            "version": "==4.2.1"
+        },
+        "enum34": {
+            "hashes": [],
+            "markers": "python_version == '2.7'",
+            "version": "==1.1.6"
+        },
+        "ipdb": {
+            "hashes": [],
+            "version": "==0.10.3"
+        },
+        "ipython": {
+            "hashes": [],
+            "version": "==5.5.0"
+        },
+        "ipython-genutils": {
+            "hashes": [],
+            "version": "==0.2.0"
+        },
+        "pathlib2": {
+            "hashes": [],
+            "markers": "python_version == '2.7' or python_version == '3.3'",
+            "version": "==2.3.0"
+        },
+        "pexpect": {
+            "hashes": [],
+            "markers": "sys_platform != 'win32'",
+            "version": "==4.3.1"
+        },
+        "pickleshare": {
+            "hashes": [],
+            "version": "==0.7.4"
+        },
+        "prompt-toolkit": {
+            "hashes": [],
+            "version": "==1.0.15"
+        },
+        "ptyprocess": {
+            "hashes": [],
+            "version": "==0.5.2"
+        },
+        "pygments": {
+            "hashes": [],
+            "version": "==2.2.0"
+        },
+        "scandir": {
+            "hashes": [],
+            "markers": "python_version < '3.5'",
+            "version": "==1.6"
+        },
+        "simplegeneric": {
+            "hashes": [],
+            "version": "==0.8.1"
+        },
+        "six": {
+            "hashes": [],
+            "version": "==1.11.0"
+        },
+        "traitlets": {
+            "hashes": [],
+            "version": "==4.3.2"
+        },
+        "wcwidth": {
+            "hashes": [],
+            "version": "==0.1.7"
+        }
+    }
+}
