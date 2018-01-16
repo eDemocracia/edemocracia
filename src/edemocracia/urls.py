@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from apps.accounts.views import CustomRegistrationView
+from apps.accounts.views import CustomRegistrationView, ajax_login
 
 urlpatterns = [
-    path('signup/', CustomRegistrationView.as_view(), name='signup'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
+    path('signup/', CustomRegistrationView.as_view(), name='signup'),
+    path('ajax/login/', ajax_login, name="ajax_login"),
 ]
 
 if settings.WIKILEGIS_ENABLED:

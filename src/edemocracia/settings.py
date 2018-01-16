@@ -94,6 +94,12 @@ REGISTRATION_FORM = 'apps.accounts.forms.SignUpAjaxForm'
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 
+# AUTHENTICATION
+AUTHENTICATION_BACKENDS = (
+    "apps.accounts.backends.AuthenticationEmailBackend",
+    "django.contrib.auth.backends.ModelBackend",
+)
+
 # INTERNATIONALIZATION
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')
 TIME_ZONE = config('TIME_ZONE', default='America/Sao_Paulo')

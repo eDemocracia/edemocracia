@@ -5,6 +5,10 @@ from registration.views import RegistrationView as BaseRegistrationView
 from registration.models import RegistrationProfile
 from registration.users import UserModel
 from registration import signals
+from django.contrib.auth import login
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class CustomRegistrationView(BaseRegistrationView):
@@ -43,3 +47,17 @@ class CustomRegistrationView(BaseRegistrationView):
 
     def registration_allowed(self):
         return getattr(settings, 'REGISTRATION_OPEN', True)
+
+
+@csrf_exempt
+def ajax_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        response_data = {}
+        if form.is_valid():
+            login(request, form.get_user())
+            status_code = 200
+        else:
+            response_data['data'] = u"Usuário e/ou senha inválidos."
+            status_code = 401
+        return JsonResponse(response_data, status=status_code)
