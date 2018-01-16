@@ -70,3 +70,10 @@ class SignUpAjaxForm(forms.ModelForm):
                 mark_safe(self.error_messages.get('exists_email')))
 
         return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
