@@ -20,6 +20,7 @@ django-npm = "*"
 django-constance = "*"
 django-picklefield = "*"
 django-revproxy = {extras = ["diazo"]}
+requests = "*"
 
 
 [requires]
