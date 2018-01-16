@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from apps.accounts.views import CustomRegistrationView
 
 urlpatterns = [
+    path('signup/', CustomRegistrationView.as_view(), name='signup'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
 ]
