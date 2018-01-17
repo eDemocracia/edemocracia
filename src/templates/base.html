@@ -25,11 +25,279 @@
         <button class="edem-close-button -white JS-closeAccessError" type="button"></button>
       </div>
     </form>
+    <form class="access JS-signUpForm">
+          <div class="form-field">
+            <input class="input JS-formInput" id="mail" name="email" type="email">
+            <label class="label" for="mail"><span class="labeltext">Endereço de email *</span></label>
+            <p class="error JS-inputError" data-input-name="email" hidden></p>
+          </div>
 
+          <div class="form-field">
+            <input class="input JS-formInput" id="password" name="password" type="password">
+            <label class="label" for="password"><span class="labeltext">Senha *</span></label>
+            <a class="action -input JS-fieldActionPassword" role="button">Mostrar Senha</a>
+            <p class="error JS-inputError" data-input-name="password" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <select class="input JS-formInput" name="uf" id="id_uf">
+              <option class="option" value="" selected disabled hidden></option>
+              <option class="option" value="AC">Acre</option>
+              <option class="option" value="AL">Alagoas</option>
+              <option class="option" value="AP">Amapá</option>
+              <option class="option" value="AM">Amazonas</option>
+              <option class="option" value="BA">Bahia</option>
+              <option class="option" value="CE">Ceará</option>
+              <option class="option" value="DF">Distrito Federal</option>
+              <option class="option" value="ES">Espírito Santo</option>
+              <option class="option" value="GO">Goiás</option>
+              <option class="option" value="MA">Maranhão</option>
+              <option class="option" value="MT">Mato Grosso</option>
+              <option class="option" value="MS">Mato Grosso do Sul</option>
+              <option class="option" value="MG">Minas Gerais</option>
+              <option class="option" value="PA">Pará</option>
+              <option class="option" value="PB">Paraíba</option>
+              <option class="option" value="PR">Paraná</option>
+              <option class="option" value="PE">Pernambuco</option>
+              <option class="option" value="PI">Piauí</option>
+              <option class="option" value="RJ">Rio de Janeiro</option>
+              <option class="option" value="RN">Rio Grande do Norte</option>
+              <option class="option" value="RS">Rio Grande do Sul</option>
+              <option class="option" value="RO">Rondônia</option>
+              <option class="option" value="RR">Roraima</option>
+              <option class="option" value="SC">Santa Catarina</option>
+              <option class="option" value="SP">São Paulo</option>
+              <option class="option" value="SE">Sergipe</option>
+              <option class="option" value="TO">Tocantins</option>
+            </select>
+            <label class="label" for="id_uf"><span class="labeltext">Estado *</span></label>
+            <a class="action -input JS-inputActionState" role="button">Sou estrangeiro</a>
+            <p class="error JS-inputError" data-input-name="uf" hidden></p>
+          </div>
+
+          <div class="form-field" hidden>
+            <select class="input JS-formInput" name="country" id="id_country">
+              <option class="option" value="" selected disabled hidden></option>
+              <option class="option" value="África do Sul">África do Sul</option>
+              <option class="option" value="Albânia">Albânia</option>
+              <option class="option" value="Alemanha">Alemanha</option>
+              <option class="option" value="Andorra">Andorra</option>
+              <option class="option" value="Angola">Angola</option>
+              <option class="option" value="Anguilla">Anguilla</option>
+              <option class="option" value="Antigua">Antigua</option>
+              <option class="option" value="Arábia Saudita">Arábia Saudita</option>
+              <option class="option" value="Argentina">Argentina</option>
+              <option class="option" value="Armênia">Armênia</option>
+              <option class="option" value="Aruba">Aruba</option>
+              <option class="option" value="Austrália">Austrália</option>
+              <option class="option" value="Áustria">Áustria</option>
+              <option class="option" value="Azerbaijão">Azerbaijão</option>
+              <option class="option" value="Bahamas">Bahamas</option>
+              <option class="option" value="Bahrein">Bahrein</option>
+              <option class="option" value="Bangladesh">Bangladesh</option>
+              <option class="option" value="Barbados">Barbados</option>
+              <option class="option" value="Bélgica">Bélgica</option>
+              <option class="option" value="Benin">Benin</option>
+              <option class="option" value="Bermudas">Bermudas</option>
+              <option class="option" value="Botsuana">Botsuana</option>
+              <option class="option" value="Brasil">Brasil</option>
+              <option class="option" value="Brunei">Brunei</option>
+              <option class="option" value="Bulgária">Bulgária</option>
+              <option class="option" value="Burkina Fasso">Burkina Fasso</option>
+              <option class="option" value="botão">botão</option>
+              <option class="option" value="Cabo Verde">Cabo Verde</option>
+              <option class="option" value="Camarões">Camarões</option>
+              <option class="option" value="Camboja">Camboja</option>
+              <option class="option" value="Canadá">Canadá</option>
+              <option class="option" value="Cazaquistão">Cazaquistão</option>
+              <option class="option" value="Chade">Chade</option>
+              <option class="option" value="Chile">Chile</option>
+              <option class="option" value="China">China</option>
+              <option class="option" value="Cidade do Vaticano">Cidade do Vaticano</option>
+              <option class="option" value="Colômbia">Colômbia</option>
+              <option class="option" value="Congo">Congo</option>
+              <option class="option" value="Coréia do Sul">Coréia do Sul</option>
+              <option class="option" value="Costa do Marfim">Costa do Marfim</option>
+              <option class="option" value="Costa Rica">Costa Rica</option>
+              <option class="option" value="Croácia">Croácia</option>
+              <option class="option" value="Dinamarca">Dinamarca</option>
+              <option class="option" value="Djibuti">Djibuti</option>
+              <option class="option" value="Dominica">Dominica</option>
+              <option class="option" value="EUA">EUA</option>
+              <option class="option" value="Egito">Egito</option>
+              <option class="option" value="El Salvador">El Salvador</option>
+              <option class="option" value="Emirados Árabes">Emirados Árabes</option>
+              <option class="option" value="Equador">Equador</option>
+              <option class="option" value="Eritréia">Eritréia</option>
+              <option class="option" value="Escócia">Escócia</option>
+              <option class="option" value="Eslováquia">Eslováquia</option>
+              <option class="option" value="Eslovênia">Eslovênia</option>
+              <option class="option" value="Espanha">Espanha</option>
+              <option class="option" value="Estônia">Estônia</option>
+              <option class="option" value="Etiópia">Etiópia</option>
+              <option class="option" value="Fiji">Fiji</option>
+              <option class="option" value="Filipinas">Filipinas</option>
+              <option class="option" value="Finlândia">Finlândia</option>
+              <option class="option" value="França">França</option>
+              <option class="option" value="Gabão">Gabão</option>
+              <option class="option" value="Gâmbia">Gâmbia</option>
+              <option class="option" value="Gana">Gana</option>
+              <option class="option" value="Geórgia">Geórgia</option>
+              <option class="option" value="Gibraltar">Gibraltar</option>
+              <option class="option" value="Granada">Granada</option>
+              <option class="option" value="Grécia">Grécia</option>
+              <option class="option" value="Guadalupe">Guadalupe</option>
+              <option class="option" value="Guam">Guam</option>
+              <option class="option" value="Guatemala">Guatemala</option>
+              <option class="option" value="Guiana">Guiana</option>
+              <option class="option" value="Guiana Francesa">Guiana Francesa</option>
+              <option class="option" value="Guiné-bissau">Guiné-bissau</option>
+              <option class="option" value="Haiti">Haiti</option>
+              <option class="option" value="Holanda">Holanda</option>
+              <option class="option" value="Honduras">Honduras</option>
+              <option class="option" value="Hong Kong">Hong Kong</option>
+              <option class="option" value="Hungria">Hungria</option>
+              <option class="option" value="Iêmen">Iêmen</option>
+              <option class="option" value="Ilhas Cayman">Ilhas Cayman</option>
+              <option class="option" value="Ilhas Cook">Ilhas Cook</option>
+              <option class="option" value="Ilhas Curaçao">Ilhas Curaçao</option>
+              <option class="option" value="Ilhas Marshall">Ilhas Marshall</option>
+              <option class="option" value="Ilhas Turks & Caicos">Ilhas Turks & Caicos</option>
+              <option class="option" value="Ilhas Virgens (brit.)">Ilhas Virgens (brit.)</option>
+              <option class="option" value="Ilhas Virgens(amer.)">Ilhas Virgens(amer.)</option>
+              <option class="option" value="Ilhas Wallis e Futuna">Ilhas Wallis e Futuna</option>
+              <option class="option" value="Índia">Índia</option>
+              <option class="option" value="Indonésia">Indonésia</option>
+              <option class="option" value="Inglaterra">Inglaterra</option>
+              <option class="option" value="Irlanda">Irlanda</option>
+              <option class="option" value="Islândia">Islândia</option>
+              <option class="option" value="Israel">Israel</option>
+              <option class="option" value="Itália">Itália</option>
+              <option class="option" value="Jamaica">Jamaica</option>
+              <option class="option" value="Japão">Japão</option>
+              <option class="option" value="Jordânia">Jordânia</option>
+              <option class="option" value="Kuwait">Kuwait</option>
+              <option class="option" value="Latvia">Latvia</option>
+              <option class="option" value="Líbano">Líbano</option>
+              <option class="option" value="Liechtenstein">Liechtenstein</option>
+              <option class="option" value="Lituânia">Lituânia</option>
+              <option class="option" value="Luxemburgo">Luxemburgo</option>
+              <option class="option" value="Macau">Macau</option>
+              <option class="option" value="Macedônia">Macedônia</option>
+              <option class="option" value="Madagascar">Madagascar</option>
+              <option class="option" value="Malásia">Malásia</option>
+              <option class="option" value="Malaui">Malaui</option>
+              <option class="option" value="Mali">Mali</option>
+              <option class="option" value="Malta">Malta</option>
+              <option class="option" value="Marrocos">Marrocos</option>
+              <option class="option" value="Martinica">Martinica</option>
+              <option class="option" value="Mauritânia">Mauritânia</option>
+              <option class="option" value="Mauritius">Mauritius</option>
+              <option class="option" value="México">México</option>
+              <option class="option" value="Moldova">Moldova</option>
+              <option class="option" value="Mônaco">Mônaco</option>
+              <option class="option" value="Montserrat">Montserrat</option>
+              <option class="option" value="Nepal">Nepal</option>
+              <option class="option" value="Nicarágua">Nicarágua</option>
+              <option class="option" value="Niger">Niger</option>
+              <option class="option" value="Nigéria">Nigéria</option>
+              <option class="option" value="Noruega">Noruega</option>
+              <option class="option" value="Nova Caledônia">Nova Caledônia</option>
+              <option class="option" value="Nova Zelândia">Nova Zelândia</option>
+              <option class="option" value="Omã">Omã</option>
+              <option class="option" value="Palau">Palau</option>
+              <option class="option" value="Panamá">Panamá</option>
+              <option class="option" value="Papua-nova Guiné">Papua-nova Guiné</option>
+              <option class="option" value="Paquistão">Paquistão</option>
+              <option class="option" value="Peru">Peru</option>
+              <option class="option" value="Polinésia Francesa">Polinésia Francesa</option>
+              <option class="option" value="Polônia">Polônia</option>
+              <option class="option" value="Porto Rico">Porto Rico</option>
+              <option class="option" value="Portugal">Portugal</option>
+              <option class="option" value="Qatar">Qatar</option>
+              <option class="option" value="Quênia">Quênia</option>
+              <option class="option" value="Rep. Dominicana">Rep. Dominicana</option>
+              <option class="option" value="Rep. Tcheca">Rep. Tcheca</option>
+              <option class="option" value="Reunion">Reunion</option>
+              <option class="option" value="Romênia">Romênia</option>
+              <option class="option" value="Ruanda">Ruanda</option>
+              <option class="option" value="Rússia">Rússia</option>
+              <option class="option" value="Saipan">Saipan</option>
+              <option class="option" value="Samoa Americana">Samoa Americana</option>
+              <option class="option" value="Senegal">Senegal</option>
+              <option class="option" value="Serra Leone">Serra Leone</option>
+              <option class="option" value="Seychelles">Seychelles</option>
+              <option class="option" value="Singapura">Singapura</option>
+              <option class="option" value="Síria">Síria</option>
+              <option class="option" value="Sri Lanka">Sri Lanka</option>
+              <option class="option" value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+              <option class="option" value="St. Lúcia">St. Lúcia</option>
+              <option class="option" value="St. Vincent">St. Vincent</option>
+              <option class="option" value="Sudão">Sudão</option>
+              <option class="option" value="Suécia">Suécia</option>
+              <option class="option" value="Suiça">Suiça</option>
+              <option class="option" value="Suriname">Suriname</option>
+              <option class="option" value="Tailândia">Tailândia</option>
+              <option class="option" value="Taiwan">Taiwan</option>
+              <option class="option" value="Tanzânia">Tanzânia</option>
+              <option class="option" value="Togo">Togo</option>
+              <option class="option" value="Trinidad & Tobago">Trinidad & Tobago</option>
+              <option class="option" value="Tunísia">Tunísia</option>
+              <option class="option" value="Turquia">Turquia</option>
+              <option class="option" value="Ucrânia">Ucrânia</option>
+              <option class="option" value="Uganda">Uganda</option>
+              <option class="option" value="Uruguai">Uruguai</option>
+              <option class="option" value="Venezuela">Venezuela</option>
+              <option class="option" value="Vietnã">Vietnã</option>
+              <option class="option" value="Zaire">Zaire</option>
+              <option class="option" value="Zâmbia">Zâmbia</option>
+              <option class="option" value="Zimbábue">Zimbábue</option>
+            </select>
+            <label class="label" for="id_country"><span class="labeltext">País *</span></label>
+            <a class="action -input JS-inputActionCountry" role="button">Sou brasileiro</a>
+            <p class="error JS-inputError" data-input-name="country" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <input class="input JS-formInput" id="name" name="first_name" type="text">
+            <label class="label" for="name"><span class="labeltext">Nome de exibição</span></label>
+            <p class="error JS-inputError" data-input-name="first_name" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <select class="input JS-formInput" name="gender" id="gender">
+              <option class="option" value="" selected disabled hidden></option>
+              <option class="option" value="male">Masculino</option>
+              <option class="option" value="female">Feminino</option>
+              <option class="option" value="other">Outro</option>
+              <option class="option" value="undisclosed">Prefiro não informar</option>
+            </select>
+            <label class="label" for="gender"><span class="labeltext">Gênero</span></label>
+            <p class="error JS-inputError" data-input-name="gender" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <input class="input JS-formInput" name="birthdate" id="birthdate" type="text" data-mask="00/00/0000" pattern="^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((1[6-9]|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((1[6-9]|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((1[6-9]|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$">
+            <label class="label" for="birthdate"><span class="labeltext">Data de nascimento</span></label>
+            <p class="error JS-inputError" data-input-name="birthdate" hidden></p>
+          </div>
+
+          <button class="edem-button">Cadastrar</button>
+
+
+          <div class="errorbox JS-accessErrorBox" hidden>
+            <p class="error JS-accessError"></p>
+            <button class="edem-close-button -white JS-closeAccessError" type="button"></button>
+          </div>
+        </form>
 {% block content %}
 {% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
+        function showError(errorMessage) {
+          $('.JS-accessErrorBox').removeAttr('hidden');
+          $('.JS-accessError').text(errorMessage);
+        }
         $('.JS-loginForm').submit(function(event) {
           event.preventDefault();
           $.ajax({
@@ -53,6 +321,44 @@
               }
             }
           });
+        });
+        $('.JS-signUpForm').submit(function(event) {
+          event.preventDefault();
+          // if (grecaptcha.getResponse() == ""){
+          //   showError("Por favor preencha o reCAPTCHA.");
+          // } else {
+            $.ajax({
+              type:"POST",
+              url: '/ajax/signup/',
+              data: $(event.target).serialize(),
+
+              success: function(response){
+                console.log(response);
+              },
+
+              error: function(jqXRH) {
+                if (jqXRH.status == 0) {
+                  showError('Verifique sua conexão com a internet.');
+                } else if (jqXRH.status == 400) {
+                  $('.JS-inputError').text('');
+                  $.each(jqXRH.responseJSON["data"], function(key, value) {
+                    if (key != '__all__') {
+                      $(event.target)
+                        .find('[data-input-name="'+key+'"]')
+                        .text(value)
+                        .removeAttr('hidden');
+                    } else {
+                      showError(value);
+                    }
+                  });
+                } else if (jqXRH.status == 401) {
+                  showError(jqXRH.responseJSON["data"])
+                } else {
+                  showError("Ocorreu um erro no servidor, tente novamente em alguns instantes.");
+                }
+              }
+            });
+          // }
         });
     </script>
 </body>

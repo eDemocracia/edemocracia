@@ -21,7 +21,7 @@ from apps.accounts.views import CustomRegistrationView, ajax_login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
-    path('signup/', CustomRegistrationView.as_view(), name='signup'),
+    path('ajax/signup/', CustomRegistrationView.as_view(), name='signup'),
     path('ajax/login/', ajax_login, name="ajax_login"),
 ]
 

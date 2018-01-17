@@ -9,6 +9,7 @@ from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils.decorators import method_decorator
 
 
 class CustomRegistrationView(BaseRegistrationView):
@@ -17,6 +18,28 @@ class CustomRegistrationView(BaseRegistrationView):
     template_name = 'registration/custom_registration_form.html'
 
     registration_profile = RegistrationProfile
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        if self.request.is_ajax():
+            return JsonResponse(form.errors, status=400)
+        else:
+            return response
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self.request.is_ajax():
+            data = {
+                'data': ("Por favor verifique seu email para completar"
+                         " o processo de registro."),
+            }
+            return JsonResponse(data, status=200)
+        else:
+            return response
 
     def register(self, form):
         site = get_current_site(self.request)
