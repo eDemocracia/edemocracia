@@ -15,6 +15,5 @@ class EdemProxyView(DiazoProxyView):
             }
 
             request.META['HTTP_REMOTE_USER_DATA'] = json.dumps(user_data)
-            request.META['HTTP_AUTH_USER'] = request.user.username
 
         return super(EdemProxyView, self).dispatch(request, *args, **kwargs)
