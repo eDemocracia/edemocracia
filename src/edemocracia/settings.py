@@ -48,6 +48,9 @@ INSTALLED_APPS = [
 
     'constance',
     'constance.backends.database',
+
+    'apps.core',
+    'apps.wikilegis',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'apps.core.middleware.CookieHandler',
+
 ]
 
 # PASSWORD VALIDATION
@@ -135,14 +140,14 @@ TEMPLATES = [
     },
 ]
 
+# E-DEMOCRACIA PLUGINS
+WIKILEGIS_ENABLED = config('WIKILEGIS_ENABLED', default=True, cast=bool)
+WIKILEGIS_UPSTREAM = config('WIKILEGIS_UPSTREAM',
+                            default='http://localhost:7000')
+
 
 # EDITABLE SETTINGS
 CONSTANCE_CONFIG = {
-    'ENABLE_AUDIENCIAS': (True, 'Enable audiencias', bool),
-    'AUDIENCIAS_API': ('', 'Audiencias API URL', str),
-    'ENABLE_WIKILEGIS': (True, 'Enable wikilegis', bool),
-    'WIKILEGIS_API': ('', 'Wikilegis API URL', str),
-    'ENABLE_PAUTA': (True, 'Enable pauta participativa', bool),
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
