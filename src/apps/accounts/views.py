@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.decorators import method_decorator
+from apps.accounts import captcha
 
 
 class CustomRegistrationView(BaseRegistrationView):
@@ -31,15 +32,26 @@ class CustomRegistrationView(BaseRegistrationView):
             return response
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        if self.request.is_ajax():
-            data = {
-                'data': ("Por favor verifique seu email para completar"
-                         " o processo de registro."),
-            }
-            return JsonResponse(data, status=200)
+        captcha_response = captcha.verify(form.data['g-recaptcha-response'])
+        if captcha_response['success']:
+            response = super().form_valid(form)
+            if self.request.is_ajax():
+                data = {
+                    'data': ("Por favor verifique seu email para completar"
+                             " o processo de registro."),
+                }
+                return JsonResponse(data, status=200)
+            else:
+                return response
         else:
-            return response
+            message = ' '.join(
+                map(lambda x: captcha.ERRORS[x],
+                    captcha_response['error-codes'])
+            )
+            data = {
+                'data': message,
+            }
+            return JsonResponse(data, status=401)
 
     def register(self, form):
         site = get_current_site(self.request)

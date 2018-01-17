@@ -23,6 +23,7 @@ django-revproxy = {extras = ["diazo"]}
 requests = "*"
 django-registration-redux = "*"
 pillow = "*"
+requests = "*"
 
 
 [requires]
