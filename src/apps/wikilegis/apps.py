@@ -9,4 +9,5 @@ class WikilegisConfig(AppConfig):
     upstream = settings.WIKILEGIS_UPSTREAM
 
     def ready(self):
-        from apps.wikilegis import tasks # noqa
+        if settings.WIKILEGIS_ENABLED:
+            from apps.wikilegis import tasks # noqa
