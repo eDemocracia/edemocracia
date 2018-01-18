@@ -40,6 +40,8 @@ WSGI_APPLICATION = 'edemocracia.wsgi.application'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
 
     'apps.core',
     'apps.wikilegis',
+    'apps.accounts',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +88,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REGISTRATION
+INCLUDE_REGISTER_URL = False
+REGISTRATION_FORM = 'apps.accounts.forms.SignUpAjaxForm'
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+
+# AUTHENTICATION
+AUTHENTICATION_BACKENDS = (
+    "apps.accounts.backends.AuthenticationEmailBackend",
+    "django.contrib.auth.backends.ModelBackend",
+)
 
 # INTERNATIONALIZATION
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')

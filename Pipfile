@@ -21,6 +21,8 @@ django-constance = "*"
 django-picklefield = "*"
 django-revproxy = {extras = ["diazo"]}
 requests = "*"
+django-registration-redux = "*"
+pillow = "*"
 
 
 [requires]
