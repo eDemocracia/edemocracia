@@ -158,6 +158,8 @@ TEMPLATES = [
 WIKILEGIS_ENABLED = config('WIKILEGIS_ENABLED', default=True, cast=bool)
 WIKILEGIS_UPSTREAM = config('WIKILEGIS_UPSTREAM',
                             default='http://localhost:7000')
+WIKILEGIS_API_URL = config('WIKILEGIS_API_URL', default='/api/v1/')
+WIKILEGIS_API_KEY = config('WIKILEGIS_API_KEY', default='apikey')
 
 
 # EDITABLE SETTINGS
