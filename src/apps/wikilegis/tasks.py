@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 import requests
 import json
@@ -29,3 +29,9 @@ def update_wikilegis_user(sender, instance, created, **kwargs):
     requests.put(get_resource_url('user', pk=instance.username),
                  data=json.dumps(data),
                  headers={'Content-Type': 'application/json'})
+
+
+@receiver(post_delete, sender=User)
+def delete_wikilegis_user(sender, instance, **kwargs):
+    requests.delete(get_resource_url('user', pk=instance.username),
+                    headers={'Content-Type': 'application/json'})
