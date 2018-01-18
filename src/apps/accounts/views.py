@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from apps.accounts.models import UserProfile
@@ -37,8 +38,8 @@ class CustomRegistrationView(BaseRegistrationView):
             response = super().form_valid(form)
             if self.request.is_ajax():
                 data = {
-                    'data': ("Por favor verifique seu email para completar"
-                             " o processo de registro."),
+                    'data': _("Please check your email to complete the"
+                              " registration process."),
                 }
                 return JsonResponse(data, status=200)
             else:
@@ -93,6 +94,6 @@ def ajax_login(request):
             login(request, form.get_user())
             status_code = 200
         else:
-            response_data['data'] = u"Usuário e/ou senha inválidos."
+            response_data['data'] = _("Invalid user and/or password.")
             status_code = 401
         return JsonResponse(response_data, status=status_code)

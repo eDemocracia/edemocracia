@@ -13,20 +13,16 @@ class SignUpAjaxForm(forms.ModelForm):
     required = ('email', 'password', 'first_name')
 
     error_messages = {
-        'empty_email': _(
-            u"Este campo é obrigatório."),
-        'exists_email': _(
-            u"Já existe um usuário cadastrado com este email."),
-        'length_password': _(
-            u"O campo senha deve possuir no mínimo 6 caracteres."),
-        'empty_uf_country': _(
-            u"Os campos estado ou país devem ser preenchidos."),
-        'empty_uf': _(
-            u'Selecione uma UF, caso seja estrangeiro,'
-            u' clique em "sou estrangeiro".'),
-        'empty_country': _(
-            u'Selecione um país, caso não seja estrangeiro,'
-            u' clique em "sou brasileiro".'),
+        'empty_email': _('This field is required.'),
+        'exists_email': _('There is already a user registered with'
+                          ' this email.'),
+        'length_password': _('The password must be at least 6'
+                             ' characters long.'),
+        'empty_uf_country': _('The state or country fields must be filled in.'),
+        'empty_uf': _('Select a UF, if you are a foreigner, '
+                      'click on I am a foreigner'),
+        'empty_country': _('Select a country, if you are not a foreigner,'
+                           ' click on "I am Brazilian".'),
     }
 
     class Meta:
