@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'constance',
     'constance.backends.database',
+    'social_django',
 
     'apps.core',
     'apps.wikilegis',
@@ -96,9 +97,52 @@ REGISTRATION_AUTO_LOGIN = True
 
 # AUTHENTICATION
 AUTHENTICATION_BACKENDS = (
-    "apps.accounts.backends.AuthenticationEmailBackend",
-    "django.contrib.auth.backends.ModelBackend",
+    'apps.accounts.backends.CamaraOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'apps.accounts.backends.AuthenticationEmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
+
+# SOCIAL AUTH
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'apps.accounts.pipeline.save_profile',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY',
+                                       default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET',
+                                          default='')
+
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY', default='')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET', default='')
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_birthday', 'user_location']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email,gender,picture,birthday,location'
+}
+
+SOCIAL_AUTH_CAMARA_DEPUTADOS_KEY = config('SOCIAL_AUTH_CD_KEY', default='')
+SOCIAL_AUTH_CAMARA_DEPUTADOS_SECRET = config('SOCIAL_AUTH_CD_SECRET',
+                                             default='')
+SOCIAL_AUTH_CAMARA_DEPUTADOS_VERIFY_SSL = config('SOCIAL_AUTH_CD_VERIFY_SSL',
+                                                 default=True, cast=bool)
+CAMARA_DEPUTADOS_AUTHORIZATION_URL = config('CD_AUTHORIZATION_URL', default='')
+CAMARA_DEPUTADOS_ACCESS_TOKEN_URL = config('CD_ACCESS_TOKEN_URL', default='')
+CAMARA_DEPUTADOS_METADATA_URL = config('CD_METADATA_URL', default='')
+
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = config('SOCIAL_AUTH_REDIRECT_IS_HTTPS',
+                                       default=True, cast=bool)
 
 # INTERNATIONALIZATION
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')
@@ -126,7 +170,7 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='')
 
 # STATICFILES SETTINGS
 STATIC_URL = config('STATIC_URL', default='/static/')
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'static'))
 
 STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
     'npm.finders.NpmFinder',
@@ -149,10 +193,15 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'constance.context_processors.config',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+MEDIA_URL = config('MEDIA_URL', default='/media/')
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))
 
 # E-DEMOCRACIA PLUGINS
 WIKILEGIS_ENABLED = config('WIKILEGIS_ENABLED', default=True, cast=bool)

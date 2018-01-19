@@ -4,6 +4,11 @@
 <form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div id="recaptcha" class="g-recaptcha" data-sitekey="6LeqwioUAAAAAJQwLBKGmmpuazIQM6hEYYoFSTYW"></div>
     <input type="submit" value="Enviar" />
 </form>
+<a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
+<a href="{% url "social:begin" "facebook" %}">Facebook</a>
+<a href="{% url "social:begin" "camara_deputados" %}">Câmara dos Deputados</a>
 {% endblock content %}

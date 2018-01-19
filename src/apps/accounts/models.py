@@ -14,17 +14,18 @@ def generate_username(email):
         name = slugify(email.split('@')[0])[:29]
         if User.objects.filter(username=name).exists():
             return generate_username(
-                name + random.choice(string.letters + string.digits))
+                name + random.choice(string.ascii_letters + string.digits))
         else:
             return name
 
 
 class UserProfile(models.Model):
-    gender = models.CharField(_('gender'), max_length=200, choices=GENDER_CHOICES,
-                              blank=True, null=True)
+    gender = models.CharField(_('gender'), max_length=200,
+                              choices=GENDER_CHOICES, blank=True, null=True)
     uf = models.CharField(max_length=2, choices=UF_CHOICES, null=True,
                           blank=True)
-    country = models.CharField(_('country'), max_length=200, null=True, blank=True)
+    country = models.CharField(_('country'), max_length=200, null=True,
+                               blank=True)
     birthdate = models.DateField(_('birthdate'), blank=True, null=True)
     user = models.OneToOneField(User, related_name='profile',
                                 on_delete=models.CASCADE)
