@@ -4,6 +4,24 @@ from django.core.files.base import ContentFile
 
 
 def save_profile(backend, user, response, *args, **kwargs):
+    if backend.name == 'camara_deputados':
+        user.profile.uf = response.get('uf', '')
+        user.profile.gender = response.get('sexo', '')
+        user.profile.country = response.get('pais', '')
+        user.profile.birthdate = response.get('dataNascimento', '')
+        if user.profile.avatar:
+            user.profile.save()
+        else:
+            url = response.get('foto', '')
+            try:
+                response_image = request('GET', url, verify=False)
+                response_image.raise_for_status()
+            except HTTPError:
+                pass
+            else:
+                user.profile.avatar.save('{0}_cd.jpg'.format(user.username),
+                                         ContentFile(response_image.content))
+
     if backend.name == 'facebook':
         user.profile.gender = response.get('gender', '')
         birthdate = response.get('birthday', '')
@@ -12,19 +30,24 @@ def save_profile(backend, user, response, *args, **kwargs):
         location = response.get('location', '')
         if location:
             user.profile.country = location['name'].split(', ')[1]
-        url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
-        try:
-            response_image = request('GET', url, verify=False)
-            response_image.raise_for_status()
-        except HTTPError:
-            pass
+        if user.profile.avatar:
+            user.profile.save()
         else:
-            user.profile.avatar.save('{0}_fb.jpg'.format(user.username),
-                                     ContentFile(response_image.content))
+            url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
+            try:
+                response_image = request('GET', url, verify=False)
+                response_image.raise_for_status()
+            except HTTPError:
+                pass
+            else:
+                user.profile.avatar.save('{0}_fb.jpg'.format(user.username),
+                                         ContentFile(response_image.content))
 
     if backend.name == 'google-oauth2':
         user.profile.gender = response.get('gender', '')
-        if not response.get('image').get('isDefault'):
+        if response.get('image').get('isDefault') or user.profile.avatar:
+            user.profile.save()
+        else:
             url = response.get('image').get('url').replace('?sz=50', '?sz=200')
             try:
                 response_image = request('GET', url, verify=False)

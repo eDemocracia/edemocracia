@@ -97,6 +97,7 @@ REGISTRATION_AUTO_LOGIN = True
 
 # AUTHENTICATION
 AUTHENTICATION_BACKENDS = (
+    'apps.accounts.backends.CamaraOAuth2',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'apps.accounts.backends.AuthenticationEmailBackend',
@@ -130,6 +131,15 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_birthday', 'user_location']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email,gender,picture,birthday,location'
 }
+
+SOCIAL_AUTH_CAMARA_DEPUTADOS_KEY = config('SOCIAL_AUTH_CD_KEY', default='')
+SOCIAL_AUTH_CAMARA_DEPUTADOS_SECRET = config('SOCIAL_AUTH_CD_SECRET',
+                                             default='')
+SOCIAL_AUTH_CAMARA_DEPUTADOS_VERIFY_SSL = config('SOCIAL_AUTH_CD_VERIFY_SSL',
+                                                 default=True, cast=bool)
+CAMARA_DEPUTADOS_AUTHORIZATION_URL = config('CD_AUTHORIZATION_URL', default='')
+CAMARA_DEPUTADOS_ACCESS_TOKEN_URL = config('CD_ACCESS_TOKEN_URL', default='')
+CAMARA_DEPUTADOS_METADATA_URL = config('CD_METADATA_URL', default='')
 
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = config('SOCIAL_AUTH_REDIRECT_IS_HTTPS',
                                        default=True, cast=bool)
