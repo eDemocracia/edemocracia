@@ -23,6 +23,9 @@ def save_profile(backend, user, response, *args, **kwargs):
                                          ContentFile(response_image.content))
 
     if backend.name == 'facebook':
+        if 'email' in response.get('denied_scopes', '') and not user.email:
+            user.email = response.get('id') + '@facebook.com'
+            user.save()
         user.profile.gender = response.get('gender', '')
         birthdate = response.get('birthday', '')
         if birthdate:
