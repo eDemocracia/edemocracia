@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     birthdate = models.DateField(_('birthdate'), blank=True, null=True)
     user = models.OneToOneField(User, related_name='profile',
                                 on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to="avatars/")
+    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
 
     class Meta:
         verbose_name = _('profile')
