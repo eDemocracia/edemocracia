@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'constance',
     'constance.backends.database',
     'social_django',
+    'rest_framework',
 
     'apps.core',
     'apps.wikilegis',
@@ -143,6 +144,18 @@ CAMARA_DEPUTADOS_METADATA_URL = config('CD_METADATA_URL', default='')
 
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = config('SOCIAL_AUTH_REDIRECT_IS_HTTPS',
                                        default=True, cast=bool)
+
+# API
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
 
 # INTERNATIONALIZATION
 LANGUAGE_CODE = config('LANGUAGE_CODE', default='pt-br')
