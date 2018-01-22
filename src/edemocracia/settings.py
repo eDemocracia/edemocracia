@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'constance.backends.database',
     'social_django',
     'rest_framework',
+    'macros',
+    'compressor',
+    'compressor_toolkit',
 
     'apps.core',
     'apps.wikilegis',
@@ -194,7 +197,10 @@ STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
     'compressor.finders.CompressorFinder',
 ]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'templates/edem-navigation/static'),
+    os.path.join(BASE_DIR, 'static'),
+]
 
 TEMPLATES = [
     {
@@ -219,6 +225,30 @@ TEMPLATES = [
 
 MEDIA_URL = config('MEDIA_URL', default='/media/')
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'public', 'media'))
+
+COMPRESS_PRECOMPILERS = [
+    ('text/x-scss', 'compressor_toolkit.precompilers.SCSSCompiler'),
+]
+
+NODE_MODULES = os.path.join(os.path.dirname(BASE_DIR), 'node_modules')
+COMPRESS_NODE_MODULES = NODE_MODULES
+COMPRESS_NODE_SASS_BIN = os.path.join(NODE_MODULES, '.bin/node-sass')
+COMPRESS_POSTCSS_BIN = os.path.join(NODE_MODULES, '.bin/postcss')
+COMPRESS_OFFLINE = config('COMPRESS_OFFLINE', default=False)
+
+if not DEBUG:
+    COMPRESS_SCSS_COMPILER_CMD = '{node_sass_bin}' \
+                                 ' --source-map true' \
+                                 ' --source-map-embed true' \
+                                 ' --source-map-contents true' \
+                                 ' --output-style expanded' \
+                                 ' {paths} "{infile}" "{outfile}"' \
+                                 ' &&' \
+                                 ' {postcss_bin}' \
+                                 ' --use "{node_modules}/autoprefixer"' \
+                                 ' --autoprefixer.browsers' \
+                                 ' "{autoprefixer_browsers}"' \
+                                 ' -r "{outfile}"'
 
 # E-DEMOCRACIA PLUGINS
 WIKILEGIS_ENABLED = config('WIKILEGIS_ENABLED', default=True, cast=bool)

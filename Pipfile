@@ -12,16 +12,16 @@ ipdb = "*"
 
 [packages]
 
-django = "*"
+Django = "*"
 python-decouple = "*"
-django-compressor = "*"
+django_compressor = "*"
 django-compressor-toolkit = "*"
 django-npm = "*"
 django-constance = "*"
 django-picklefield = "*"
 requests = "*"
 django-registration-redux = "*"
-pillow = "*"
+Pillow = "*"
 social-auth-app-django = "*"
 djangorestframework = "*"
 django-filter = "*"
@@ -29,6 +29,7 @@ django-revproxy = {git = "https://github.com/msfernandes/django-revproxy"}
 diazo = "*"
 lxml = "< 3.4.99"
 python3-openid = "*"
+django-macros = "*"
 
 
 [requires]
