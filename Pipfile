@@ -19,13 +19,16 @@ django-compressor-toolkit = "*"
 django-npm = "*"
 django-constance = "*"
 django-picklefield = "*"
-django-revproxy = {extras = ["diazo"]}
 requests = "*"
 django-registration-redux = "*"
 pillow = "*"
 social-auth-app-django = "*"
 djangorestframework = "*"
 django-filter = "*"
+django-revproxy = {git = "https://github.com/msfernandes/django-revproxy"}
+diazo = "*"
+lxml = "< 3.4.99"
+python3-openid = "*"
 
 
 [requires]
