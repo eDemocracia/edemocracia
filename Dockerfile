@@ -1,0 +1,18 @@
+FROM labhackercd/alpine-python3-nodejs
+
+ENV BUILD_PACKAGES python-dev python3 python3-dev linux-headers \
+    git ca-certificates gcc postgresql-dev build-base bash \
+    postgresql-client gettext libxml2-dev libxslt-dev zlib-dev jpeg-dev
+
+RUN apk add --update --no-cache $BUILD_PACKAGES
+
+ADD . /var/labhacker/edemocracia
+WORKDIR /var/labhacker/edemocracia
+
+RUN pip install 'pipenv==8.1.2' psycopg2 gunicorn
+RUN pipenv install --system
+
+RUN npm install && \
+    python3 src/manage.py collectstatic --no-input && \
+    python3 src/manage.py compilemessages
+
