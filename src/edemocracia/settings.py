@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.wikilegis',
     'apps.accounts',
+    'apps.pautas',
 ]
 
 MIDDLEWARE = [
@@ -223,6 +224,8 @@ WIKILEGIS_UPSTREAM = config('WIKILEGIS_UPSTREAM',
 WIKILEGIS_API_URL = config('WIKILEGIS_API_URL', default='/api/v1/')
 WIKILEGIS_API_KEY = config('WIKILEGIS_API_KEY', default='apikey')
 
+PAUTAS_ENABLED = config('PAUTAS_ENABLED', default=True, cast=bool)
+PAUTAS_UPSTREAM = config('PAUTAS_UPSTREAM', default='http://localhost:9000')
 
 # EDITABLE SETTINGS
 CONSTANCE_CONFIG = {
