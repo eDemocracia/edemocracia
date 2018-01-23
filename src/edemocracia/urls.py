@@ -17,3 +17,7 @@ if settings.DEBUG is True:
 
 if settings.WIKILEGIS_ENABLED:
     urlpatterns.append(path('wikilegis/', include('apps.wikilegis.urls')))
+
+if settings.PAUTAS_ENABLED:
+    urlpatterns.append(path('pautaparticipativa/',
+                            include('apps.pautas.urls')))
