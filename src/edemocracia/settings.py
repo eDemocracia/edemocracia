@@ -226,6 +226,8 @@ WIKILEGIS_API_KEY = config('WIKILEGIS_API_KEY', default='apikey')
 
 PAUTAS_ENABLED = config('PAUTAS_ENABLED', default=True, cast=bool)
 PAUTAS_UPSTREAM = config('PAUTAS_UPSTREAM', default='http://localhost:9000')
+PAUTAS_API_URL = config('PAUTAS_API_URL', default='/api/v1/')
+PAUTAS_API_KEY = config('PAUTAS_API_KEY', default='api_key')
 
 # EDITABLE SETTINGS
 CONSTANCE_CONFIG = {
