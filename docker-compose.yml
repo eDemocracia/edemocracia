@@ -10,9 +10,55 @@ services:
       - "8000:80"
     links:
       - edemocracia
+
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: root
+
   edemocracia:
     build: .
     tty: true
     stdin_open: true
     volumes:
       - ./:/var/labhacker/edemocracia:z
+    command: ./runserver
+    environment:
+      DEBUG:
+      SECRET_KEY:
+      RECAPTCHA_SITE_KEY:
+      RECAPTCHA_PRIVATE_KEY:
+      ALLOWED_HOSTS:
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: edemocracia
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:
+      SOCIAL_AUTH_FACEBOOK_KEY:
+      SOCIAL_AUTH_FACEBOOK_SECRET:
+      SOCIAL_AUTH_CD_KEY:
+      SOCIAL_AUTH_CD_SECRET:
+      SOCIAL_AUTH_CD_VERIFY_SSL:
+      CD_AUTHORIZATION_URL:
+      CD_ACCESS_TOKEN_URL:
+      CD_METADATA_URL:
+      SOCIAL_AUTH_REDIRECT_IS_HTTPS:
+      LANGUAGE_CODE:
+      TIME_ZONE:
+      EMAIL_HOST:
+      EMAIL_PORT:
+      EMAIL_HOST_USER:
+      EMAIL_HOST_PASSWORD:
+      EMAIL_USE_TLS:
+      DEFAULT_FROM_EMAIL:
+      STATIC_URL:
+      MEDIA_URL:
+      WIKILEGIS_ENABLED:
+      WIKILEGIS_UPSTREAM:
+      WIKILEGIS_API_URL:
+      WIKILEGIS_API_KEY:
