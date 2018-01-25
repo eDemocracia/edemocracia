@@ -63,6 +63,7 @@ services:
       EMAIL_HOST_USER:
       EMAIL_HOST_PASSWORD:
       EMAIL_USE_TLS:
+      EMAIL_BACKEND:
       DEFAULT_FROM_EMAIL:
       STATIC_URL:
       MEDIA_URL:
@@ -70,6 +71,10 @@ services:
       WIKILEGIS_UPSTREAM: http://wikilegis:8000
       WIKILEGIS_API_URL: '/api/v1/'
       WIKILEGIS_API_KEY: api_key
+      PAUTAS_ENABLED: 'False'
+      PAUTAS_UPSTREAM:
+      PAUTAS_API_URL:
+      PAUTAS_API_KEY:
 
   wikilegis:
     image: labhackercd/wikilegis:dev
