@@ -17,6 +17,9 @@ RECAPTCHA_PRIVATE_KEY = config(
     default='6LeqwioUAAAAAHs4i1Zq4D_9kc1I-OL0TmaUowq3'
 )
 
+SITE_NAME = config('SITE_NAME', default='Nome do site')
+SITE_LOGO = config('SITE_LOGO', default='https://exemple.com/img.png')
+
 SITE_ID = 1
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',
                        cast=Csv(lambda x: x.strip().strip(',').strip()),
@@ -220,6 +223,8 @@ TEMPLATES = [
                 'constance.context_processors.config',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'apps.core.processors.recaptcha_site_key',
+                'apps.core.processors.home_customization',
             ],
         },
     },
