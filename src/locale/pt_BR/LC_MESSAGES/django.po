@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-24 11:24-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/accounts/admin.py:12
+msgid "Profile"
+msgstr "perfil"
+
+#: apps/accounts/captcha.py:7
+msgid "reCAPTCHA: The secret parameter is missing."
+msgstr "reCAPTCHA: O campo chave está vazio"
+
+#: apps/accounts/captcha.py:8
+msgid "reCAPTCHA: The secret parameter is invalid or malformed."
+msgstr "reCAPTCHA: O campo chave está errado ou inválido"
+
+#: apps/accounts/captcha.py:10
+msgid "reCAPTCHA: The response parameter is missing."
+msgstr "reCAPTCHA: O campo de resposta está vazio"
+
+#: apps/accounts/captcha.py:12
+msgid "reCAPTCHA: The response parameter is invalid or malformed."
+msgstr "reCAPTCHA: O campo de resposta está errado ou inválido"
+
+#: apps/accounts/captcha.py:14
+msgid "reCAPTCHA: The request is invalid or malformed."
+msgstr "reCAPTCHA: A requisição está errada ou inválida"
+
+#: apps/accounts/choices.py:4
+msgid "Male"
+msgstr "Masculino"
+
+#: apps/accounts/choices.py:5
+msgid "Female"
+msgstr "Feminino"
+
+#: apps/accounts/choices.py:6
+msgid "Other"
+msgstr "Outro"
+
+#: apps/accounts/choices.py:7
+msgid "Undisclosed"
+msgstr "Prefiro não informar"
+
+#: apps/accounts/forms.py:16
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
+
+#: apps/accounts/forms.py:17
+msgid "There is already a user registered with this email."
+msgstr "Já existe um usuário cadastrado com este email."
+
+#: apps/accounts/forms.py:19
+msgid "The password must be at least 6 characters long."
+msgstr "O campo senha deve possuir no mínimo 6 caracteres."
+
+#: apps/accounts/forms.py:21
+msgid "The state or country fields must be filled in."
+msgstr "Os campos estado ou país devem ser preenchidos."
+
+#: apps/accounts/forms.py:22
+msgid "Select a UF, if you are a foreigner, click on I am a foreigner"
+msgstr ""
+"Selecione uma UF, caso seja estrangeiro, clique em \"sou estrangeiro\"."
+
+#: apps/accounts/forms.py:24
+msgid ""
+"Select a country, if you are not a foreigner, click on \"I am Brazilian\"."
+msgstr ""
+"Selecione um país, caso não seja estrangeiro, clique em \"Sou brasileiro\"."
+
+#: apps/accounts/models.py:23
+msgid "gender"
+msgstr "gênero"
+
+#: apps/accounts/models.py:27
+msgid "country"
+msgstr "país"
+
+#: apps/accounts/models.py:29
+msgid "birthdate"
+msgstr "data de nascimento"
+
+#: apps/accounts/models.py:35
+msgid "profile"
+msgstr "perfil"
+
+#: apps/accounts/models.py:36
+msgid "profiles"
+msgstr "perfis"
+
+#: apps/accounts/views.py:41
+msgid "Please check your email to complete the registration process."
+msgstr "Por favor, verifique seu email para concluir seu cadastro."
+
+#: apps/accounts/views.py:97
+msgid "Invalid user and/or password."
+msgstr "Usuário e/ou senha inválidos."
