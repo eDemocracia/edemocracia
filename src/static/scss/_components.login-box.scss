@@ -1,0 +1,209 @@
+.login-box {
+  padding: 2rem;
+  max-width: 23rem;
+  background-color: #245d49;
+  color: white;
+  overflow: hidden;
+  margin: auto;
+  @include breakpoint(small only) {
+    padding: 2rem;
+  }
+
+  &__options {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-top: solid 0.5rem $secondary-color;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  &__option {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    line-height: inherit;
+    font-weight: 600;
+    order: 2;
+
+    &.active {
+      cursor: default;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #a9de8c;
+      margin-top: -0.5rem;
+      order: 0;
+      @include breakpoint(small only) {
+        font-size: 1.7rem;
+      }
+    }
+
+    &:not(.active) {
+      padding: 0.2rem 0.4rem;
+      padding-right: calc(0.4rem + 2px);
+      margin-left: 0.5rem;
+      border-left: 2px solid white;
+      z-index: 1;
+      @include transition-default(color);
+      &::after {
+        content: '';
+        position: absolute;
+        background-color: white;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        z-index: -1;
+        @include transition-default(transform);
+      }
+
+      &:hover, &:focus{
+        color: $primary-color;
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+
+  &__yellow-bar {
+    position: absolute;
+    top: -0.5rem;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 0.5rem);
+    transform: scaleY(0);
+    transform-origin: top;
+    background: #e9c23a;
+    transition: transform $swift-out 0.4s 0s;
+    z-index: 2;
+
+    &.active {
+      transform: scaleY(1);
+      transform-origin: bottom;
+      transition: transform $swift-out 0.4s 0s;
+    }
+  }
+
+  &__icon {
+    position: relative;
+    background-color: $medium-gray;
+    color: $primary-color;
+    border: 0;
+    line-height: 1rem;
+    @include transition-default(all);
+
+    .is-invalid-label & {
+      background-color: $alert-color;
+      color: white;
+    }
+  }
+
+  &__input-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%
+  }
+
+  &__input {
+    width: inherit;
+
+    @include transition-default(all);
+
+    &:focus {
+      @include transition-default(all);
+    }
+
+    &.is-invalid-input {
+      background-color: scale-color($alert-color, $lightness: 75%);
+      color: $primary-color;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0 0.5rem;
+    background-color: scale-color($alert-color, $lightness: 20%);
+    color: white;
+    transform: translate(0,-100%);
+
+    &.is-visible {
+      display: flex !important;
+      visibility: visible;
+      transform: translateY(0);
+      @include transition-default(transform);
+    }
+
+    .login-box__input-wrapper:hover &.is-visible {
+      transform: translate(-100%,0);
+    }
+    .login-box__input:focus ~ &.is-visible {
+      transform: translate(-100%,0);
+    }
+
+    &__message {
+      font-size: 0.62rem;
+    }
+  }
+
+  &__error-icon {
+    font-size: 1.4rem;
+  }
+
+  &__forms {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  &__form-wrapper {
+    flex: 1 0 100%;
+    transition: transform 0s 0s $swift-out;
+
+
+    &.inactive {
+      order: 1;
+      opacity: 0.1;
+      transform: translateX(120%);
+      transition: transform 0s 0s $swift-out, opacity 0.5s 0s ease;
+    }
+
+    &.active {
+      order: 0;
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.5s 0.2s $swift-out, opacity 0.5s 0.4s ease;
+    }
+
+    &.transition {
+      opacity: 0.1;
+      transform: translateX(-120%);
+      transition: transform 0.5s 0s $swift-out, opacity 0.5s 0s ease;
+    }
+  }
+
+  &__form {
+    margin-bottom: 2rem;
+  }
+
+  &__link {
+    &--forgotten-password {
+      font-weight: 400;
+      color: #a9de8c;
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+  }
+}

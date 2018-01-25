@@ -1,0 +1,12 @@
+<svg style="isolation:isolate" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 480 80">
+  <defs>
+    <clipPath id="a">
+      <rect width="480" height="80"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" clip-path="url(#a)">
+    <path fill="#ec3" d="m480 48c-92.9-72.5-347.1-52.55-480-8v40h480v-32z"/>
+    <path fill="#396" d="m480 32c-150-36.24-347.4-4.58-480 40v8h480v-48z"/>
+    <path fill="#022" d="m423.5 32.86c-151.7-14.87-305.4 6.44-423.5 46.14v1h480v-40q-38-5.33-56.5-7.14z"/>
+  </g>
+</svg>

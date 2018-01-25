@@ -1,0 +1,626 @@
+.card-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+  @include breakpoint(medium up) {
+    min-height: 20.5rem;
+  }
+
+  &--wrapped {
+    overflow: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.container--card-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-stats {
+  flex-grow: 1;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  padding: 0 0.2rem;
+  border-right: 1px solid lightgray;
+
+  &:last-child {
+    border: none;
+  }
+
+  &__name {
+    margin-bottom: 0.3rem;
+  }
+
+  &__value {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
+  width: 16rem;
+  flex: 0 0 16rem;
+  padding: 1.2rem;
+  background-color: white;
+  word-wrap: break-word;
+  @include material-shadow(1);
+
+  @include breakpoint(small only) {
+    flex: 0 0 16rem;
+    width: 16rem;
+  }
+
+  &__link {
+    display: flex;
+    flex: 0 0 16rem;
+    width: 16rem;
+    min-height: 20rem;
+    margin: 0.5rem;
+    &:first-child {
+      margin-left: 0;
+    }
+    @include breakpoint(small only) {
+      flex: 0 0 16rem;
+      width: 16rem;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  &__image {
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__highlighted {
+    background-color: lightgrey;
+    font-weight: 500;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: auto;
+  }
+}
+
+.info-card--wikilegis {
+
+  & .info-card__header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid black;
+    max-height: 5rem;
+  }
+
+  & .info-card__icon {
+    flex: 0 0 3.6rem;
+    height: 3.5rem;
+    border: 0.3rem solid #00d574;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+
+    @include breakpoint(small only) {
+      flex: 0 0 2.8rem;
+      height: 2.8rem;
+      border: 0.2rem solid #00d574;
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    &--closed {
+      border: 0.3rem solid #bfbfbf;
+
+      @include breakpoint(small only) {
+        border: 0.2rem solid #bfbfbf;
+      }
+    }
+
+  }
+
+  & .info-card__title {
+    max-height: 4rem;
+
+    @include breakpoint(small only) {
+      font-size: 0.8rem;
+    }
+  }
+
+  & .card-stats__value {
+    color: #00d574;
+
+    &--closed {
+      color: #bfbfbf;
+    }
+  }
+}
+
+.info-card--discourse {
+
+  & .info-card__header {
+    justify-content: flex-start;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  & .info-card__icon {
+    margin-right: 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  & .info-card__title {
+    font-size: 0.9rem;
+  }
+
+  & .info-card__text {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  & .card-stats__value {
+    color: #1b9894;
+  }
+}
+
+.info-card--pauta {
+  & .card-stats__value {
+    color: #b0dcf7;
+
+    &--closed {
+      color: #a2a2a2;
+    }
+  }
+
+  & .info-card__header {
+    justify-content: flex-start;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+
+    &--calendar {
+      background-color: #b0dcf7;
+    }
+
+    &--closed {
+      background-color: #a2a2a2;
+      color: white;
+    }
+  }
+
+  & .info-card__icon {
+    margin-right: 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  & .info-card__text {
+    & .text__highlight {
+      font-weight: 500;
+    }
+  }
+}
+
+.info-card--audiencias{
+
+  & .info-card__header {
+    justify-content: flex-start;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    color: white;
+
+    &--live {
+      background-color: #1d694f;
+    }
+
+    &--old-video {
+      background-color: #11496c;
+    }
+
+    &--calendar {
+      background-color: #092b2a;
+    }
+  }
+
+  & .info-card__icon {
+    margin-right: 0.8rem;
+    font-size: 1.5rem;
+
+    &--live {
+      color: #ff3333;
+      font-size: 0.9em;
+    }
+
+    &--old-video {
+      .icon {
+        transform: translateX(10%)
+      }
+    }
+
+    &--calendar {
+      font-size: 0.9em;
+      border: 2px solid;
+      padding: 0.4em;
+      border-radius: 50%;
+    }
+  }
+
+
+  & .info-card__title {
+    font-size: 0.9rem;
+  }
+
+  & .info-card__image {
+
+    &--calendar {
+      display: block;
+      height: 7em;
+      margin: 0 auto;
+      margin-bottom: 1em;
+    }
+  }
+
+  & .info-card__description {
+    margin-bottom: 1rem;
+  }
+
+  & .info-card__text {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0rem;
+    font-size: .8em;
+  }
+
+  & .info-card__type{
+    margin-bottom: 0rem;
+    font-size: 0.9em;
+  }
+
+  & .card-stats__value {
+    color: #1b9894;
+  }
+}
+
+.info-card--search {
+
+  & .info-card__type {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+
+    & .icon {
+      margin-right: 1rem;
+    }
+  }
+  & .info-card__title {
+    & .info-card__highlighted {
+      background-color: lightgrey;
+      font-weight: 700;
+      color: black;
+    }
+
+    &--secondary {
+      color: #666666;
+    }
+  }
+
+  & .info-card__header {
+    &--secondary {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.info-card--documento {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $documento-color;
+    }
+  }
+}
+
+.info-card--adm-publica {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $adm-publica-color;
+    }
+  }
+}
+
+.info-card--agropecuaria {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $agropecuaria-color;
+    }
+  }
+}
+
+.info-card--assistencia-social {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $assistencia-social-color;
+    }
+  }
+}
+
+.info-card--cidades {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $cidades-color;
+    }
+  }
+}
+
+.info-card--ciencia {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $ciencia-color;
+    }
+  }
+}
+
+.info-card--comunicacao {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $comunicacao-color;
+    }
+  }
+}
+
+.info-card--consumidor {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $consumidor-color;
+    }
+  }
+}
+
+.info-card--cultura {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $cultura-color;
+    }
+  }
+}
+
+.info-card--direito-e-justica {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $direito-e-justica-color;
+    }
+  }
+}
+
+.info-card--direitos-humanos {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $direitos-humanos-color;
+    }
+  }
+}
+
+.info-card--economia {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $economia-color;
+    }
+  }
+}
+
+.info-card--educacao {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $educacao-color;
+    }
+  }
+}
+
+.info-card--esportes {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $esportes-color;
+    }
+  }
+}
+
+.info-card--familia {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $familia-color;
+    }
+  }
+}
+
+.info-card--industria {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $industria-color;
+    }
+  }
+}
+
+.info-card--institucional {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $institucional-color;
+    }
+  }
+}
+
+.info-card--meio-ambiente {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $meio-ambiente-color;
+    }
+  }
+}
+
+.info-card--participacao-e-transparencia {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $participacao-e-transparencia-color;
+    }
+  }
+}
+
+.info-card--politica {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $politica-color;
+    }
+  }
+}
+
+.info-card--previdencia {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $previdencia-color;
+    }
+  }
+}
+
+.info-card--relacoes-exteriores {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $relacoes-exteriores-color;
+    }
+  }
+}
+
+.info-card--saude {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $saude-color;
+    }
+  }
+}
+
+.info-card--seguranca {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $seguranca-color;
+    }
+  }
+}
+
+.info-card--trabalho {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $trabalho-color;
+    }
+  }
+}
+
+.info-card--transporte-e-transito {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $transporte-e-transito-color;
+    }
+  }
+}
+
+.info-card--turismo {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $turismo-color;
+    }
+  }
+}
+
+.info-card--reforma-politica {
+
+  &.info-card--discourse {
+
+    .info-card__header {
+      background-color: $reforma-politica-color;
+    }
+  }
+}

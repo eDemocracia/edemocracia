@@ -1,4 +1,1526 @@
 {% extends 'components/base.html' %}
-
 {% block content %}
+
+<div class="edem-content-wrapper">
+<div class="edem-topbar">
+  <div class="stick">
+    <a class="brand JS-topbarMenuHandler" href="/">
+      <img class="logo" src="/static/edem-navigation/img/edem-logo-icon.png" alt="e-Democracia Beta">
+      <span class="name">Câmara dos Deputados</span>
+    </a>
+
+    <nav class="actions">
+      <div class="menu JS-topbarMenuHandler">
+
+
+          <a class="link JS-openSidebar" data-sidebar-content="signin">Entrar</a>
+          <a class="link -highlight JS-openSidebar" data-sidebar-content="signup">Cadastrar</a>
+
+      </div>
+      <button class="hamburger-button JS-toggleTopbarMenu JS-closeSidebar"></button>
+    </nav>
+  </div>
+</div>
+
+
+<div class="edem-sidebar">
+  <div class="stick">
+    <div class="closewrapper">
+      <button class="edem-close-button JS-closeSidebar"></button>
+    </div>
+
+
+
+      <div class="content JS-sidebarContent JS-signinContent">
+        <h1 class="header">Entrar</h1>
+
+        <div class="social">
+            <a class="edem-button -social -facebook" href="/account/social/login/facebook/?next=/home">
+              Continuar com Facebook
+            </a>
+            <a class="edem-button -social -google" href="/account/social/login/google-oauth2/?next=/home">
+              Continuar com Google
+            </a>
+        </div>
+
+        <form class="access JS-loginForm">
+          <div class="form-field">
+            <input class="input JS-formInput" id="id_username" name="username">
+            <label class="label" for="id_username"><span class="labeltext">Endereço de email</span></label>
+            <p class="error JS-inputError" data-input-name="username" hidden></p>
+          </div>
+
+          <div class="form-field">
+            <input class="input JS-formInput" id="id_password" name="password" type="password">
+            <label class="label" for="id_password"><span class="labeltext">Senha</span></label>
+            <a class="action -input JS-fieldActionPassword" role="button">Mostrar Senha</a>
+            <p class="error JS-inputError" data-input-name="password" hidden></p>
+          </div>
+
+          <button class="edem-button JS-sendForm">Entrar</button>
+
+          <div class="errorbox JS-accessErrorBox" hidden>
+            <p class="error JS-accessError"></p>
+            <button class="edem-close-button -white JS-closeAccessError" type="button"></button>
+          </div>
+        </form>
+
+
+        <a class="link" href="/account/password-reset">Esqueceu sua senha?</a>
+      </div>
+
+      <div class="content JS-sidebarContent JS-signupContent">
+        <h1 class="header">Cadastrar</h1>
+
+        <p class="info">
+          Ao se cadastrar no e-Democracia você concorda com nossos <a class="link" href="/sobre/tos/">Termos de Serviço</a>
+        </p>
+
+        <div class="social">
+              <a class="edem-button -social -facebook" href="/account/social/login/facebook/?next=/home">
+                Continuar com Facebook
+              </a>
+              <a class="edem-button -social -google" href="/account/social/login/google-oauth2/?next=/home">
+                Continuar com Google
+              </a>
+          </div>
+
+          <form class="access JS-signUpForm">
+            <div class="form-field">
+              <input class="input JS-formInput" id="mail" name="email" type="email">
+              <label class="label" for="mail"><span class="labeltext">Endereço de email *</span></label>
+              <p class="error JS-inputError" data-input-name="email" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <input class="input JS-formInput" id="password" name="password" type="password">
+              <label class="label" for="password"><span class="labeltext">Senha *</span></label>
+              <a class="action -input JS-fieldActionPassword" role="button">Mostrar Senha</a>
+              <p class="error JS-inputError" data-input-name="password" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <select class="input JS-formInput" name="uf" id="id_uf">
+                <option class="option" value="" selected disabled hidden></option>
+                <option class="option" value="AC">Acre</option>
+                <option class="option" value="AL">Alagoas</option>
+                <option class="option" value="AP">Amapá</option>
+                <option class="option" value="AM">Amazonas</option>
+                <option class="option" value="BA">Bahia</option>
+                <option class="option" value="CE">Ceará</option>
+                <option class="option" value="DF">Distrito Federal</option>
+                <option class="option" value="ES">Espírito Santo</option>
+                <option class="option" value="GO">Goiás</option>
+                <option class="option" value="MA">Maranhão</option>
+                <option class="option" value="MT">Mato Grosso</option>
+                <option class="option" value="MS">Mato Grosso do Sul</option>
+                <option class="option" value="MG">Minas Gerais</option>
+                <option class="option" value="PA">Pará</option>
+                <option class="option" value="PB">Paraíba</option>
+                <option class="option" value="PR">Paraná</option>
+                <option class="option" value="PE">Pernambuco</option>
+                <option class="option" value="PI">Piauí</option>
+                <option class="option" value="RJ">Rio de Janeiro</option>
+                <option class="option" value="RN">Rio Grande do Norte</option>
+                <option class="option" value="RS">Rio Grande do Sul</option>
+                <option class="option" value="RO">Rondônia</option>
+                <option class="option" value="RR">Roraima</option>
+                <option class="option" value="SC">Santa Catarina</option>
+                <option class="option" value="SP">São Paulo</option>
+                <option class="option" value="SE">Sergipe</option>
+                <option class="option" value="TO">Tocantins</option>
+              </select>
+              <label class="label" for="id_uf"><span class="labeltext">Estado *</span></label>
+              <a class="action -input JS-inputActionState" role="button">Sou estrangeiro</a>
+              <p class="error JS-inputError" data-input-name="uf" hidden></p>
+            </div>
+
+            <div class="form-field" hidden>
+              <select class="input JS-formInput" name="country" id="id_country">
+                <option class="option" value="" selected disabled hidden></option>
+                <option class="option" value="África do Sul">África do Sul</option>
+                <option class="option" value="Albânia">Albânia</option>
+                <option class="option" value="Alemanha">Alemanha</option>
+                <option class="option" value="Andorra">Andorra</option>
+                <option class="option" value="Angola">Angola</option>
+                <option class="option" value="Anguilla">Anguilla</option>
+                <option class="option" value="Antigua">Antigua</option>
+                <option class="option" value="Arábia Saudita">Arábia Saudita</option>
+                <option class="option" value="Argentina">Argentina</option>
+                <option class="option" value="Armênia">Armênia</option>
+                <option class="option" value="Aruba">Aruba</option>
+                <option class="option" value="Austrália">Austrália</option>
+                <option class="option" value="Áustria">Áustria</option>
+                <option class="option" value="Azerbaijão">Azerbaijão</option>
+                <option class="option" value="Bahamas">Bahamas</option>
+                <option class="option" value="Bahrein">Bahrein</option>
+                <option class="option" value="Bangladesh">Bangladesh</option>
+                <option class="option" value="Barbados">Barbados</option>
+                <option class="option" value="Bélgica">Bélgica</option>
+                <option class="option" value="Benin">Benin</option>
+                <option class="option" value="Bermudas">Bermudas</option>
+                <option class="option" value="Botsuana">Botsuana</option>
+                <option class="option" value="Brasil">Brasil</option>
+                <option class="option" value="Brunei">Brunei</option>
+                <option class="option" value="Bulgária">Bulgária</option>
+                <option class="option" value="Burkina Fasso">Burkina Fasso</option>
+                <option class="option" value="botão">botão</option>
+                <option class="option" value="Cabo Verde">Cabo Verde</option>
+                <option class="option" value="Camarões">Camarões</option>
+                <option class="option" value="Camboja">Camboja</option>
+                <option class="option" value="Canadá">Canadá</option>
+                <option class="option" value="Cazaquistão">Cazaquistão</option>
+                <option class="option" value="Chade">Chade</option>
+                <option class="option" value="Chile">Chile</option>
+                <option class="option" value="China">China</option>
+                <option class="option" value="Cidade do Vaticano">Cidade do Vaticano</option>
+                <option class="option" value="Colômbia">Colômbia</option>
+                <option class="option" value="Congo">Congo</option>
+                <option class="option" value="Coréia do Sul">Coréia do Sul</option>
+                <option class="option" value="Costa do Marfim">Costa do Marfim</option>
+                <option class="option" value="Costa Rica">Costa Rica</option>
+                <option class="option" value="Croácia">Croácia</option>
+                <option class="option" value="Dinamarca">Dinamarca</option>
+                <option class="option" value="Djibuti">Djibuti</option>
+                <option class="option" value="Dominica">Dominica</option>
+                <option class="option" value="EUA">EUA</option>
+                <option class="option" value="Egito">Egito</option>
+                <option class="option" value="El Salvador">El Salvador</option>
+                <option class="option" value="Emirados Árabes">Emirados Árabes</option>
+                <option class="option" value="Equador">Equador</option>
+                <option class="option" value="Eritréia">Eritréia</option>
+                <option class="option" value="Escócia">Escócia</option>
+                <option class="option" value="Eslováquia">Eslováquia</option>
+                <option class="option" value="Eslovênia">Eslovênia</option>
+                <option class="option" value="Espanha">Espanha</option>
+                <option class="option" value="Estônia">Estônia</option>
+                <option class="option" value="Etiópia">Etiópia</option>
+                <option class="option" value="Fiji">Fiji</option>
+                <option class="option" value="Filipinas">Filipinas</option>
+                <option class="option" value="Finlândia">Finlândia</option>
+                <option class="option" value="França">França</option>
+                <option class="option" value="Gabão">Gabão</option>
+                <option class="option" value="Gâmbia">Gâmbia</option>
+                <option class="option" value="Gana">Gana</option>
+                <option class="option" value="Geórgia">Geórgia</option>
+                <option class="option" value="Gibraltar">Gibraltar</option>
+                <option class="option" value="Granada">Granada</option>
+                <option class="option" value="Grécia">Grécia</option>
+                <option class="option" value="Guadalupe">Guadalupe</option>
+                <option class="option" value="Guam">Guam</option>
+                <option class="option" value="Guatemala">Guatemala</option>
+                <option class="option" value="Guiana">Guiana</option>
+                <option class="option" value="Guiana Francesa">Guiana Francesa</option>
+                <option class="option" value="Guiné-bissau">Guiné-bissau</option>
+                <option class="option" value="Haiti">Haiti</option>
+                <option class="option" value="Holanda">Holanda</option>
+                <option class="option" value="Honduras">Honduras</option>
+                <option class="option" value="Hong Kong">Hong Kong</option>
+                <option class="option" value="Hungria">Hungria</option>
+                <option class="option" value="Iêmen">Iêmen</option>
+                <option class="option" value="Ilhas Cayman">Ilhas Cayman</option>
+                <option class="option" value="Ilhas Cook">Ilhas Cook</option>
+                <option class="option" value="Ilhas Curaçao">Ilhas Curaçao</option>
+                <option class="option" value="Ilhas Marshall">Ilhas Marshall</option>
+                <option class="option" value="Ilhas Turks & Caicos">Ilhas Turks & Caicos</option>
+                <option class="option" value="Ilhas Virgens (brit.)">Ilhas Virgens (brit.)</option>
+                <option class="option" value="Ilhas Virgens(amer.)">Ilhas Virgens(amer.)</option>
+                <option class="option" value="Ilhas Wallis e Futuna">Ilhas Wallis e Futuna</option>
+                <option class="option" value="Índia">Índia</option>
+                <option class="option" value="Indonésia">Indonésia</option>
+                <option class="option" value="Inglaterra">Inglaterra</option>
+                <option class="option" value="Irlanda">Irlanda</option>
+                <option class="option" value="Islândia">Islândia</option>
+                <option class="option" value="Israel">Israel</option>
+                <option class="option" value="Itália">Itália</option>
+                <option class="option" value="Jamaica">Jamaica</option>
+                <option class="option" value="Japão">Japão</option>
+                <option class="option" value="Jordânia">Jordânia</option>
+                <option class="option" value="Kuwait">Kuwait</option>
+                <option class="option" value="Latvia">Latvia</option>
+                <option class="option" value="Líbano">Líbano</option>
+                <option class="option" value="Liechtenstein">Liechtenstein</option>
+                <option class="option" value="Lituânia">Lituânia</option>
+                <option class="option" value="Luxemburgo">Luxemburgo</option>
+                <option class="option" value="Macau">Macau</option>
+                <option class="option" value="Macedônia">Macedônia</option>
+                <option class="option" value="Madagascar">Madagascar</option>
+                <option class="option" value="Malásia">Malásia</option>
+                <option class="option" value="Malaui">Malaui</option>
+                <option class="option" value="Mali">Mali</option>
+                <option class="option" value="Malta">Malta</option>
+                <option class="option" value="Marrocos">Marrocos</option>
+                <option class="option" value="Martinica">Martinica</option>
+                <option class="option" value="Mauritânia">Mauritânia</option>
+                <option class="option" value="Mauritius">Mauritius</option>
+                <option class="option" value="México">México</option>
+                <option class="option" value="Moldova">Moldova</option>
+                <option class="option" value="Mônaco">Mônaco</option>
+                <option class="option" value="Montserrat">Montserrat</option>
+                <option class="option" value="Nepal">Nepal</option>
+                <option class="option" value="Nicarágua">Nicarágua</option>
+                <option class="option" value="Niger">Niger</option>
+                <option class="option" value="Nigéria">Nigéria</option>
+                <option class="option" value="Noruega">Noruega</option>
+                <option class="option" value="Nova Caledônia">Nova Caledônia</option>
+                <option class="option" value="Nova Zelândia">Nova Zelândia</option>
+                <option class="option" value="Omã">Omã</option>
+                <option class="option" value="Palau">Palau</option>
+                <option class="option" value="Panamá">Panamá</option>
+                <option class="option" value="Papua-nova Guiné">Papua-nova Guiné</option>
+                <option class="option" value="Paquistão">Paquistão</option>
+                <option class="option" value="Peru">Peru</option>
+                <option class="option" value="Polinésia Francesa">Polinésia Francesa</option>
+                <option class="option" value="Polônia">Polônia</option>
+                <option class="option" value="Porto Rico">Porto Rico</option>
+                <option class="option" value="Portugal">Portugal</option>
+                <option class="option" value="Qatar">Qatar</option>
+                <option class="option" value="Quênia">Quênia</option>
+                <option class="option" value="Rep. Dominicana">Rep. Dominicana</option>
+                <option class="option" value="Rep. Tcheca">Rep. Tcheca</option>
+                <option class="option" value="Reunion">Reunion</option>
+                <option class="option" value="Romênia">Romênia</option>
+                <option class="option" value="Ruanda">Ruanda</option>
+                <option class="option" value="Rússia">Rússia</option>
+                <option class="option" value="Saipan">Saipan</option>
+                <option class="option" value="Samoa Americana">Samoa Americana</option>
+                <option class="option" value="Senegal">Senegal</option>
+                <option class="option" value="Serra Leone">Serra Leone</option>
+                <option class="option" value="Seychelles">Seychelles</option>
+                <option class="option" value="Singapura">Singapura</option>
+                <option class="option" value="Síria">Síria</option>
+                <option class="option" value="Sri Lanka">Sri Lanka</option>
+                <option class="option" value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                <option class="option" value="St. Lúcia">St. Lúcia</option>
+                <option class="option" value="St. Vincent">St. Vincent</option>
+                <option class="option" value="Sudão">Sudão</option>
+                <option class="option" value="Suécia">Suécia</option>
+                <option class="option" value="Suiça">Suiça</option>
+                <option class="option" value="Suriname">Suriname</option>
+                <option class="option" value="Tailândia">Tailândia</option>
+                <option class="option" value="Taiwan">Taiwan</option>
+                <option class="option" value="Tanzânia">Tanzânia</option>
+                <option class="option" value="Togo">Togo</option>
+                <option class="option" value="Trinidad & Tobago">Trinidad & Tobago</option>
+                <option class="option" value="Tunísia">Tunísia</option>
+                <option class="option" value="Turquia">Turquia</option>
+                <option class="option" value="Ucrânia">Ucrânia</option>
+                <option class="option" value="Uganda">Uganda</option>
+                <option class="option" value="Uruguai">Uruguai</option>
+                <option class="option" value="Venezuela">Venezuela</option>
+                <option class="option" value="Vietnã">Vietnã</option>
+                <option class="option" value="Zaire">Zaire</option>
+                <option class="option" value="Zâmbia">Zâmbia</option>
+                <option class="option" value="Zimbábue">Zimbábue</option>
+              </select>
+              <label class="label" for="id_country"><span class="labeltext">País *</span></label>
+              <a class="action -input JS-inputActionCountry" role="button">Sou brasileiro</a>
+              <p class="error JS-inputError" data-input-name="country" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <input class="input JS-formInput" id="name" name="first_name" type="text">
+              <label class="label" for="name"><span class="labeltext">Nome de exibição</span></label>
+              <p class="error JS-inputError" data-input-name="first_name" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <select class="input JS-formInput" name="gender" id="gender">
+                <option class="option" value="" selected disabled hidden></option>
+                <option class="option" value="male">Masculino</option>
+                <option class="option" value="female">Feminino</option>
+                <option class="option" value="other">Outro</option>
+                <option class="option" value="undisclosed">Prefiro não informar</option>
+              </select>
+              <label class="label" for="gender"><span class="labeltext">Gênero</span></label>
+              <p class="error JS-inputError" data-input-name="gender" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <input class="input JS-formInput" name="birthdate" id="birthdate" type="text" data-mask="00/00/0000" pattern="^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((1[6-9]|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((1[6-9]|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((1[6-9]|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$">
+              <label class="label" for="birthdate"><span class="labeltext">Data de nascimento</span></label>
+              <p class="error JS-inputError" data-input-name="birthdate" hidden></p>
+            </div>
+
+            <div id="recaptcha" class="g-recaptcha" data-sitekey="6LfftDgUAAAAAOdtEcTcHrMzJ_CM5K51Vx7EUZMR"></div>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+
+            <button class="edem-button JS-sendForm">Cadastrar</button>
+
+
+            <div class="errorbox JS-accessErrorBox" hidden>
+              <p class="error JS-accessError"></p>
+              <button class="edem-close-button -white JS-closeAccessError" type="button"></button>
+            </div>
+          </form>
+        </div>
+
+
+    </div>
+  </div>
+
+
+
+
+  				<script>
+
+  				</script>
+
+
+
+  				<main class="main">
+
+
+
+  <section class="owner-section">
+    <div class="firsthalf">
+      <div class="logo">
+        <img class="image" src="/static/img/logo-camara-color.svg" alt="e-Democracia da Câmara dos Deputados">
+      </div>
+    </div>
+    <div class="secondhalf">
+      <p class="briefing">Bem-vindo ao e-Democracia <span class="owner">Câmara dos Deputados</span>. Este Portal foi criado para ampliar a participação social no processo legislativo e aproximar cidadãos e seus representantes por meio da interação digital.</p>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="section section--audiencias">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/audiencias/"><img class="section__logo" src="/static/img/logo-audiencias-publicas.svg" ></a>
+        <p class="section__text">
+          Acompanhe audiências ao vivo e participe enviando perguntas.
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/audiencias/" title="Veja todas as audiências">Faça sua pergunta</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/audiencias/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+
+
+
+
+
+
+      <a class="info-card__link" href="/audiencias/sala/635">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/0JjV_7eHRVU/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="A DEMISSÃO DE 1.200 PROFESSORES DA FACULDADE ESTÁCIO DE SÁ.">A DEMISSÃO DE 1.200 PROFESSORES DA FACULDADE ESTÁCIO DE SÁ.</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">0</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Trabalho, de Administração e Serviço Público">CTASP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">20/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/631">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/VU6IZXSf66w/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">LEGISLAÇÃO PARTICIPATIVA</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">1</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">14/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/630">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/LfGittEPPFs/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">LEGISLAÇÃO PARTICIPATIVA</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">1</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">14/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/634">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/46LXA8RG_bc/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">Audiência Pública Conjunta das Comissões CLP e CSSF</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">0</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">13/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/633">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/8ZaJe5K-AUM/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">Audiência Pública Conjunta das Comissões CLP e CSSF</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">0</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">13/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/627">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/Heep5kt0Crw/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">DESENVOLVIMENTO URBANO</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">0</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Desenvolvimento Urbano">CDU</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">13/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/620">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/3K4DKU8aoAU/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">LEGISLAÇÃO PARTICIPATIVA</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">3</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">13/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/626">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/j-xe-9cAAD4/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">PL 2303/15 - BANCO CENTRAL REGULAR MOEDAS VIRTUAIS</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">2</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão Especial destinada a proferir parecer ao Projeto de Lei nº 2303, de 2015, do Sr. Aureo, que &quot;dispõe sobre a inclusão das moedas virtuais e programas de milhagem aéreas na definição de &#39;arranjos de pagamento&#39; sob a supervisão do Banco Central&quot; (altera a Lei nº 12.865, de 2013 e da Lei 9.613, de 1998)">PL230315</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">12/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/625">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/IYWHLZlxVXU/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">Audiência Pública Conjunta das Comissões CLP e CSSF</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">0</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">12/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/audiencias/sala/619">
+        <li class="info-card info-card--audiencias">
+          <div class="info-card__header info-card__header--old-video">
+            <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+            <h2 class="info-card__title">Audiências que já aconteceram</h2>
+          </div>
+          <img class="info-card__image" src="https://i.ytimg.com/vi/IYWHLZlxVXU/mqdefault_live.jpg">
+          <div class="info-card__description">
+          <p class="info-card__text" title="">LEGISLAÇÃO PARTICIPATIVA</p>
+
+          <p class="info-card__type">Audiência Pública</p>
+
+          </div>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Perguntas</div>
+              <div class="card-stats__value">1</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Organizador</div>
+              <div class="card-stats__value" title="Comissão de Legislação Participativa">CLP</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Data</div>
+              <div class="card-stats__value">12/12/2017</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="section section--wikilegis">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/wikilegis/"><img class="section__logo" src="/static/img/logo-wikilegis.svg" ></a>
+        <p class="section__text">
+          Edite e aprimore projetos de lei artigo por artigo.
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/wikilegis/" title="Veja todas as projetos">Contribua em projetos de lei</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/wikilegis/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+
+
+      <a class="info-card__link" href="/wikilegis/bill/81">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon"><i class="icon icon-administracao-publica"></i></div>
+
+            <h2 class="info-card__title"> Regras e instrumentos para a eficiên...</h2>
+          </div>
+          <p class="info-card__text">
+            Institui regras e instrumentos para a eficiência pública.
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value">98</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Participe até:</div>
+              <div class="card-stats__value">02/03/2018</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/82">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon"><i class="icon icon-participacao-e-transparencia"></i></div>
+
+            <h2 class="info-card__title">Lei de Acesso à Informação</h2>
+          </div>
+          <p class="info-card__text">
+             Regula o acesso a informações acerca dos gastos públicos, no contexto da Lei nº 12.527 de 18 de novembro de 2011 (Lei de Acesso à Informação) e dá outras pr...
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value">13</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Participe até:</div>
+              <div class="card-stats__value">02/03/2018</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/78">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-esportes"></i></div>
+
+            <h2 class="info-card__title"> Garantia de assistência psicológica ...</h2>
+          </div>
+          <p class="info-card__text">
+             Altera o art. 34 da Lei n° 9.615, de 24 de março de 1998, que &quot;institui normas gerais sobre desporto&quot;, para incluir entre os deveres da entidade de prática ...
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">21</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">30/09/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/76">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-economia"></i></div>
+
+            <h2 class="info-card__title"> Aperfeiçoa o Estatuto Nacional da Mi...</h2>
+          </div>
+          <p class="info-card__text">
+            Altera a Lei Complementar nº 123, de 14 de dezembro de 2006.
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">44</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">29/09/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/79">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-educacao"></i></div>
+
+            <h2 class="info-card__title">FIES</h2>
+          </div>
+          <p class="info-card__text">
+             Altera a Lei nº 10.260, de 12 de julho de 2001, a Lei Complementar nº 129, de 8 de janeiro de 2009, a Medida Provisória nº 2.156-5, de 24 de agosto de 2001,...
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">15</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">18/09/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/80">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-economia"></i></div>
+
+            <h2 class="info-card__title">Reforma Tributária</h2>
+          </div>
+          <p class="info-card__text">
+            Altera o Sistema Tributário Nacional e dá outras providências.
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">129</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">08/09/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/73">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-trabalho"></i></div>
+
+            <h2 class="info-card__title">Desconto em folha de pagamento</h2>
+          </div>
+          <p class="info-card__text">
+            Dispõe sobre a autorização para desconto de prestações em folha de pagamento, e dá outras providências.
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">3</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">18/07/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/35">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-meio-ambiente"></i></div>
+
+            <h2 class="info-card__title">Desmatamento</h2>
+          </div>
+          <p class="info-card__text">
+            Trata do desmatamento das florestas nativas do Brasil.
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">64</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">30/06/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/69">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-educacao"></i></div>
+
+            <h2 class="info-card__title">Torna Permanente o FUNDEB</h2>
+          </div>
+          <p class="info-card__text">
+             Insere parágrafo único no art. 193; inciso IX, no art. 206 e art. 212-A, todos na Constituição Federal, de forma a tornar o Fundo de Manutenção e Desenvolvi...
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">15</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">30/06/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/wikilegis/bill/72">
+        <li class="info-card info-card--wikilegis">
+          <div class="info-card__header">
+
+            <div class="info-card__icon info-card__icon--closed"><i class="icon icon-politica"></i></div>
+
+            <h2 class="info-card__title"> Reforma Política | Democracia Direta...</h2>
+          </div>
+          <p class="info-card__text">
+             Institui novo marco legal para o exercício da soberania popular direta nos termos referidos no art. 14, incisos I a III, da Constituição Federal. [Versão at...
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Propostas</div>
+
+              <div class="card-stats__value card-stats__value--closed">63</div>
+
+            </div>
+
+            <div class="card-stats">
+
+              <div class="card-stats__name">Encerrado em:</div>
+              <div class="card-stats__value card-stats__value--closed">11/06/2017</div>
+
+            </div>
+          </div>
+        </li>
+      </a>
+
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="section section--discourse">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/expressao/"><img class="section__logo" src="/static/img/logo-expressao.svg" ></a>
+        <p class="section__text">
+          Dê sua opinião sobre os assuntos que afetam a sua vida, discutindo soluções com outros cidadãos e os deputados.
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/expressao/" title="Veja todas as discussões">Participe em discussões</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/expressao/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+
+
+      <a class="info-card__link" href="/expressao/t/procurador-da-republica-acoberta-crime-de-extorsao-e-faz-comissao-do-legislativo-municipal-de-otarios/44684">
+        <li class="info-card info-card--discourse info-card--direito-e-justica">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-direito-e-justica"></i></div>
+            <h2 class="info-card__title">Direito e Justiça</h2>
+          </div>
+          <p class="info-card__text">
+            Procurador da repÚblica acoberta crime de extorsÃo e faz comissÃo do legislativo municipal de otÁrios
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">60</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">2725</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/acabar-com-a-contribuicao-previdenciaria-e-substitui-la-pelo-imposto-de-renda/59029">
+        <li class="info-card info-card--discourse info-card--previdencia">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-previdencia"></i></div>
+            <h2 class="info-card__title">Previdência</h2>
+          </div>
+          <p class="info-card__text">
+            Acabar com a contribuição previdenciária e substituí-la pelo Imposto de Renda?
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">13</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">276</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/um-novo-modelo-de-aula-e-escola/56302">
+        <li class="info-card info-card--discourse info-card--educacao">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-educacao"></i></div>
+            <h2 class="info-card__title">Educação</h2>
+          </div>
+          <p class="info-card__text">
+            Um novo modelo de aula e escola
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">13</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">588</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/revogacao-do-estatuto-do-desarmamento-e-aprovacao-do-pl3722-12/41605">
+        <li class="info-card info-card--discourse info-card--seguranca">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-seguranca"></i></div>
+            <h2 class="info-card__title">Segurança</h2>
+          </div>
+          <p class="info-card__text">
+            Revogação do estatuto do desarmamento e aprovação do PL3722/12
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">308</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">6455</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/pl-2245-2007-regulamentacao-da-profissao-de-tecnologo/47003">
+        <li class="info-card info-card--discourse info-card--politica">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-politica"></i></div>
+            <h2 class="info-card__title">Política</h2>
+          </div>
+          <p class="info-card__text">
+            PL-2245/2007 - Regulamentação da Profissão de Tecnólogo
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">61</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">4162</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/governo-pode-incentivar-o-emagrecimento-da-populacao/41143">
+        <li class="info-card info-card--discourse info-card--saude">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-saude"></i></div>
+            <h2 class="info-card__title">Saúde</h2>
+          </div>
+          <p class="info-card__text">
+            Governo Pode Incentivar o Emagrecimento Da População ?
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">44</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">2105</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/governo-deveria-financiar-procedimentos-esteticos/43955">
+        <li class="info-card info-card--discourse info-card--saude">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-saude"></i></div>
+            <h2 class="info-card__title">Saúde</h2>
+          </div>
+          <p class="info-card__text">
+            Governo Deveria Financiar Procedimentos Estéticos ?
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">9</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">1013</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/empregabilidade-doenca-de-crohn-e-preconceito/55070">
+        <li class="info-card info-card--discourse info-card--saude">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-saude"></i></div>
+            <h2 class="info-card__title">Saúde</h2>
+          </div>
+          <p class="info-card__text">
+            Empregabilidade, Doença de Crohn e Preconceito
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">2</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">505</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/curriculo-dos-candidatos/38486">
+        <li class="info-card info-card--discourse info-card--reforma-politica">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-reforma-politica"></i></div>
+            <h2 class="info-card__title">Reforma Política</h2>
+          </div>
+          <p class="info-card__text">
+            Currículo dos Candidatos
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">69</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">2759</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+      <a class="info-card__link" href="/expressao/t/legalizacao-da-maconha/40974">
+        <li class="info-card info-card--discourse info-card--saude">
+
+          <div class="info-card__header">
+            <div class="info-card__icon"><i class="icon icon-saude"></i></div>
+            <h2 class="info-card__title">Saúde</h2>
+          </div>
+          <p class="info-card__text">
+            Legalização da Maconha
+          </p>
+          <div class="info-card__footer">
+            <div class="card-stats">
+              <div class="card-stats__name">Respostas</div>
+              <div class="card-stats__value">114</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Visualizações</div>
+              <div class="card-stats__value">10791</div>
+            </div>
+
+            <div class="card-stats">
+              <div class="card-stats__name">Atualização</div>
+              <div class="card-stats__value">jan/2018</div>
+            </div>
+          </div>
+        </li>
+      </a>
+
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="section section--pauta">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/pautaparticipativa/"><img class="section__logo" src="/static/img/logo-pauta-participativa.svg" ></a>
+        <p class="section__text">
+          Vote nos assustos a serem abordados em plenário.
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/pautaparticipativa/" title="Veja todas as pautas">Coloque projetos na pauta</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/pautaparticipativa/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+
+
+      <a class="info-card__link" href="/pautaparticipativa/pauta/1">
+        <li class="info-card info-card--pauta">
+
+            <div class="info-card__header info-card__header--closed">
+              <div class="info-card__icon info-card__icon--closed">
+                <i class="icon icon-calendar-times-o"></i>
+              </div>
+              <h2 class="info-card__title">Votação Encerrada</h2>
+            </div>
+
+          <h2 class="info-card__title">Pauta Participativa</h2>
+          <p class="info-card__text">
+            Nesta edição, consulta sobre projetos dos temas <span class="text__highlight">Política</span>, <span class="text__highlight">Segurança</span> e <span class="text__highlight">Saúde</span>.
+          </p>
+          <div class="info-card__footer">
+
+
+              <div class="card-stats">
+                <div class="card-stats__name">Encerrado em</div>
+                <div class="card-stats__value card-stats__value--closed">27/09/2017</div>
+              </div>
+
+              <div class="card-stats">
+                <div class="card-stats__name">Participantes</div>
+                <div class="card-stats__value card-stats__value--closed">7585</div>
+              </div>
+
+          </div>
+        </li>
+      </a>
+
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+	</main>
+
+  <footer class="footer">
+    <img class="logo" src="/static/img/edem-logo-full.png" alt="e-Democracia" >
+      <div class="briefing">
+        <p class="text">Esse é o e-Democracia <span class="owner">Câmara dos Deputados</span>. Este Portal foi criado para ampliar a participação social no processo legislativo e aproximar cidadãos e seus representantes por meio da interação digital.</p>
+      </div>
+      <p class="tos"><a class="link" href="/sobre/tos/">Termos de Serviço</a>Condições gerais aplicáveis à utilização do site e de suas ferramentas associadas</p>
+  </footer>
+</div>
+
+
+
 {% endblock content %}

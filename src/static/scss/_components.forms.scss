@@ -1,0 +1,139 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  justify-content: center;
+
+  &__input-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__input-wrapper {
+    margin: 0rem 0.5rem 1rem;
+
+    &--medium {
+      max-width: 17rem;
+      @include breakpoint(small only) {
+        max-width: initial;
+      }
+
+      @include breakpoint(medium only) {
+        max-width: 14rem;
+      }
+    }
+
+    &--small {
+      max-width: 14rem; 
+      @include breakpoint(small only) {
+        max-width: initial;
+      }
+    }
+
+    &--micro {
+      max-width: 10rem;
+      @include breakpoint(small only) {
+        max-width: initial;
+      }
+
+      @include breakpoint(medium only) {
+        max-width: 14rem;
+      }
+    }
+  }
+  
+  &__input {
+    width: inherit;
+
+    @include transition-default(all);
+
+    &--date {
+      display: block;
+    }
+
+    &:invalid {
+      color: #a9a9a9;
+    }
+
+    &:focus {
+      @include transition-default(all);
+    }
+
+    &.is-invalid-input {
+      background-color: scale-color($alert-color, $lightness: 75%);
+      color: $primary-color;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0 0.5rem;
+    background-color: scale-color($alert-color, $lightness: 20%);
+    color: white;
+    transform: translate(0,-100%);
+
+    &.is-visible {
+      display: flex !important;
+      visibility: visible;
+      transform: translateY(0);
+      @include transition-default(transform);
+    }
+
+    .form__input-wrapper:hover &.is-visible {
+      transform: translate(-100%,0);
+    }
+    .form__input:focus ~ &.is-visible {
+      transform: translate(-100%,0);
+    }
+  }
+
+  &__error-message {
+    font-size: 0.62rem;
+  }
+
+  &__error-icon {
+    font-size: 1.4rem;
+  }
+
+
+  &__select-option {
+    color: #0a0a0a;
+  }
+
+  &__form-wrapper {
+    flex: 1 0 100%;
+    transition: transform 0s 0s $swift-out;
+
+
+    &.inactive {
+      order: 1;
+      opacity: 0.1;
+      transform: translateX(120%);
+      transition: transform 0s 0s $swift-out, opacity 0.5s 0s ease;
+    }
+
+    &.active {
+      order: 0;
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.5s 0.2s $swift-out, opacity 0.5s 0.4s ease;
+    }
+
+    &.transition {
+      opacity: 0.1;
+      transform: translateX(-120%);
+      transition: transform 0.5s 0s $swift-out, opacity 0.5s 0s ease;
+    }
+
+  }
+}
