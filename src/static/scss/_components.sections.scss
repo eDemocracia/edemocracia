@@ -391,7 +391,7 @@
 }
 
 .section--change-password {
-  background-color: #f3f3f3;
+  background-color: #FFF;
 
   & .section__title {
     &::before {
@@ -403,6 +403,10 @@
 
   & .section__text {
     font-weight: 300;
+  }
+
+  & .form__input-wrapper {
+    margin: 1rem 0;
   }
 }
 

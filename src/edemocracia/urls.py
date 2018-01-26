@@ -12,6 +12,7 @@ urlpatterns = [
     path('accounts/', include('apps.accounts.urls')),
     path('api/v1/', api_root),
     path('api/v1/user/', UserListAPI.as_view(), name='user_list_api'),
+    path('form', TemplateView.as_view(template_name="form.html")),
 ]
 
 if settings.DEBUG is True:
