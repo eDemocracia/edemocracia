@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/v1/', api_root),
     path('api/v1/user/', UserListAPI.as_view(), name='user_list_api'),
     path('form', TemplateView.as_view(template_name="form.html")),
+    path('404', TemplateView.as_view(template_name="404.html")),
+    path('500', TemplateView.as_view(template_name="500.html")),
 ]
 
 if settings.DEBUG is True:
