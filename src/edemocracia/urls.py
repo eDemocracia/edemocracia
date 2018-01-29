@@ -4,10 +4,10 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from apps.accounts.api import api_root, UserListAPI
 from django.views.generic import TemplateView
-
+from apps.core.views import index
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="index.html")),
+    path('', index, name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.urls')),
     path('api/v1/', api_root),

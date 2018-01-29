@@ -1,0 +1,28 @@
+<a class="info-card__link" href="{{ bill.resource_uri }}">
+  <li class="info-card info-card--wikilegis">
+    <div class="info-card__header">
+
+      <div class="info-card__icon info-card__icon{% if bill.status == "closed" %}--closed{% endif %}"><i class="icon icon-politica"></i></div>
+
+      <h2 class="info-card__title"> {{ bill.title }}</h2>
+    </div>
+    <p class="info-card__text">
+       {{ bill.description }}
+    </p>
+    <div class="info-card__footer">
+      <div class="card-stats">
+        <div class="card-stats__name">Propostas</div>
+
+        <div class="card-stats__value card-stats__value{% if bill.status == "closed" %}--closed{% endif %}">{{ bill.amendments_count }}</div>
+
+      </div>
+
+      <div class="card-stats">
+
+        <div class="card-stats__name">{% if bill.status == "closed" %}Encerrado em:{% else %}Encerra em:{% endif %}</div>
+        <div class="card-stats__value card-stats__value{% if bill.status == "closed" %}--closed{% endif %}">{{ bill.closing_date }}</div>
+
+      </div>
+    </div>
+  </li>
+</a>

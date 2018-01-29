@@ -1,0 +1,39 @@
+ <section class="section section--pauta">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/pautaparticipativa/"><img class="section__logo" src="/static/img/logo-pauta-participativa.svg" ></a>
+        <p class="section__text">
+          Vote nos assustos a serem abordados em plenário.
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/pautaparticipativa/" title="Veja todas as pautas">Coloque projetos na pauta</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/pautaparticipativa/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+
+
+            {% for pauta in pautas %}
+                {% include "pautas-card.html" %}
+            {% endfor %}
+
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
