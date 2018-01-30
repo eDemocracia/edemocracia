@@ -9,3 +9,8 @@ from apps.core.tasks import default_login
 @receiver(user_logged_in)
 def audiencias_login(sender, user, request, **kwargs):
     default_login(user, request, AudienciasConfig)
+
+
+@receiver(user_logged_out)
+def audiencias_logout(sender, user, request, **kwargs):
+    request.delete_cookies.append(AudienciasConfig.cookie_name)
