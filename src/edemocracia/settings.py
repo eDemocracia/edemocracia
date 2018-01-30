@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'macros',
     'compressor',
     'compressor_toolkit',
+    'widget_tweaks',
 
     'apps.core',
     'apps.wikilegis',
@@ -112,6 +113,8 @@ AUTHENTICATION_BACKENDS = (
     'apps.accounts.backends.AuthenticationEmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+LOGIN_URL = 'home'
 
 # SOCIAL AUTH
 SOCIAL_AUTH_URL_NAMESPACE = 'social'

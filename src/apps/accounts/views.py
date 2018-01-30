@@ -12,6 +12,10 @@ from django.http import JsonResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.decorators import method_decorator
 from apps.accounts import captcha
+from django.views.generic import UpdateView
+from django.contrib import messages
+from apps.accounts.forms import UserProfileForm
+from django.urls import reverse
 
 
 class CustomRegistrationView(BaseRegistrationView):
@@ -97,3 +101,16 @@ def ajax_login(request):
             response_data['data'] = _("Invalid user and/or password.")
             status_code = 401
         return JsonResponse(response_data, status=status_code)
+
+
+class ProfileView(UpdateView):
+    model = UserProfile
+    form_class = UserProfileForm
+    template_name = 'registration/profile.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+    def get_success_url(self):
+        messages.success(self.request, 'Perfil modificado com sucesso!')
+        return reverse('profile')

@@ -1,0 +1,143 @@
+
+{% extends 'components/base.html' %}
+{% load staticfiles widget_tweaks %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+
+  <main class="main">
+    <section class="section section--user-profile">
+      <div class="e-row">
+        <div class="section__block section__block--title e-columns small-12">
+          <h1 class="section__title">Meu Perfil</h1>
+        </div>
+        <form class="form" method="post" role="form" enctype="multipart/form-data" action="{% url 'profile' %}" data-abide novalidate>
+          {% csrf_token %}
+
+          <div class="section__block e-columns small-12 medium-6 large-4">
+            <span class="section__caption">Foto de perfil</span>
+            <div class="user-figure">
+              <div class="user-profile user-profile--profile-page"{% if object.avatar %}style="background-image: url('{{ object.avatar.url }}')"{% endif %}>
+              {% if not object.avatar %}
+                <i class="icon icon-user" aria-hidden="true"></i>
+              {% endif %}
+
+              </div>
+            </div>
+            <div class="user-profile__actions">
+              <input class="user-profile__action--change-picture button--type-override button--file" id="id_avatar" name="avatar" type="file" data-multiple-caption="{count} files selected" multiple>
+              <label class="user-profile__label--change-picture button--label-override button" for="id_avatar">Alterar</label>
+              {% if object.avatar %}
+                <input class="user-profile__action--clear-picture button--type-override button--checkbox" id="avatar-clear_id" name="avatar-clear" type="checkbox">
+                <label class="button--label-override button alert" for="avatar-clear_id">Remover</label>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="section__block e-columns small-12 medium-6 large-4">
+            <span class="section__caption">Minha Senha</span>
+            <div class="user-figure">
+              <div class="user-profile user-profile--password">
+                <i class="icon icon-lock" aria-hidden="true"></i>
+              </div>
+            </div>
+            <a class="button" href="{% url 'auth_password_change' %}">Alterar Senha</a>
+          </div>
+
+          <div class="section__block section__block--profile-form e-columns small-12 medium-9">
+          <span class="section__caption section__caption--profile-form">Meus dados</span>
+
+          <label class="form__input-wrapper form__input-wrapper--small input-group {% if form.username.errors %}is-invalid-label{% endif %}">
+            <i class="form__icon icon icon-user input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">Nome de usuário</span>
+            <div class="form__input-container">
+              <input class="form__input input input-group-field" type="text" id="id_username" name="username" value="{{ request.user.username }}" placeholder="username" readonly="readonly" />
+            </div>
+          </label>
+
+          <label class="form__input-wrapper form__input-wrapper--medium input-group">
+            <i class="form__icon icon icon-user input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">Nome</span>
+            <div class="form__input-container">
+              {{ form.first_name|append_attr:"class: form__input input input-group-field"|append_attr:"placeholder: Nome" }}
+              {% if form.first_name.errors %}
+                {# XXX extend foundation class in css #}
+                <div class="form__error form-error">
+                  <span class="form__error-message">ERRO</span>
+                  <i class="form__error-icon icon icon-are-row-circle-left"></i>
+                </div>
+              {% endif %}
+            </div>
+          </label>
+
+          <label class="form__input-wrapper form__input-wrapper--medium input-group">
+            <i class="form__icon icon icon-user input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">Sobrenome</span>
+            <div class="form__input-container">
+              {{ form.last_name|append_attr:"class: form__input input input-group-field"|append_attr:"placeholder: Sobrenome" }}
+              {% if form.last_name.errors %}
+                {# XXX extend foundation class in css #}
+                <div class="form__error form-error">
+                  <span class="form__error-message">ERRO</span>
+                  <i class="form__error-icon icon icon-are-row-circle-left"></i>
+                </div>
+              {% endif %}
+            </div>
+          </label>
+
+          <label class="form__input-wrapper form__input-wrapper--micro input-group">
+            <i class="form__icon icon icon-transgender input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">Sexo</span>
+            <div class="form__input-container">
+              <select class="form__input input-group-field" id="id_gender" name="gender">
+                <option value="" hidden selected disabled>Sexo</option>
+                {% for choice in form.gender.field.choices %}
+                  <option value="{{choice.0}}" {% ifequal form.gender.value choice.0 %}selected="selected"{% endifequal %}>{{choice.1}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </label>
+
+          <label class="form__input-wrapper form__input-wrapper--micro input-group">
+            <i class="form__icon icon icon-map-marker input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">UF</span>
+            <div class="form__input-container">
+              <select class=" form__input input-group-field" id="id_uf" name="uf">
+                <option value="" hidden selected disabled>UF</option>
+                {% for choice in form.uf.field.choices %}
+                  <option value="{{choice.0}}" {% ifequal form.uf.value choice.0 %}selected="selected"{% endifequal %}>{{choice.1}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </label>
+
+          <label class="form__input-wrapper form__input-wrapper--micro input-group">
+            <i class="form__icon icon icon-calendar input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">Data de nascimento</span>
+            <div class="form__input-container">
+              {{ form.birthdate|append_attr:"class:form__input form__input--date input input-group-field"|append_attr:"placeholder:Data de nascimento"|append_attr:"data-mask:00/00/0000"|append_attr:"pattern:^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((1[6-9]|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((1[6-9]|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((1[6-9]|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$" }}
+              {% if form.birthdate.errors %}
+                {# XXX extend foundation class in css #}
+                <div class="form__error form-error">
+                  <span class="form__error-message">ERRO</span>
+                  <i class="form__error-icon icon icon-are-row-circle-left"></i>
+                </div>
+              {% endif %}
+            </div>
+          </label>
+
+          <label class="form__input-wrapper form__input-wrapper--medium input-group">
+            <i class="form__icon icon icon-envelope input-group-label" aria-hidden="true"></i>
+            <span class="show-for-sr">E-mail</span>
+            <div class="form__input-container">
+              <input class="form__input input input-group-field" type="email" id="id_email" name="email" value="{{ request.user.email }}" placeholder="E-mail" readonly="readonly" />
+            </div>
+          </label>
+
+          <button class="button button--expanded">Atualizar Dados</button>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% endblock content %}
