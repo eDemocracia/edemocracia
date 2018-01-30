@@ -1,0 +1,14 @@
+
+{% extends 'components/base.html' %}
+{% block content %}
+
+  <main class="page-error -notfound">
+    <div class="bg"></div>
+    <div class="info">
+      <h1>404</h1>
+      <p>Página não encontrada</p>
+      <a href="{% url 'home' %}">Voltar a página inicial</a>
+    </div>
+  </main>
+
+{% endblock content %}

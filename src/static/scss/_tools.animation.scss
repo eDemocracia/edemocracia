@@ -1,0 +1,3 @@
+@mixin transition-default($property) {
+  transition: $property 0.3s $swift-out;
+}

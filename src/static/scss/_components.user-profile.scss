@@ -1,0 +1,34 @@
+.user-profile {
+  text-align: center;
+  border-radius: 50%;
+  background-color: #193e31;
+  background-size: cover;
+  width: 3rem;
+  height: 3rem;
+  border: 0.3rem solid;
+  border-color: $primary-color;
+  font-size: 2rem;
+  line-height: 3.8rem;
+  color: white;
+  overflow: hidden;
+  background-color: lighten($primary-color,3%);
+  @include transition-default(border-color);
+}
+
+.user-figure__file-button {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  padding: 0;
+  margin: 0;
+}
+
+.user-figure__file-label {
+  word-break: break-all;
+  vertical-align: initial !important;
+  margin: 0 0 1rem 0 !important;
+  // Damn you Foundation for making me use !important :(
+}

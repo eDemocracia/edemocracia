@@ -4,7 +4,7 @@ from django.conf import settings
 
 class PautasProxyView(EdemProxyView):
     upstream = settings.PAUTAS_UPSTREAM
-    diazo_theme_template = 'diazo-base.html'
+    diazo_theme_template = 'components/diazo-base.html'
     rewrite = (
         (r'/pautaparticipativa/admin/login/?$', '/admin/login'),
         (r'/pautaparticipativa/admin/login/\?([^=\n]+)\=([^&\n]+)$',

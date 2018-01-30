@@ -1,0 +1,18 @@
+html {
+  height: 100%
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+i {
+  display: inline-flex;
+}

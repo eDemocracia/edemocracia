@@ -1,0 +1,65 @@
+.footer {
+  padding: 2rem 0;
+  background: linear-gradient(90deg, #114433 0%, #002222 100%);
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  @include breakpoint(small only) {
+    padding: 1rem 0;
+  }
+
+  > * {
+    margin: 1rem 2rem;
+  }
+
+  .logo {
+    text-align: center;
+    height: 2.6rem;
+
+    @include breakpoint(medium down) {
+      max-width: 100%;
+    }
+  }
+
+  > .briefing {
+    max-width: 30rem;
+
+    @include breakpoint(medium down) {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+
+    > .text {
+      margin-bottom: 0;
+
+      > .owner {
+        color: #66a23b;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  > .tos {
+    max-width: 18rem;
+
+    @include breakpoint(medium down) {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+
+    > .link {
+      display: block;
+      color: $secondary-color;
+      font-weight: 400;
+
+      &:hover {
+        color: darken($secondary-color, 20%);
+      }
+    }
+  }
+}

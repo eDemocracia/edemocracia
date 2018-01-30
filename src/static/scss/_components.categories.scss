@@ -1,0 +1,573 @@
+.category-list {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__item {
+    margin: auto 0.5rem;
+    width: 16.5rem;
+    @include breakpoint(small only) {
+      width: 100%;
+    }
+  }
+
+  &__button {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    background-color: #f2f2f2;
+    margin: 0.5rem 0rem;
+    padding: 0 1rem;
+    color: #959595;
+    font-weight: 400;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    outline: none;
+    @include transition-default(all);
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0.2rem;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s $swift-out, background-color 0.3s $swift-out;
+    }
+
+    &:hover, &:focus {
+      background-color: white;
+      color: #3a3a3a;
+    }
+
+    &--documento {
+      &::before {
+        background-color: $documento-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $documento-color;
+      color: white;
+      }
+    }
+
+    &--adm-publica {
+      &::before {
+        background-color: $adm-publica-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $adm-publica-color;
+      color: white;
+      }
+    }
+
+    &--agropecuaria {
+      &::before {
+        background-color: $agropecuaria-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $agropecuaria-color;
+      color: white;
+      }
+    }
+
+    &--assistencia-social {
+      &::before {
+        background-color: $assistencia-social-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $assistencia-social-color;
+      color: white;
+      }
+    }
+
+    &--cidades {
+      &::before {
+        background-color: $cidades-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $cidades-color;
+      color: white;
+      }
+    }
+
+    &--ciencia {
+      &::before {
+        background-color: $ciencia-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $ciencia-color;
+      color: white;
+      }
+    }
+
+    &--comunicacao {
+      &::before {
+        background-color: $comunicacao-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $comunicacao-color;
+      color: white;
+      }
+    }
+
+    &--consumidor {
+      &::before {
+        background-color: $consumidor-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $consumidor-color;
+      color: white;
+      }
+    }
+
+    &--cultura {
+      &::before {
+        background-color: $cultura-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $cultura-color;
+      color: white;
+      }
+    }
+
+    &--direito-e-justica {
+      &::before {
+        background-color: $direito-e-justica-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $direito-e-justica-color;
+      color: white;
+      }
+    }
+
+    &--direitos-humanos {
+      &::before {
+        background-color: $direitos-humanos-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $direitos-humanos-color;
+      color: white;
+      }
+    }
+
+    &--economia {
+      &::before {
+        background-color: $economia-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $economia-color;
+      color: white;
+      }
+    }
+
+    &--educacao {
+      &::before {
+        background-color: $educacao-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $educacao-color;
+      color: white;
+      }
+    }
+
+    &--esportes {
+      &::before {
+        background-color: $esportes-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $esportes-color;
+      color: white;
+      }
+    }
+
+    &--familia {
+      &::before {
+        background-color: $familia-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $familia-color;
+      color: white;
+      }
+    }
+
+    &--industria {
+      &::before {
+        background-color: $industria-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $industria-color;
+      color: white;
+      }
+    }
+
+    &--institucional {
+      &::before {
+        background-color: $institucional-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $institucional-color;
+      color: white;
+      }
+    }
+
+    &--meio-ambiente {
+      &::before {
+        background-color: $meio-ambiente-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $meio-ambiente-color;
+      color: white;
+      }
+    }
+
+    &--participacao-e-transparencia {
+      &::before {
+        background-color: $participacao-e-transparencia-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $participacao-e-transparencia-color;
+      color: white;
+      }
+    }
+
+    &--politica {
+      &::before {
+        background-color: $politica-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $politica-color;
+      color: white;
+      }
+    }
+
+    &--previdencia {
+      &::before {
+        background-color: $previdencia-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $previdencia-color;
+      color: white;
+      }
+    }
+
+    &--relacoes-exteriores {
+      &::before {
+        background-color: $relacoes-exteriores-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $relacoes-exteriores-color;
+      color: white;
+      }
+    }
+
+    &--saude {
+      &::before {
+        background-color: $saude-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $saude-color;
+      color: white;
+      }
+    }
+
+    &--seguranca {
+      &::before {
+        background-color: $seguranca-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $seguranca-color;
+      color: white;
+      }
+    }
+
+    &--trabalho {
+      &::before {
+        background-color: $trabalho-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $trabalho-color;
+      color: white;
+      }
+    }
+
+    &--transporte-e-transito {
+      &::before {
+        background-color: $transporte-e-transito-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $transporte-e-transito-color;
+      color: white;
+      }
+    }
+
+    &--turismo {
+      &::before {
+        background-color: $turismo-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $turismo-color;
+      color: white;
+      }
+    }
+
+    &--reforma-politica {
+      &::before {
+        background-color: $reforma-politica-color;
+      }
+
+      &:hover, &:focus {
+        &::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+
+      &.active {
+      background-color: $reforma-politica-color;
+      color: white;
+      }
+    }
+
+    &.active {
+      box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5);
+      transform: translate(1px, 1px);
+      &::before {
+        background-color: transparent;
+        transform: scaleX(0);
+        transition: transform 0.3s 0.3s $swift-out, background-color 0.3s 0s $swift-out;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  &__text {
+    text-align: left;
+  }
+}
+
