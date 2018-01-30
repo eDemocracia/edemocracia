@@ -4,11 +4,11 @@
 {# Whitespace is added when defining these blocks, so DO NOT ident them! #}
 {% block edem_facebook_url %}/account/social/login/facebook/?next={{ request.path }}{% endblock %}
 {% block edem_google_url %}/account/social/login/google-oauth2/?next={{ request.path }}{% endblock %}
-{% block edem_profile_url %}/profile{% endblock %}
-{% block edem_logout_url %}/account/logout{% endblock %}
+{% block edem_profile_url %}/accounts/profile{% endblock %}
+{% block edem_logout_url %}/accounts/logout{% endblock %}
 {% block edem_root_url %}/{% endblock %}
 {% block edem_tos_url %}/sobre/tos/{% endblock %}
-{% block edem_avatar %}{% if user.profile.avatar_url %}style="background-image: url('{{ user.profile.avatar_url }}')" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% else %}src="{% static 'edem-navigation/img/user-icon.svg' %}"{% endif %}{% endblock %}
+{% block edem_avatar %}{% if user.profile.avatar %}style="background-image: url('{{ user.profile.avatar.url }}')" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% else %}src="{% static 'edem-navigation/img/user-icon.svg' %}"{% endif %}{% endblock %}
 {% block edem_username %}{{ user.first_name }}{% endblock %}
 {% block edem_owner_name %}{{ site_name }}{% endblock %}
 {% block edem_recaptcha %}{{ recaptcha_site_key }}{% endblock %}
