@@ -24,6 +24,14 @@
             <ul class="card-list">    
               {% for bill in bills %}
                 {% include "wikilegis-card.html" %}
+              {% empty %}
+                <li>
+                  <div class="section__content-wrapper section__content-wrapper--center text-center">
+                    <p class="section__text">
+                      Desculpe. Não encontramos nenhum projeto de lei.
+                    </p>
+                  </div>
+                </li>
               {% endfor %}
             </ul>
 
