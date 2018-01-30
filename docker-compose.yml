@@ -2,6 +2,7 @@ version: '2'
 
 volumes:
   wikilegis:
+  audiencias:
 
 services:
   nginx:
@@ -10,6 +11,7 @@ services:
       - ./config/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./:/var/labhacker/edemocracia:z
       - wikilegis:/var/labhacker/wikilegis:z
+      - audiencias:/var/labhacker/audiencias:z
     ports:
       - "8000:80"
     links:
@@ -21,6 +23,9 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: root
+
+  redis:
+    image: redis:alpine
 
   edemocracia:
     build: .
@@ -75,6 +80,8 @@ services:
       PAUTAS_UPSTREAM:
       PAUTAS_API_URL:
       PAUTAS_API_KEY:
+      AUDIENCIAS_ENABLED: 'True'
+      AUDIENCIAS_UPSTREAM: http://audienciasweb:8000
 
   wikilegis:
     image: labhackercd/wikilegis:dev
@@ -111,3 +118,103 @@ services:
       DATABASE_PORT: 5432
     expose:
       - "8000"
+
+  audienciasweb:
+    image: labhackercd/audiencias-publicas
+    command: ./start-web.sh
+    restart: on-failure
+    links:
+      - db
+      - redis
+    volumes:
+      - audiencias:/var/labhacker/audiencias
+    environment:
+      EMAIL_HOST: ''
+      EMAIL_HOST_USER: ''
+      EMAIL_HOST_PASSWORD: ''
+      EMAIL_PORT: 25
+      EMAIL_USE_TLS: 'False'
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
+      NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
+      DJANGO_SECRET_KEY: secret_key
+      DEBUG: 'False'
+      ENABLE_REMOTE_USER: 'True'
+      URL_PREFIX: audiencias
+      FORCE_SCRIPT_NAME: /audiencias
+      STATIC_URL: /audiencias/static/
+      SESSION_COOKIE_NAME: audiencias_session
+      LOGIN_URL: /home
+      LOGIN_REDIRECT_URL: /home
+      LOGOUT_REDIRECT_URL: /home
+      ALLOWED_HOSTS: 'audienciasweb, 127.0.0.1'
+      YOUTUBE_API_KEY: ''
+      YOUTUBE_CHANNEL_ID: ''
+      YOUTUBE_SEARCH_QUERY: ''
+      GOOGLE_ANALYTICS_ID: ''
+      OLARK_ID: ''
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: email@admin.com
+      ADMIN_USERNAME: admin
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: audiencias
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DEBUG: 'False'
+      REDIS_SERVER: redis
+      WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
+      COMPRESS_OFFLINE: 'True'
+    expose:
+      - "8000"
+    depends_on:
+      - db
+      - redis
+
+  audienciasworker:
+    image: labhackercd/audiencias-publicas
+    command: ./start-worker.sh
+    links:
+      - redis
+      - db
+    environment:
+      EMAIL_HOST: ''
+      EMAIL_HOST_USER: ''
+      EMAIL_HOST_PASSWORD: ''
+      EMAIL_PORT: 25
+      EMAIL_USE_TLS: 'False'
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
+      NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
+      DJANGO_SECRET_KEY: secret_key
+      DEBUG: 'False'
+      ENABLE_REMOTE_USER: 'True'
+      URL_PREFIX: audiencias
+      FORCE_SCRIPT_NAME: /audiencias
+      STATIC_URL: /audiencias/static/
+      SESSION_COOKIE_NAME: audiencias_session
+      LOGIN_URL: /home
+      LOGIN_REDIRECT_URL: /home
+      LOGOUT_REDIRECT_URL: /home
+      ALLOWED_HOSTS: 'audienciasweb, 127.0.0.1'
+      YOUTUBE_API_KEY: ''
+      YOUTUBE_CHANNEL_ID: ''
+      YOUTUBE_SEARCH_QUERY: ''
+      GOOGLE_ANALYTICS_ID: ''
+      OLARK_ID: ''
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: email@admin.com
+      ADMIN_USERNAME: admin
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: audiencias
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DEBUG: 'False'
+      REDIS_SERVER: redis
+      WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
+      COMPRESS_OFFLINE: 'True'
+    volumes:
+      - audiencias:/var/labhacker/audiencias
+    depends_on:
+      - 'audienciasweb'
