@@ -81,7 +81,9 @@ services:
       PAUTAS_API_URL:
       PAUTAS_API_KEY:
       AUDIENCIAS_ENABLED: 'True'
-      AUDIENCIAS_UPSTREAM: http://audienciasweb:8000
+      AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
+      AUDIENCIAS_API_URL:
+      AUDIENCIAS_API_KEY:
 
   wikilegis:
     image: labhackercd/wikilegis:dev
@@ -120,7 +122,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas
+    image: labhackercd/audiencias-publicas:dev
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -172,7 +174,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas
+    image: labhackercd/audiencias-publicas:dev
     command: ./start-worker.sh
     links:
       - redis
