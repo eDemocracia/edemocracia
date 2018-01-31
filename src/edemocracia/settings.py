@@ -226,7 +226,7 @@ TEMPLATES = [
                 'constance.context_processors.config',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
-                'apps.core.processors.recaptcha_site_key',
+                'apps.core.processors.settings_variables',
                 'apps.core.processors.home_customization',
             ],
         },
@@ -277,3 +277,7 @@ CONSTANCE_CONFIG = {
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+# THIRD PARTY LIBRARIES
+GOOGLE_ANALYTICS_ID = config('GOOGLE_ANALYTICS_ID', default=None)
+OLARK_ID = config('GOOGLE_ANALYTICS_ID', default=None)
