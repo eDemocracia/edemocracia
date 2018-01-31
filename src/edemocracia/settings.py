@@ -235,7 +235,10 @@ PAUTAS_API_KEY = config('PAUTAS_API_KEY', default='api_key')
 
 AUDIENCIAS_ENABLED = config('AUDIENCIAS_ENABLED', default=False, cast=bool)
 AUDIENCIAS_UPSTREAM = config('AUDIENCIAS_UPSTREAM',
-                             default='http://localhost:6000')
+                             default='http://localhost:6000/audiencias')
+AUDIENCIAS_API_URL = config('AUDIENCIAS_API_URL', default='/api/')
+AUDIENCIAS_API_KEY = config('AUDIENCIAS_API_KEY', default='secret_key')
+
 
 # EDITABLE SETTINGS
 CONSTANCE_CONFIG = {

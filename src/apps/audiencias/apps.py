@@ -6,7 +6,7 @@ class AudienciasConfig(AppConfig):
     name = 'apps.audiencias'
     verbose_name = 'Audiências Interativas'
     cookie_name = 'audiencias_session'
-    upstream = settings.AUDIENCIAS_UPSTREAM + '/audiencias'
+    upstream = settings.AUDIENCIAS_UPSTREAM
 
     def ready(self):
         if settings.AUDIENCIAS_ENABLED:
