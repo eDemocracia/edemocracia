@@ -4,7 +4,7 @@ from django.conf import settings
 
 class WikilegisProxyView(EdemProxyView):
     upstream = settings.WIKILEGIS_UPSTREAM
-    diazo_theme_template = 'components/diazo-base.html'
+    diazo_theme_template = 'diazo-wikilegis.html'
     rewrite = (
         (r'/wikilegis/admin/login/?$', '/admin/login'),
         (r'/wikilegis/admin/login/\?([^=\n]+)\=([^&\n]+)$',

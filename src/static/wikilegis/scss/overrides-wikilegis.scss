@@ -1,0 +1,10 @@
+body {
+  display: flex;
+  flex-direction: column
+}
+
+body.report .edem-topbar {
+  @media print {
+    display: none;
+  }
+}
