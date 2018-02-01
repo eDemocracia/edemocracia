@@ -1,0 +1,42 @@
+// Breakopints
+$bp-small: 640px;
+$bp-medium: 960px;
+$bp-large: 1024px;
+$bp-huge: 1920px;
+
+// Mixins
+@mixin bp-smallonly {
+  @media (max-width: $bp-small) { @content; }
+}
+@mixin bp-mediumonly {
+  @media (min-width: $bp-small + 1px) and (max-width: $bp-medium) { @content; }
+}
+@mixin bp-largeonly {
+  @media (min-width: $bp-medium + 1px) and (max-width: $bp-large) { @content; }
+}
+@mixin bp-hugeonly {
+  @media (min-width: $bp-large + 1px) and (max-width: $bp-huge) { @content; }
+}
+
+@mixin bp-smallup {
+  @media (min-width: $bp-small + 1px) { @content; }
+}
+@mixin bp-mediumup {
+  @media (min-width: $bp-medium + 1px) { @content; }
+}
+@mixin bp-largeup {
+  @media (min-width: $bp-large + 1px) { @content; }
+}
+@mixin bp-hugeup {
+  @media (min-width: $bp-huge + 1px) { @content; }
+}
+
+@mixin bp-mediumdown {
+  @media (max-width: $bp-medium) { @content; }
+}
+@mixin bp-largedown {
+  @media (max-width: $bp-large) { @content; }
+}
+@mixin bp-hugedown {
+  @media (max-width: $bp-huge) { @content; }
+}
