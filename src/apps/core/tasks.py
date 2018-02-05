@@ -1,16 +1,12 @@
+from apps.core.utils import get_user_data
 import requests
 import json
 
 
 def default_login(user, request, app_config):
 
-    user_data = {
-        'name': user.first_name,
-        'email': user.email,
-    }
-
     headers = {'Auth-User': user.username,
-               'Remote-User-Data': json.dumps(user_data)}
+               'Remote-User-Data': json.dumps(get_user_data(user))}
     response = requests.get(app_config.upstream, headers=headers)
 
     if response.status_code == 200:

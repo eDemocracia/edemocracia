@@ -19,7 +19,8 @@ urlpatterns = [
 ]
 
 if settings.DEBUG is True:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 
 if settings.WIKILEGIS_ENABLED:
     urlpatterns.append(path('wikilegis/', include('apps.wikilegis.urls')))
@@ -27,3 +28,6 @@ if settings.WIKILEGIS_ENABLED:
 if settings.PAUTAS_ENABLED:
     urlpatterns.append(path('pautaparticipativa/',
                             include('apps.pautas.urls')))
+
+if settings.AUDIENCIAS_ENABLED:
+    urlpatterns.append(path('audiencias/', include('apps.audiencias.urls')))
