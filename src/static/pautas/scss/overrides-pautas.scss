@@ -1,0 +1,14 @@
+$edem-topbar-height: 32px;
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-navigation.-fixed {
+  margin-top: $edem-topbar-height;
+}
+
+.remaining-votes.-fixed {
+  padding-top: $edem-topbar-height;
+}

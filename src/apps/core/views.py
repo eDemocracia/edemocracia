@@ -34,9 +34,10 @@ def index(request):
         pautas = pautas_data['objects']
         context['pautas'] = pautas
     if settings.WIKILEGIS_ENABLED:
-        wikilegis_url = site.domain + '/wikilegis/api/v1/bill/'
+        wikilegis_url = settings.WIKILEGIS_UPSTREAM + '/api/v1/bill/'
         wikilegis_params = {'limit': '10'}
-        wikilegis_response = requests.get(wikilegis_url, params=wikilegis_params)
+        wikilegis_response = requests.get(wikilegis_url,
+                                          params=wikilegis_params)
         wikilegis_data = json.loads(wikilegis_response.text)
         bills = wikilegis_data['objects']
         context['bills'] = bills

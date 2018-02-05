@@ -1,0 +1,16 @@
+{% extends "components/diazo-base.html" %}
+{% load staticfiles %}
+
+{% block styles %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'wikilegis/scss/overrides-wikilegis.scss' %}" type="text/x-scss" />
+{% endblock styles %}
+
+{% block body_properties %}
+  class="{% if 'report' in request.path %}report{% endif %}{% if 'widget' in request.path %}widget{% endif %}"
+{% endblock body_properties %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script src="{% static 'wikilegis/js/overrides-wikilegis.js' %}"></script>
+{% endblock scripts %}
