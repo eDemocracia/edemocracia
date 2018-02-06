@@ -88,6 +88,7 @@ services:
       AUDIENCIAS_API_KEY:
       DISCOURSE_ENABLED: 'True'
       DISCOURSE_UPSTREAM: http://discourse:8080/expressao
+      DISCOURSE_SSO_SECRET: sso_secret
 
   wikilegis:
     image: labhackercd/wikilegis:dev
@@ -152,7 +153,7 @@ services:
       LOGIN_URL: /home
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasweb, 127.0.0.1'
+      ALLOWED_HOSTS: 'audienciasweb, localhost, 127.0.0.1'
       YOUTUBE_API_KEY: ''
       YOUTUBE_CHANNEL_ID: ''
       YOUTUBE_SEARCH_QUERY: ''
@@ -201,7 +202,7 @@ services:
       LOGIN_URL: /home
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasweb, 127.0.0.1'
+      ALLOWED_HOSTS: 'audienciasworker, localhost, 127.0.0.1'
       YOUTUBE_API_KEY: ''
       YOUTUBE_CHANNEL_ID: ''
       YOUTUBE_SEARCH_QUERY: ''
