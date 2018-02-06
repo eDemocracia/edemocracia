@@ -31,6 +31,7 @@ lxml = "< 3.4.99"
 "python3-openid" = "*"
 django-macros = "*"
 django-widget-tweaks = "*"
+pydiscourse = "*"
 
 
 [requires]

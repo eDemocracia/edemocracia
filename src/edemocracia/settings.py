@@ -284,6 +284,7 @@ AUDIENCIAS_API_KEY = config('AUDIENCIAS_API_KEY', default='secret_key')
 DISCOURSE_ENABLED = config('DISCOURSE_ENABLED', default=False, cast=bool)
 DISCOURSE_UPSTREAM = config('DISCOURSE_UPSTREAM',
                             default='http://localhost:3000/expressao')
+DISCOURSE_SSO_SECRET = config('DISCOURSE_SSO_SECRET', default='sso_secret')
 
 
 # EDITABLE SETTINGS
