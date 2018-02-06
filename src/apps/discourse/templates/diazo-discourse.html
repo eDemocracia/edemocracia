@@ -1,0 +1,10 @@
+{% extends "components/diazo-base.html" %}
+{% load staticfiles %}
+
+{% block styles %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'discourse/scss/overrides-discourse.scss' %}" type="text/x-scss" />
+{% endblock styles %}
+
+{% block jquery_call %}
+{% endblock jquery_call %}

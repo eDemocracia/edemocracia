@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.pautas',
     'apps.audiencias',
+    'apps.discourse',
 ]
 
 MIDDLEWARE = [
@@ -279,6 +280,10 @@ AUDIENCIAS_UPSTREAM = config('AUDIENCIAS_UPSTREAM',
                              default='http://localhost:6000/audiencias')
 AUDIENCIAS_API_URL = config('AUDIENCIAS_API_URL', default='/api/')
 AUDIENCIAS_API_KEY = config('AUDIENCIAS_API_KEY', default='secret_key')
+
+DISCOURSE_ENABLED = config('DISCOURSE_ENABLED', default=False, cast=bool)
+DISCOURSE_UPSTREAM = config('DISCOURSE_UPSTREAM',
+                            default='http://localhost:3000/expressao')
 
 
 # EDITABLE SETTINGS
