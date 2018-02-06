@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <header>
+    {% block meta %}
+    {% endblock meta %}
     <title>{% block title %}e-Democracia{% endblock %}</title>
     {% compress css %}
     <link rel="stylesheet" href="{% static 'edem-navigation/scss/edem.scss' %}" type="text/x-scss"/>
