@@ -8,7 +8,7 @@ from registration.users import UserModel
 from registration import signals
 from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.decorators import method_decorator
 from apps.accounts import captcha
@@ -19,6 +19,7 @@ from django.urls import reverse
 
 
 class CustomRegistrationView(BaseRegistrationView):
+    http_method_names = ['post']
     SEND_ACTIVATION_EMAIL = getattr(settings, 'SEND_ACTIVATION_EMAIL', True)
     success_url = 'registration_complete'
     template_name = 'registration/custom_registration_form.html'
@@ -101,6 +102,8 @@ def ajax_login(request):
             response_data['data'] = _("Invalid user and/or password.")
             status_code = 401
         return JsonResponse(response_data, status=status_code)
+    else:
+        return HttpResponse(status=405)
 
 
 class ProfileView(UpdateView):

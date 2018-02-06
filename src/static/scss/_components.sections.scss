@@ -408,6 +408,21 @@
   & .form__input-wrapper {
     margin: 1rem 0;
   }
+
+  ul {
+    list-style: none;
+    line-height: 1.4;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-left: 0;
+    width: 100%;
+    color: hsla(0, 0, 0, .5);
+    flex-grow: 1;
+
+    > * + * {
+      margin-top: .5rem;
+    }
+  }
 }
 
 .section--filter {

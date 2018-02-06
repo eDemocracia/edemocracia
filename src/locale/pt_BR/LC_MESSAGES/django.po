@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-24 11:24-0200\n"
+"POT-Creation-Date: 2018-02-06 11:16-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: apps/accounts/admin.py:12
+#: apps/accounts/admin.py:12 templates/registration/profile.html:5
 msgid "Profile"
 msgstr "perfil"
 
@@ -58,28 +58,28 @@ msgstr "Outro"
 msgid "Undisclosed"
 msgstr "Prefiro não informar"
 
-#: apps/accounts/forms.py:16
+#: apps/accounts/forms.py:17
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: apps/accounts/forms.py:17
+#: apps/accounts/forms.py:18
 msgid "There is already a user registered with this email."
 msgstr "Já existe um usuário cadastrado com este email."
 
-#: apps/accounts/forms.py:19
+#: apps/accounts/forms.py:20
 msgid "The password must be at least 6 characters long."
 msgstr "O campo senha deve possuir no mínimo 6 caracteres."
 
-#: apps/accounts/forms.py:21
+#: apps/accounts/forms.py:22
 msgid "The state or country fields must be filled in."
 msgstr "Os campos estado ou país devem ser preenchidos."
 
-#: apps/accounts/forms.py:22
+#: apps/accounts/forms.py:23
 msgid "Select a UF, if you are a foreigner, click on I am a foreigner"
 msgstr ""
 "Selecione uma UF, caso seja estrangeiro, clique em \"sou estrangeiro\"."
 
-#: apps/accounts/forms.py:24
+#: apps/accounts/forms.py:25
 msgid ""
 "Select a country, if you are not a foreigner, click on \"I am Brazilian\"."
 msgstr ""
@@ -105,10 +105,185 @@ msgstr "perfil"
 msgid "profiles"
 msgstr "perfis"
 
-#: apps/accounts/views.py:41
+#: apps/accounts/views.py:46
 msgid "Please check your email to complete the registration process."
 msgstr "Por favor, verifique seu email para concluir seu cadastro."
 
-#: apps/accounts/views.py:97
+#: apps/accounts/views.py:102
 msgid "Invalid user and/or password."
 msgstr "Usuário e/ou senha inválidos."
+
+#: templates/registration/password_change_done.html:4
+#: templates/registration/password_change_done.html:12
+msgid "Password changed"
+msgstr "Senha alterada"
+
+#: templates/registration/password_change_done.html:14
+msgid "Password successfully changed!"
+msgstr "Senha alterada com sucesso!"
+
+#: templates/registration/password_change_form.html:4
+#: templates/registration/password_change_form.html:12
+#: templates/registration/password_change_form.html:41
+#: templates/registration/profile.html:44
+msgid "Change password"
+msgstr "Alterar senha"
+
+#: templates/registration/password_change_form.html:14
+msgid ""
+"Enter your current password and type a new password you want in the fields "
+"below"
+msgstr ""
+"Insira sua senha atual e digite uma nova senha desejada nos campos abaixo"
+
+#: templates/registration/password_reset_complete.html:4
+msgid "Password reset complete"
+msgstr "Alteração de senha completa"
+
+#: templates/registration/password_reset_complete.html:12
+msgid "Your password has been reset!"
+msgstr "Sua senha foi restaurada!"
+
+#: templates/registration/password_reset_complete.html:14
+#, python-format
+msgid "You may now <a href=\"%(login_url)s\">log in</a>"
+msgstr "Agora você pode <a href=\"%(login_url)s\">entrar.</a>"
+
+#: templates/registration/password_reset_confirm.html:11
+#: templates/registration/password_reset_confirm.html:20
+#: templates/registration/password_reset_confirm.html:57
+msgid "Confirm password reset"
+msgstr "Confirmar restauração de senha"
+
+#: templates/registration/password_reset_confirm.html:22
+msgid "Enter your new password below to reset your password:"
+msgstr "Digite a sua nova senha abaixo para restaurar a sua senha:"
+
+#: templates/registration/password_reset_confirm.html:49
+msgid "Set password"
+msgstr "Definir senha"
+
+#: templates/registration/password_reset_confirm.html:59
+msgid "Password reset unsuccessful. Please "
+msgstr "A restauração da senha não foi bem sucedida. Por favor "
+
+#: templates/registration/password_reset_confirm.html:59
+msgid "try again."
+msgstr "tente novamente."
+
+#: templates/registration/password_reset_done.html:4
+#: templates/registration/password_reset_done.html:12
+msgid "Password reset"
+msgstr "Recuperar senha"
+
+#: templates/registration/password_reset_done.html:14
+msgid ""
+"We have sent you an email with a link to reset your password. Please check "
+"your email and click the link to continue."
+msgstr ""
+"Enviamos um e-mail com um link para redefinir sua senha.Verifique\n"
+" seu e-mail e clique no link para continuar."
+
+#: templates/registration/password_reset_email.html:3
+msgid "Greetings"
+msgstr "Saudações"
+
+#: templates/registration/password_reset_email.html:5
+#, python-format
+msgid ""
+"You are receiving this email because you (or someone pretending to be you)\n"
+"requested that your password be reset on the %(domain)s site. If you do not\n"
+"wish to reset your password, please ignore this message."
+msgstr ""
+"Você está recebendo este e-mail porque você (ou alguém que finge ser você)\n"
+"solicitou que sua senha seja redefinida no site %(domain)s. Se você não\n"
+"deseja redefinir sua senha, ignore esta mensagem."
+
+#: templates/registration/password_reset_email.html:9
+msgid ""
+"To reset your password, please click the following link, or copy and paste "
+"it\n"
+"into your web browser:"
+msgstr ""
+"Para redefinir sua senha, clique no seguinte link ou copie e cole\n"
+"no seu navegador:"
+
+#: templates/registration/password_reset_email.html:16
+msgid "Best regards"
+msgstr "Cumprimentos,"
+
+#: templates/registration/password_reset_email.html:17
+msgid "Management"
+msgstr "Gerência"
+
+#: templates/registration/password_reset_form.html:4
+#: templates/registration/password_reset_form.html:12
+#: templates/registration/password_reset_form.html:41
+msgid "Reset password"
+msgstr "Restaurar senha"
+
+#: templates/registration/password_reset_form.html:14
+msgid ""
+"Forgot your password? Enter your email in the form below and we'll send you "
+"instructions for creating a new one."
+msgstr ""
+"Esqueceu sua senha? Digite seu e-mail no formulário abaixo e nós lhe "
+"enviaremos instruções para criar um novo."
+
+#: templates/registration/profile.html:12
+msgid "My Profile"
+msgstr "Meu Perfil"
+
+#: templates/registration/profile.html:18
+msgid "Profile picture"
+msgstr "Foto do perfil"
+
+#: templates/registration/profile.html:29
+msgid "Change"
+msgstr "Alterar"
+
+#: templates/registration/profile.html:32
+msgid "Remove"
+msgstr "Remover"
+
+#: templates/registration/profile.html:38
+msgid "My password"
+msgstr "Minha senha"
+
+#: templates/registration/profile.html:48
+msgid "My data"
+msgstr "Meus dados"
+
+#: templates/registration/profile.html:52
+msgid "Username"
+msgstr "Nome de usuário"
+
+#: templates/registration/profile.html:60
+msgid "First name"
+msgstr "Nome"
+
+#: templates/registration/profile.html:75
+msgid "Last name"
+msgstr "Sobrenome"
+
+#: templates/registration/profile.html:90
+#: templates/registration/profile.html:93
+msgid "Gender"
+msgstr "Sexo"
+
+#: templates/registration/profile.html:103
+#: templates/registration/profile.html:106
+msgid "UF"
+msgstr "UF"
+
+#: templates/registration/profile.html:116
+msgid "Date of birth"
+msgstr "Data de nascimento"
+
+#: templates/registration/profile.html:131
+msgid "E-mail"
+msgstr "Email"
+
+#: templates/registration/profile.html:137
+msgid "Update data"
+msgstr "Atualizar dados"
