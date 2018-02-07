@@ -1,0 +1,29 @@
+{% load edem_extras %}
+
+<a class="info-card__link" href="">
+  <li class="info-card info-card--discourse info-card--{{topic.category_slug}}">
+    <div class="info-card__header">
+      <div class="info-card__icon"><i class="icon icon-{{topic.category_slug}}"></i></div>
+      <h2 class="info-card__title">{{topic.category_name}}</h2>
+    </div>
+    <p class="info-card__text">
+      {{topic.title}}
+    </p>
+    <div class="info-card__footer">
+      <div class="card-stats">
+        <div class="card-stats__name">Respostas</div>
+        <div class="card-stats__value">{{topic.reply_count}}</div>
+      </div>
+
+      <div class="card-stats">
+        <div class="card-stats__name">Visualizações</div>
+        <div class="card-stats__value">{{topic.views}}</div>
+      </div>
+
+      <div class="card-stats">
+        <div class="card-stats__name">Atualização</div>
+        <div class="card-stats__value">{{topic.last_posted_at|str_to_date}}</div>
+      </div>
+    </div>
+  </li>
+</a>
