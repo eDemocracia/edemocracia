@@ -56,7 +56,10 @@ def index(request):
             topic_category = None
 
             for category in categories:
+                subcategories = category.get('subcategory_ids', [])
                 if category['id'] == topic['category_id']:
+                    topic_category = category
+                elif topic['category_id'] in subcategories:
                     topic_category = category
 
             topic['category_name'] = topic_category['name']
