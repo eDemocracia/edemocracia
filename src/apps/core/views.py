@@ -5,6 +5,8 @@ from django.shortcuts import render
 import requests
 import json
 
+from apps.discourse.data import get_discourse_index_data
+
 
 class EdemProxyView(DiazoProxyView):
     html5 = True
@@ -43,28 +45,6 @@ def index(request):
         context['bills'] = bills
 
     if settings.DISCOURSE_ENABLED:
-        categories_url = settings.DISCOURSE_UPSTREAM + '/categories.json'
-        categories = requests.get(categories_url).json()
-        categories = categories['category_list']['categories']
-
-        latest_url = settings.DISCOURSE_UPSTREAM + '/latest.json'
-        latest = requests.get(latest_url).json()
-        latest = latest['topic_list']['topics']
-
-        context['topics'] = []
-        for topic in latest[:10]:
-            topic_category = None
-
-            for category in categories:
-                subcategories = category.get('subcategory_ids', [])
-                if category['id'] == topic['category_id']:
-                    topic_category = category
-                elif topic['category_id'] in subcategories:
-                    topic_category = category
-
-            topic['category_name'] = topic_category['name']
-            topic['category_slug'] = topic_category['slug']
-
-            context['topics'].append(topic)
+        context['topics'] = get_discourse_index_data()
 
     return render(request, 'index.html', context)
