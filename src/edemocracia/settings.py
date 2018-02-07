@@ -19,6 +19,7 @@ RECAPTCHA_PRIVATE_KEY = config(
 
 SITE_NAME = config('SITE_NAME', default='Nome do site')
 SITE_LOGO = config('SITE_LOGO', default='https://exemple.com/img.png')
+SITE_URL = config('SITE_NAME', default='http://localhost:8000')
 
 SITE_ID = 1
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',

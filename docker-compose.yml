@@ -41,6 +41,9 @@ services:
     depends_on:
       - db
     environment:
+      SITE_NAME:
+      SITE_LOGO:
+      SITE_URL: http://localhost:8000
       DEBUG:
       SECRET_KEY:
       RECAPTCHA_SITE_KEY:
