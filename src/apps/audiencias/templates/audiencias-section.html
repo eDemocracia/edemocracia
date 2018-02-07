@@ -1,0 +1,41 @@
+<section class="section section--audiencias">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/audiencias/"><img class="section__logo" src="/static/img/logo-audiencias-publicas.svg" ></a>
+        <p class="section__text">
+          Acompanhe audiências ao vivo e participe enviando perguntas.
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/audiencias/" title="Veja todas as audiências">Faça sua pergunta</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/audiencias/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+              {% for room in live_rooms %}
+                {% include "audiencias-card.html" with status="live" %}
+              {% endfor %}
+              {% for room in agenda_rooms %}
+                {% include "audiencias-card.html" with status="calendar" %}
+              {% endfor %}
+              {% for room in history_rooms %}
+                {% include "audiencias-card.html" with status="old-video" %}
+              {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
