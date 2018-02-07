@@ -8,6 +8,7 @@ def settings_variables(request):
         'OLARK_ID': settings.OLARK_ID,
         'WIKILEGIS_ENABLED': settings.WIKILEGIS_ENABLED,
         'PAUTAS_ENABLED': settings.PAUTAS_ENABLED,
+        'DISCOURSE_ENABLED': settings.DISCOURSE_ENABLED,
     }
 
 
