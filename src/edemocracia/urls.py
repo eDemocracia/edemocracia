@@ -26,3 +26,7 @@ if settings.PAUTAS_ENABLED:
 
 if settings.AUDIENCIAS_ENABLED:
     urlpatterns.append(path('audiencias/', include('apps.audiencias.urls')))
+
+
+if settings.DISCOURSE_ENABLED:
+    urlpatterns.append(path('expressao/', include('apps.discourse.urls')))

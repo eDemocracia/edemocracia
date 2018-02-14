@@ -5,6 +5,8 @@ from django.shortcuts import render
 import requests
 import json
 
+from apps.discourse.data import get_discourse_index_data
+
 
 class EdemProxyView(DiazoProxyView):
     html5 = True
@@ -41,4 +43,8 @@ def index(request):
         wikilegis_data = json.loads(wikilegis_response.text)
         bills = wikilegis_data['objects']
         context['bills'] = bills
+
+    if settings.DISCOURSE_ENABLED:
+        context['topics'] = get_discourse_index_data()
+
     return render(request, 'index.html', context)

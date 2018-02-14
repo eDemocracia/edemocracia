@@ -1,0 +1,81 @@
+$edem-navigation-height: 32px;
+
+.d-header {
+  position: fixed;
+  top: $edem-navigation-height;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 1px 4px rgba(0, 0, 0, 0.23);
+}
+
+#search-button {
+ display: none;
+}
+
+.logout-link{
+ display: none;
+}
+
+button.sign-up-button {
+ display: none;
+}
+
+button.login-button {
+ display: none;
+}
+
+.d-header #site-logo {
+  max-height: 45px;
+}
+
+.logo-small {
+  margin-right: 15px;
+  margin-left: 1px;
+}
+
+
+// Make topics look as cards
+.topic-body {
+  border-top: none;
+  border: 1px solid #ebebeb;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  padding: 15px;
+  background-color: #f2f2f2;
+}
+
+.topic-avatar {
+  border-top: none;
+}
+
+.embedded-posts .topic-body {
+  width: calc(100% - 75px);
+  box-shadow: none;
+  border: none;
+  padding: 15px 15px 0 0;
+}
+
+.embedded-posts .topic-avatar {
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+.embedded-posts.top {
+  margin-left: 60px;
+  margin-bottom: 0;
+  width: 720px;
+  padding: 0;
+  border-bottom: 1px solid #dfdfdf;
+  box-shadow: -1px 0px 5px 0px rgba(136, 136, 136, 0.2), 5px 2px 5px -1px rgba(136, 136, 136, 0.3);
+}
+
+.embedded-posts.bottom {
+  border-top: 1px solid #dfdfdf;
+  width: calc(100% + 30px);
+  margin-left: -15px;
+}
+
+.topic-body .reply-to-tab {
+  float: left;
+  width: 100%;
+  margin: 0;
+}
