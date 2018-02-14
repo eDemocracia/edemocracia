@@ -4,7 +4,7 @@ from django.conf import settings
 
 class AudienciasProxyView(EdemProxyView):
     upstream = settings.AUDIENCIAS_UPSTREAM
-    diazo_theme_template = 'diazo-base.html'
+    diazo_theme_template = 'components/diazo-base.html'
     rewrite = (
         (r'/audiencias/admin/login/?$', '/admin/login'),
         (r'/audiencias/admin/login/\?([^=\n]+)\=([^&\n]+)$',

@@ -10,6 +10,7 @@ def settings_variables(request):
         'WIKILEGIS_ENABLED': settings.WIKILEGIS_ENABLED,
         'PAUTAS_ENABLED': settings.PAUTAS_ENABLED,
         'DISCOURSE_ENABLED': settings.DISCOURSE_ENABLED,
+        'AUDIENCIAS_ENABLED': settings.AUDIENCIAS_ENABLED,
     }
 
 
