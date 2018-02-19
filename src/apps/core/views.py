@@ -6,6 +6,7 @@ import json
 from datetime import datetime, timedelta
 
 from apps.discourse.data import get_discourse_index_data
+from apps.wikilegis.data import get_wikilegis_index_data
 
 
 class EdemProxyView(DiazoProxyView):
@@ -33,13 +34,9 @@ def index(request):
         pautas_response = requests.get(pautas_url, params=pautas_params)
         pautas = pautas_response.json()['objects']
         context['pautas'] = pautas
+
     if settings.WIKILEGIS_ENABLED:
-        wikilegis_url = settings.WIKILEGIS_UPSTREAM + '/api/v1/bill/'
-        wikilegis_params = {'limit': '10'}
-        wikilegis_response = requests.get(wikilegis_url,
-                                          params=wikilegis_params)
-        bills = wikilegis_response.json()['objects']
-        context['bills'] = bills
+        context['bills'] = get_wikilegis_index_data()
 
     if settings.DISCOURSE_ENABLED:
         context['topics'] = get_discourse_index_data()
