@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 from apps.discourse.data import get_discourse_index_data
 from apps.wikilegis.data import get_wikilegis_index_data
+from apps.pautas.data import get_pautas_index_data
 
 
 class EdemProxyView(DiazoProxyView):
@@ -29,11 +30,7 @@ class EdemProxyView(DiazoProxyView):
 def index(request):
     context = {}
     if settings.PAUTAS_ENABLED:
-        pautas_url = settings.PAUTAS_UPSTREAM + '/api/v1/agenda/'
-        pautas_params = {'limit': '10', 'order_by': '-end_date'}
-        pautas_response = requests.get(pautas_url, params=pautas_params)
-        pautas = pautas_response.json()['objects']
-        context['pautas'] = pautas
+        context['pautas'] = get_pautas_index_data()
 
     if settings.WIKILEGIS_ENABLED:
         context['bills'] = get_wikilegis_index_data()
