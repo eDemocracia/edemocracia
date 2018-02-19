@@ -4,7 +4,7 @@
   <li class="info-card info-card--wikilegis">
     <div class="info-card__header">
 
-      <div class="info-card__icon info-card__icon{% if bill.status == "closed" %}--closed{% endif %}"><i class="icon icon-politica"></i></div>
+      <div class="info-card__icon info-card__icon{% if bill.status == "closed" %}--closed{% endif %}"><i class="icon icon-{{ bill.theme.slug }}"></i></div>
 
       <h2 class="info-card__title"> {{ bill.title|truncatechars:40 }}</h2>
     </div>
