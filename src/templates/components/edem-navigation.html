@@ -2,8 +2,8 @@
 {% load staticfiles %}
 
 {# Whitespace is added when defining these blocks, so DO NOT ident them! #}
-{% block edem_facebook_url %}/accounts/social/login/facebook/?next={{ request.path }}{% endblock %}
-{% block edem_google_url %}/accounts/social/login/google-oauth2/?next={{ request.path }}{% endblock %}
+{% block edem_facebook_url %}/accounts/login/facebook/?next={{ request.path }}{% endblock %}
+{% block edem_google_url %}/accounts/login/google-oauth2/?next={{ request.path }}{% endblock %}
 {% block edem_profile_url %}/accounts/profile{% endblock %}
 {% block edem_logout_url %}/accounts/logout{% endblock %}
 {% block edem_root_url %}/{% endblock %}
