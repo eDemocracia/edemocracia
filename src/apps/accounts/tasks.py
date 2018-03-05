@@ -6,7 +6,8 @@ from apps.accounts.models import generate_username, UserProfile
 
 @receiver(pre_save, sender=User)
 def set_username(sender, instance, **kwargs):
-    instance.username = generate_username(instance.email)
+    if not instance.username:
+        instance.username = generate_username(instance.email)
 
 
 @receiver(post_save, sender=User)
