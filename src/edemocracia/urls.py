@@ -30,3 +30,5 @@ if settings.AUDIENCIAS_ENABLED:
 
 if settings.DISCOURSE_ENABLED:
     urlpatterns.append(path('expressao/', include('apps.discourse.urls')))
+
+admin.site.site_header = 'e-Democracia'
