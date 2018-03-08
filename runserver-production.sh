@@ -24,8 +24,8 @@ done
 
 PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER -w -h $DATABASE_HOST -c "CREATE DATABASE ${DATABASE_NAME} OWNER ${DATABASE_USER}"
 
+npm rebuild node-sass --force
 python3 src/manage.py migrate
 python3 src/manage.py compress --force
-python3 src/manage.py collectstatic --noinput
-python3 src/manage.py compilemessages
+python3 src/manage.py collectstatic --no-input
 gunicorn edemocracia.wsgi:application --config=/var/labhacker/edemocracia/gunicorn.py
