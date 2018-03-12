@@ -205,7 +205,7 @@ services:
       LOGIN_URL: /home
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasworker, localhost, 127.0.0.1'
+      ALLOWED_HOSTS: 'audienciasweb, audienciasworker, localhost, 127.0.0.1'
       YOUTUBE_API_KEY: ''
       YOUTUBE_CHANNEL_ID: ''
       YOUTUBE_SEARCH_QUERY: ''
