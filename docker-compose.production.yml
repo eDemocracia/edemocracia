@@ -2,10 +2,11 @@ version: '2'
 
 services:
   nginx:
-    image: nginx
+    image: labhackercd/nginx-edemocracia
+    depends_on:
+      - edemocracia
     volumes:
-      - ./config/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./:/var/labhacker/edemocracia:z
+      - edemocracia:/var/labhacker/edemocracia:z
       - wikilegis:/var/labhacker/wikilegis:z
       - audiencias:/var/labhacker/audiencias:z
       - discourse:/var/www/discourse:z
@@ -13,6 +14,8 @@ services:
       - "8000:80"
     links:
       - edemocracia
+    environment:
+      NAME_RESOLVER: '127.0.0.11'
 
   db:
     image: postgres:9.6
@@ -39,6 +42,9 @@ services:
     depends_on:
       - db
     environment:
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_PASSWORD: 123
+      ADMIN_USERNAME: admin
       SITE_NAME:
       SITE_LOGO:
       SITE_URL: http://localhost:8000
@@ -101,6 +107,8 @@ services:
     volumes:
       - wikilegis:/var/labhacker/wikilegis
     environment:
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
       API_KEY: api_key
       SECRET_KEY: secret_key
       FORCE_SCRIPT_NAME: /wikilegis
@@ -116,8 +124,6 @@ services:
       TIME_ZONE: America/Sao_Paulo
       STATIC_URL: /wikilegis/static/
       MEDIA_URL: /wikilegis/media/
-      ADMIN_PASSWORD: 123
-      ADMIN_EMAIL: email@admin.com
       DATABASE_ENGINE: postgresql_psycopg2
       DATABASE_NAME: wikilegis
       DATABASE_PASSWORD: root
@@ -137,6 +143,9 @@ services:
     volumes:
       - audiencias:/var/labhacker/audiencias
     environment:
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_USERNAME: admin
       EMAIL_HOST: ''
       EMAIL_HOST_USER: ''
       EMAIL_HOST_PASSWORD: ''
@@ -160,9 +169,6 @@ services:
       YOUTUBE_SEARCH_QUERY: ''
       GOOGLE_ANALYTICS_ID: ''
       OLARK_ID: ''
-      ADMIN_PASSWORD: 123
-      ADMIN_EMAIL: email@admin.com
-      ADMIN_USERNAME: admin
       DATABASE_ENGINE: postgresql_psycopg2
       DATABASE_NAME: audiencias
       DATABASE_PASSWORD: root
@@ -186,6 +192,9 @@ services:
       - redis
       - db
     environment:
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_USERNAME: admin
       EMAIL_HOST: ''
       EMAIL_HOST_USER: ''
       EMAIL_HOST_PASSWORD: ''
@@ -209,9 +218,6 @@ services:
       YOUTUBE_SEARCH_QUERY: ''
       GOOGLE_ANALYTICS_ID: ''
       OLARK_ID: ''
-      ADMIN_PASSWORD: 123
-      ADMIN_EMAIL: email@admin.com
-      ADMIN_USERNAME: admin
       DATABASE_ENGINE: postgresql_psycopg2
       DATABASE_NAME: audiencias
       DATABASE_PASSWORD: root
@@ -238,7 +244,7 @@ services:
       - db
       - redis
     environment:
-      ADMIN_EMAIL: 'email@admin.com'
+      ADMIN_EMAIL: 'admin@admin.com'
       ADMIN_PASSWORD: '123'
       ADMIN_USERNAME: 'admin'
       RAILS_ENV: 'production'
