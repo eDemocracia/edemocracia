@@ -17,11 +17,19 @@ def get_audiencias_index_data():
     agenda_rooms = [x for x in today_rooms if x['youtube_status'] == 0]
 
     if len(today_rooms) == 0:
+        agenda_params = {
+            'date__gte': today, 'youtube_status': 0, 'ordering': 'date'}
+        agenda_response = requests.get(
+            url, params=agenda_params)
+        extra_agenda_rooms = agenda_response.json()['results'][:10]
+        agenda_rooms = agenda_rooms + extra_agenda_rooms
+
+        diff_cards = 10 - len(agenda_rooms)
         history_params = {
             'youtube_status': 2, 'ordering': '-date'}
         history_response = requests.get(
             url, params=history_params)
-        history_rooms = history_response.json()['results'][:10]
+        history_rooms = history_response.json()['results'][:diff_cards]
     elif len(today_rooms) < 10:
         diff_cards = 10 - len(today_rooms)
         agenda_params = {
