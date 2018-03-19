@@ -5,6 +5,7 @@ services:
     image: labhackercd/nginx-edemocracia
     depends_on:
       - edemocracia
+      - audienciasweb
     volumes:
       - edemocracia:/var/labhacker/edemocracia:z
       - wikilegis:/var/labhacker/wikilegis:z
@@ -33,8 +34,8 @@ services:
   edemocracia:
     image: labhackercd/edemocracia:dev
     volumes:
-      - edemocracia:/var/labhacker/edemocracia:z
-    command: ./runserver-production.sh
+      - edemocracia:/var/labhacker/edemocracia/:z
+    command: ./runserver-production
     expose:
       - "8000"
     links:
@@ -77,7 +78,7 @@ services:
       EMAIL_HOST_USER:
       EMAIL_HOST_PASSWORD:
       EMAIL_USE_TLS:
-      EMAIL_BACKEND:
+      EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend
       DEFAULT_FROM_EMAIL:
       STATIC_URL:
       MEDIA_URL:
@@ -119,6 +120,11 @@ services:
       AUTH_USER_MODEL: accounts.User
       ENABLE_REMOTE_USER: 'True'
       SESSION_COOKIE_NAME: wikilegis_session
+      EMAIL_HOST:
+      EMAIL_PORT:
+      EMAIL_HOST_USER:
+      EMAIL_HOST_PASSWORD:
+      EMAIL_USE_TLS:
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia[Wikilegis]" <edemocracia@camara.leg.br>'
       LANGUAGE_CODE: pt-br
       TIME_ZONE: America/Sao_Paulo
@@ -164,9 +170,6 @@ services:
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
       ALLOWED_HOSTS: 'audienciasweb, localhost, 127.0.0.1'
-      YOUTUBE_API_KEY: ''
-      YOUTUBE_CHANNEL_ID: ''
-      YOUTUBE_SEARCH_QUERY: ''
       GOOGLE_ANALYTICS_ID: ''
       OLARK_ID: ''
       DATABASE_ENGINE: postgresql_psycopg2
@@ -177,7 +180,7 @@ services:
       DATABASE_PORT: 5432
       DEBUG: 'False'
       REDIS_SERVER: redis
-      WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
+      WEBSERVICE_URL:
       COMPRESS_OFFLINE: 'True'
     expose:
       - "8000"
