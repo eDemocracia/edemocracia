@@ -105,7 +105,7 @@ Você pode personalizar a sua instalação do e-Democracia alterando as variáve
 |EMAIL_HOST_USER|Usuário do servidor de email|Sim|
 |EMAIL_HOST_PASSWORD|Senha do usuário acima|Sim|
 |EMAIL_USE_TLS|Boleano. `True` se o servidor de email utililizar TLS|Sim|
-|DEFAULT_FROM_EMAIL|Remetente do email|Não|
+|DEFAULT_FROM_EMAIL|Remetente do email no formato `'Nome do Remetente <email@do.remetente>'`|Sim|
 |WIKILEGIS_ENABLED|Boleano. `True`se quiser ativar o Wikilegis no e-Democracia|Sim|
 |WIKILEGIS_API_KEY|Chave da API do Wikilegis|Não|
 |AUDIENCIAS_ENABLED|Boleano. `True`se quiser ativar o Audiencias no e-Democracia|Sim|

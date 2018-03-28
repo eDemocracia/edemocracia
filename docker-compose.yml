@@ -76,8 +76,8 @@ services:
       EMAIL_HOST_USER:
       EMAIL_HOST_PASSWORD:
       EMAIL_USE_TLS:
-      EMAIL_BACKEND:
-      DEFAULT_FROM_EMAIL:
+      EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia" <edemocracia@camara.leg.br>'
       STATIC_URL:
       MEDIA_URL:
       WIKILEGIS_ENABLED: 'True'
@@ -237,6 +237,7 @@ services:
     command: ./start-web.sh
     volumes:
       - discourse:/var/www/discourse
+      - ./:/tmp/edemocracia
     expose:
       - "8080"
     depends_on:
@@ -249,7 +250,7 @@ services:
       RAILS_ENV: 'production'
       DISCOURSE_DB_HOST: db
       DISCOURSE_DB_PORT: '5432'
-      DISCOURSE_DB_NAME: 'root'
+      DISCOURSE_DB_NAME: 'discourse'
       DISCOURSE_DB_USERNAME: 'root'
       DISCOURSE_DB_PASSWORD: 'root'
       DISCOURSE_HOSTNAME: 'localhost'
@@ -264,10 +265,6 @@ services:
       DISCOURSE_CONTACT_EMAIL:
       DISCOURSE_CONTACT_URL: 'localhost'
       DISCOURSE_NOTIFICATION_EMAIL: 'noreply@dicourse.org'
-      DISCOURSE_LOGO_URL: '\/images\/d-logo-sketch.png'
-      DISCOURSE_SMALL_LOGO_URL: '\/images\/d-logo-sketch-small.png'
-      DISCOURSE_FAVICON_URL: '\/images\/default-favicon.ico'
-      DISCOURSE_APPLE_TOUCH_ICON_URL: '\/images\/default-apple-touch-icon.png'
       DISCOURSE_SSO_URL: 'http:\/\/127.0.0.1:8000'
       DISCOURSE_SSO_SECRET: 'sso_secret'
       DISCOURSE_FORCE_HOSTNAME: ''
