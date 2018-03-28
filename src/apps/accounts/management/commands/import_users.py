@@ -11,11 +11,12 @@ class Command(BaseCommand):
         with open(path, 'r') as json_file:
             data = json.loads(json_file.read())
         for user in data:
-            self._import_user(user['fields'])
+            self._import_user(user['fields'], user['pk'])
 
-    def _import_user(self, user_data):
-        user, created = User.objects.get_or_create(
+    def _import_user(self, user_data, user_id):
+        user, created = User.objects.update_or_create(
             defaults={
+                'id': user_id,
                 'username': user_data['username'],
                 'email': user_data['email']
             },
