@@ -4,6 +4,7 @@ volumes:
   wikilegis:
   audiencias:
   discourse:
+  pauta:
 
 services:
   nginx:
@@ -14,6 +15,7 @@ services:
       - wikilegis:/var/labhacker/wikilegis:z
       - audiencias:/var/labhacker/audiencias:z
       - discourse:/var/www/discourse:z
+      - pauta:/var/labhacker/pauta-participativa:z
     ports:
       - "8000:80"
     links:
@@ -84,10 +86,10 @@ services:
       WIKILEGIS_UPSTREAM: http://wikilegis:8000
       WIKILEGIS_API_URL: '/api/v1/'
       WIKILEGIS_API_KEY: api_key
-      PAUTAS_ENABLED: 'False'
-      PAUTAS_UPSTREAM:
+      PAUTAS_ENABLED: 'True'
+      PAUTAS_UPSTREAM: http://pauta:8000
       PAUTAS_API_URL:
-      PAUTAS_API_KEY:
+      PAUTAS_API_KEY: api_key
       AUDIENCIAS_ENABLED: 'True'
       AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
       AUDIENCIAS_API_URL:
@@ -231,6 +233,39 @@ services:
       - audiencias:/var/labhacker/audiencias
     depends_on:
       - 'audienciasweb'
+
+  pauta:
+    image: labhackercd/pauta-participativa:dev
+    command: ./start.sh
+    volumes:
+      - pauta:/var/labhacker/pauta-participativa
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    environment:
+      SECRET_KEY:
+      API_KEY: api_key
+      RECAPTCHA_SITE_KEY:
+      RECAPTCHA_PRIVATE_KEY:
+      FORCE_SCRIPT_NAME: /pautaparticipativa
+      DEBUG: 'False'
+      ALLOWED_HOSTS: '*'
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: pauta
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      ENABLE_REMOTE_USER: 'True'
+      SESSION_COOKIE_NAME: pautas_session
+      EMAIL_HOST:
+      EMAIL_PORT:
+      EMAIL_HOST_USER:
+      EMAIL_HOST_PASSWORD:
+      EMAIL_USE_TLS:
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[pautaparticipativa]" <edemocracia@camara.leg.br>'
+      STATIC_URL: '/pautaparticipativa/static/'
 
   discourse:
     image: labhackercd/discourse-docker
