@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 11:16-0200\n"
+"POT-Creation-Date: 2018-04-02 19:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,165 +18,178 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: apps/accounts/admin.py:12 templates/registration/profile.html:5
+#: src/apps/accounts/admin.py:28 src/templates/registration/profile.html:5
 msgid "Profile"
 msgstr "perfil"
 
-#: apps/accounts/captcha.py:7
+#: src/apps/accounts/captcha.py:7
 msgid "reCAPTCHA: The secret parameter is missing."
 msgstr "reCAPTCHA: O campo chave está vazio"
 
-#: apps/accounts/captcha.py:8
+#: src/apps/accounts/captcha.py:8
 msgid "reCAPTCHA: The secret parameter is invalid or malformed."
 msgstr "reCAPTCHA: O campo chave está errado ou inválido"
 
-#: apps/accounts/captcha.py:10
+#: src/apps/accounts/captcha.py:10
 msgid "reCAPTCHA: The response parameter is missing."
 msgstr "reCAPTCHA: O campo de resposta está vazio"
 
-#: apps/accounts/captcha.py:12
+#: src/apps/accounts/captcha.py:12
 msgid "reCAPTCHA: The response parameter is invalid or malformed."
 msgstr "reCAPTCHA: O campo de resposta está errado ou inválido"
 
-#: apps/accounts/captcha.py:14
+#: src/apps/accounts/captcha.py:14
 msgid "reCAPTCHA: The request is invalid or malformed."
 msgstr "reCAPTCHA: A requisição está errada ou inválida"
 
-#: apps/accounts/choices.py:4
+#: src/apps/accounts/choices.py:4
 msgid "Male"
 msgstr "Masculino"
 
-#: apps/accounts/choices.py:5
+#: src/apps/accounts/choices.py:5
 msgid "Female"
 msgstr "Feminino"
 
-#: apps/accounts/choices.py:6
+#: src/apps/accounts/choices.py:6
 msgid "Other"
 msgstr "Outro"
 
-#: apps/accounts/choices.py:7
+#: src/apps/accounts/choices.py:7
 msgid "Undisclosed"
 msgstr "Prefiro não informar"
 
-#: apps/accounts/forms.py:17
+#: src/apps/accounts/forms.py:17
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: apps/accounts/forms.py:18
+#: src/apps/accounts/forms.py:18
 msgid "There is already a user registered with this email."
 msgstr "Já existe um usuário cadastrado com este email."
 
-#: apps/accounts/forms.py:20
+#: src/apps/accounts/forms.py:20
 msgid "The password must be at least 6 characters long."
 msgstr "O campo senha deve possuir no mínimo 6 caracteres."
 
-#: apps/accounts/forms.py:22
+#: src/apps/accounts/forms.py:22
 msgid "The state or country fields must be filled in."
 msgstr "Os campos estado ou país devem ser preenchidos."
 
-#: apps/accounts/forms.py:23
+#: src/apps/accounts/forms.py:23
 msgid "Select a UF, if you are a foreigner, click on I am a foreigner"
 msgstr ""
 "Selecione uma UF, caso seja estrangeiro, clique em \"sou estrangeiro\"."
 
-#: apps/accounts/forms.py:25
+#: src/apps/accounts/forms.py:25
 msgid ""
 "Select a country, if you are not a foreigner, click on \"I am Brazilian\"."
 msgstr ""
 "Selecione um país, caso não seja estrangeiro, clique em \"Sou brasileiro\"."
 
-#: apps/accounts/models.py:23
+#: src/apps/accounts/models.py:23
 msgid "gender"
 msgstr "gênero"
 
-#: apps/accounts/models.py:27
+#: src/apps/accounts/models.py:27
 msgid "country"
 msgstr "país"
 
-#: apps/accounts/models.py:29
+#: src/apps/accounts/models.py:29
 msgid "birthdate"
 msgstr "data de nascimento"
 
-#: apps/accounts/models.py:35
+#: src/apps/accounts/models.py:35
 msgid "profile"
 msgstr "perfil"
 
-#: apps/accounts/models.py:36
+#: src/apps/accounts/models.py:36
 msgid "profiles"
 msgstr "perfis"
 
-#: apps/accounts/views.py:46
+#: src/apps/accounts/views.py:49
 msgid "Please check your email to complete the registration process."
 msgstr "Por favor, verifique seu email para concluir seu cadastro."
 
-#: apps/accounts/views.py:102
+#: src/apps/accounts/views.py:105
 msgid "Invalid user and/or password."
 msgstr "Usuário e/ou senha inválidos."
 
-#: templates/registration/password_change_done.html:4
-#: templates/registration/password_change_done.html:12
+#: src/templates/registration/activation_complete.html:4
+#: src/templates/registration/activation_complete.html:12
+msgid "Account activated"
+msgstr "Conta ativada"
+
+#: src/templates/registration/activation_complete.html:14
+msgid "Account successfully activaded!"
+msgstr "Conta ativada com sucesso!"
+
+#: src/templates/registration/activation_complete.html:17
+msgid "You will be redirected to home page soon..."
+msgstr "Você será redirecionado para a página inicial em breve..."
+
+#: src/templates/registration/password_change_done.html:4
+#: src/templates/registration/password_change_done.html:12
 msgid "Password changed"
 msgstr "Senha alterada"
 
-#: templates/registration/password_change_done.html:14
+#: src/templates/registration/password_change_done.html:14
 msgid "Password successfully changed!"
 msgstr "Senha alterada com sucesso!"
 
-#: templates/registration/password_change_form.html:4
-#: templates/registration/password_change_form.html:12
-#: templates/registration/password_change_form.html:41
-#: templates/registration/profile.html:44
+#: src/templates/registration/password_change_form.html:4
+#: src/templates/registration/password_change_form.html:12
+#: src/templates/registration/password_change_form.html:41
+#: src/templates/registration/profile.html:44
 msgid "Change password"
 msgstr "Alterar senha"
 
-#: templates/registration/password_change_form.html:14
+#: src/templates/registration/password_change_form.html:14
 msgid ""
 "Enter your current password and type a new password you want in the fields "
 "below"
 msgstr ""
 "Insira sua senha atual e digite uma nova senha desejada nos campos abaixo"
 
-#: templates/registration/password_reset_complete.html:4
+#: src/templates/registration/password_reset_complete.html:4
 msgid "Password reset complete"
 msgstr "Alteração de senha completa"
 
-#: templates/registration/password_reset_complete.html:12
+#: src/templates/registration/password_reset_complete.html:12
 msgid "Your password has been reset!"
 msgstr "Sua senha foi restaurada!"
 
-#: templates/registration/password_reset_complete.html:14
+#: src/templates/registration/password_reset_complete.html:14
 #, python-format
 msgid "You may now <a href=\"%(login_url)s\">log in</a>"
 msgstr "Agora você pode <a href=\"%(login_url)s\">entrar.</a>"
 
-#: templates/registration/password_reset_confirm.html:11
-#: templates/registration/password_reset_confirm.html:20
-#: templates/registration/password_reset_confirm.html:57
+#: src/templates/registration/password_reset_confirm.html:11
+#: src/templates/registration/password_reset_confirm.html:20
+#: src/templates/registration/password_reset_confirm.html:57
 msgid "Confirm password reset"
 msgstr "Confirmar restauração de senha"
 
-#: templates/registration/password_reset_confirm.html:22
+#: src/templates/registration/password_reset_confirm.html:22
 msgid "Enter your new password below to reset your password:"
 msgstr "Digite a sua nova senha abaixo para restaurar a sua senha:"
 
-#: templates/registration/password_reset_confirm.html:49
+#: src/templates/registration/password_reset_confirm.html:49
 msgid "Set password"
 msgstr "Definir senha"
 
-#: templates/registration/password_reset_confirm.html:59
+#: src/templates/registration/password_reset_confirm.html:59
 msgid "Password reset unsuccessful. Please "
 msgstr "A restauração da senha não foi bem sucedida. Por favor "
 
-#: templates/registration/password_reset_confirm.html:59
+#: src/templates/registration/password_reset_confirm.html:59
 msgid "try again."
 msgstr "tente novamente."
 
-#: templates/registration/password_reset_done.html:4
-#: templates/registration/password_reset_done.html:12
+#: src/templates/registration/password_reset_done.html:4
+#: src/templates/registration/password_reset_done.html:12
 msgid "Password reset"
 msgstr "Recuperar senha"
 
-#: templates/registration/password_reset_done.html:14
+#: src/templates/registration/password_reset_done.html:14
 msgid ""
 "We have sent you an email with a link to reset your password. Please check "
 "your email and click the link to continue."
@@ -184,11 +197,11 @@ msgstr ""
 "Enviamos um e-mail com um link para redefinir sua senha.Verifique\n"
 " seu e-mail e clique no link para continuar."
 
-#: templates/registration/password_reset_email.html:3
+#: src/templates/registration/password_reset_email.html:3
 msgid "Greetings"
 msgstr "Saudações"
 
-#: templates/registration/password_reset_email.html:5
+#: src/templates/registration/password_reset_email.html:5
 #, python-format
 msgid ""
 "You are receiving this email because you (or someone pretending to be you)\n"
@@ -199,7 +212,7 @@ msgstr ""
 "solicitou que sua senha seja redefinida no site %(domain)s. Se você não\n"
 "deseja redefinir sua senha, ignore esta mensagem."
 
-#: templates/registration/password_reset_email.html:9
+#: src/templates/registration/password_reset_email.html:9
 msgid ""
 "To reset your password, please click the following link, or copy and paste "
 "it\n"
@@ -208,21 +221,21 @@ msgstr ""
 "Para redefinir sua senha, clique no seguinte link ou copie e cole\n"
 "no seu navegador:"
 
-#: templates/registration/password_reset_email.html:16
+#: src/templates/registration/password_reset_email.html:16
 msgid "Best regards"
 msgstr "Cumprimentos,"
 
-#: templates/registration/password_reset_email.html:17
+#: src/templates/registration/password_reset_email.html:17
 msgid "Management"
 msgstr "Gerência"
 
-#: templates/registration/password_reset_form.html:4
-#: templates/registration/password_reset_form.html:12
-#: templates/registration/password_reset_form.html:41
+#: src/templates/registration/password_reset_form.html:4
+#: src/templates/registration/password_reset_form.html:12
+#: src/templates/registration/password_reset_form.html:41
 msgid "Reset password"
 msgstr "Restaurar senha"
 
-#: templates/registration/password_reset_form.html:14
+#: src/templates/registration/password_reset_form.html:14
 msgid ""
 "Forgot your password? Enter your email in the form below and we'll send you "
 "instructions for creating a new one."
@@ -230,60 +243,60 @@ msgstr ""
 "Esqueceu sua senha? Digite seu e-mail no formulário abaixo e nós lhe "
 "enviaremos instruções para criar um novo."
 
-#: templates/registration/profile.html:12
+#: src/templates/registration/profile.html:12
 msgid "My Profile"
 msgstr "Meu Perfil"
 
-#: templates/registration/profile.html:18
+#: src/templates/registration/profile.html:18
 msgid "Profile picture"
 msgstr "Foto do perfil"
 
-#: templates/registration/profile.html:29
+#: src/templates/registration/profile.html:29
 msgid "Change"
 msgstr "Alterar"
 
-#: templates/registration/profile.html:32
+#: src/templates/registration/profile.html:32
 msgid "Remove"
 msgstr "Remover"
 
-#: templates/registration/profile.html:38
+#: src/templates/registration/profile.html:38
 msgid "My password"
 msgstr "Minha senha"
 
-#: templates/registration/profile.html:48
+#: src/templates/registration/profile.html:48
 msgid "My data"
 msgstr "Meus dados"
 
-#: templates/registration/profile.html:52
+#: src/templates/registration/profile.html:52
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: templates/registration/profile.html:60
+#: src/templates/registration/profile.html:60
 msgid "First name"
 msgstr "Nome"
 
-#: templates/registration/profile.html:75
+#: src/templates/registration/profile.html:75
 msgid "Last name"
 msgstr "Sobrenome"
 
-#: templates/registration/profile.html:90
-#: templates/registration/profile.html:93
+#: src/templates/registration/profile.html:90
+#: src/templates/registration/profile.html:93
 msgid "Gender"
 msgstr "Sexo"
 
-#: templates/registration/profile.html:103
-#: templates/registration/profile.html:106
+#: src/templates/registration/profile.html:103
+#: src/templates/registration/profile.html:106
 msgid "UF"
 msgstr "UF"
 
-#: templates/registration/profile.html:116
+#: src/templates/registration/profile.html:116
 msgid "Date of birth"
 msgstr "Data de nascimento"
 
-#: templates/registration/profile.html:131
+#: src/templates/registration/profile.html:131
 msgid "E-mail"
 msgstr "Email"
 
-#: templates/registration/profile.html:137
+#: src/templates/registration/profile.html:137
 msgid "Update data"
 msgstr "Atualizar dados"
