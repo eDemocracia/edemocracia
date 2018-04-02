@@ -14,6 +14,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.create_admin()
+        self.update_site()
+
+    def update_site(self):
+        site = Site.objects.get_current()
+        site_name = os.environ.get('SITE_NAME', None)
+        site_url = os.environ.get('SITE_URL', None)
+
+        if None not in [site_url, site_name]:
+            print('Updating site infos...')
+            regex = re.compile('^(http|https)://')
+            for scheme in regex.findall(site_url):
+                site_url = site_url.replace(scheme + '://', '')
+            site.domain, site.name = site_url, site_name
+            site.save()
+            print('Done!')
+        else:
+            print('Missing SITE_URL or SITE_NAME environment variable.')
+            sys.exit(2)
 
     def create_admin(self):
         admin_email = os.environ.get('ADMIN_EMAIL', None)
