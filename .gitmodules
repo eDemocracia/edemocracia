@@ -1,0 +1,4 @@
+[submodule "src/templates/edem-navigation"]
+	path = src/templates/edem-navigation
+	url = https://github.com/labhackercd/edem-navigation.git
+	branch = master

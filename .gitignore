@@ -1,3 +1,5 @@
+*/public/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -53,6 +55,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
+*.ini
 
 # Flask stuff:
 instance/
@@ -103,3 +106,6 @@ ENV/
 
 node_modules/
 *.sqlite3
+
+# Redis
+dump.rdb

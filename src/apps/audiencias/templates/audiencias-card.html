@@ -1,0 +1,48 @@
+{% load edem_extras %}
+
+<a class="info-card__link" href="/audiencias/sala/{{ room.id }}">
+  <li class="info-card info-card--audiencias">
+    <div class="info-card__header info-card__header--{{ status }}">
+      {% if status == "live" %}
+      <div class="info-card__icon info-card__icon--live"><i class="icon icon-circle live-blink"></i></div>
+      <h2 class="info-card__title">Ao Vivo</h2>
+      {% elif status == "calendar" %}
+      <div class="info-card__icon info-card__icon--calendar"><i class="icon icon-calendar"></i></div>
+      <h2 class="info-card__title">Audiências Previstas</h2>
+      {% elif status == "old-video" %}  
+      <div class="info-card__icon info-card__icon--old-video"><i class="icon icon-play"></i></div>
+      <h2 class="info-card__title">Audiências que já aconteceram</h2>
+      {% endif %}
+    </div>
+    {% if status != "calendar" %}
+    <img class="info-card__image" src="https://img.youtube.com/vi/{{ room.youtube_id }}/mqdefault.jpg">
+    {% endif %}
+    <div class="info-card__description">
+    {% if status == "calendar" %}
+    <img class="info-card__image info-card__image--calendar" src="/static/img/calendar-book.svg">
+    {% endif %}
+    <p class="info-card__text" title="{{ room.reunion_theme|default_if_none:''|truncatechars:280 }}">{% if room.reunion_theme %}{{ room.reunion_theme|truncatechars:70 }}{% elif room.is_joint %}{{ room.title_reunion }}{% else %}{{ room.legislative_body_alias }}{% endif %}</p>
+
+    {% if room.reunion_type %}
+    <p class="info-card__type">{{ room.reunion_type }}</p>
+    {% endif %}
+
+    </div>
+    <div class="info-card__footer">
+      <div class="card-stats">
+        <div class="card-stats__name">Perguntas</div>
+        <div class="card-stats__value">{{ room.questions_count }}</div>
+      </div>
+
+      <div class="card-stats">
+        <div class="card-stats__name">Organizador</div>
+        <div class="card-stats__value" title="{{ room.legislative_body|default_if_none:'' }}">{{ room.legislative_body_initials|default_if_none:'' }}</div>
+      </div>
+
+      <div class="card-stats">
+        <div class="card-stats__name">Data</div>
+        <div class="card-stats__value">{{ room.date|str_to_date }}</div>
+      </div>
+    </div>
+  </li>
+</a>

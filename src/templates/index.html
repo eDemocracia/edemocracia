@@ -1,0 +1,37 @@
+
+{% extends 'components/base.html' %}
+{% block content %}
+
+<main class="main">
+
+  <section class="owner-section">
+    <div class="firsthalf">
+      <div class="logo">
+        <img class="image" src="{{ site_logo }}" alt="e-Democracia da {{ site_name }}">
+      </div>
+    </div>
+    <div class="secondhalf">
+      <p class="briefing">Bem-vindo ao e-Democracia <span class="owner">{{ site_name }}</span>. Este Portal foi criado para ampliar a participação social no processo legislativo e aproximar cidadãos e seus representantes por meio da interação digital.</p>
+    </div>
+  </section>
+
+  {% if AUDIENCIAS_ENABLED %}
+    {% include 'audiencias-section.html' %}
+  {% endif %}
+  
+  {% if WIKILEGIS_ENABLED %}
+    {% include 'wikilegis-section.html' %}
+  {% endif %}
+  
+  {% if DISCOURSE_ENABLED %}
+    {% include 'discourse-section.html' %}
+  {% endif %}
+  
+  {% if PAUTAS_ENABLED %}
+    {% include 'pautas-section.html' %}
+  {% endif %}
+
+
+</main>
+
+{% endblock content %}

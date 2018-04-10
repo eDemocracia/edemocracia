@@ -1,0 +1,14 @@
+#olark-wrapper button.olark-launch-button {
+  height: 32px !important;
+
+  & > svg {
+    width: 20px !important;
+    height: 32px !important;
+  }
+
+  & > .olark-button-text {
+    line-height: 30px !important;
+    overflow: visible !important;
+    font-size: 13px !important;
+  }
+}

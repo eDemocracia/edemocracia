@@ -1,0 +1,30 @@
+{% load edem_extras %}
+
+<a class="info-card__link" href="pautaparticipativa/pauta/{{ pauta.id }}">
+  <li class="info-card info-card--pauta">
+
+      <div class="info-card__header info-card__header{% if pauta.is_closed %}--closed{% endif %}">
+        <div class="info-card__icon info-card__icon{% if pauta.is_closed %}--closed{% endif %}">
+          <i class="icon icon-calendar-times-o"></i>
+        </div>
+        <h2 class="info-card__title">Votação {% if pauta.is_closed %}encerrada{% else %}aberta{% endif %}</h2>
+      </div>
+
+    <h2 class="info-card__title">Pauta Participativa</h2>
+    <p class="info-card__text">{{ pauta.description|truncatechars:160 }}</p>
+    <div class="info-card__footer">
+
+
+        <div class="card-stats">
+          <div class="card-stats__name">{% if pauta.is_closed %}Encerrado em{% else %}Participe até{% endif %}</div>
+          <div class="card-stats__value card-stats__value{% if pauta.is_closed %}--closed{% endif %}">{{ pauta.end_date|str_to_date }}</div>
+        </div>
+
+        <div class="card-stats">
+          <div class="card-stats__name">Participantes</div>
+          <div class="card-stats__value card-stats__value{% if pauta.is_closed %}--closed{% endif %}">{{ pauta.participants_count }}</div>
+        </div>
+
+    </div>
+  </li>
+</a>

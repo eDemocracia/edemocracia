@@ -1,0 +1,57 @@
+{% load compress staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  {% if not '/admin/' in request.path %}
+
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+
+      {% compress css %}
+        {% block styles %}
+          <link rel="stylesheet" href="{% static 'fontastic-labhacker/styles.css' %}" />
+          <link rel="stylesheet" href="{% static 'scss/_overrides.olark.scss' %}" type="text/x-scss" />
+          <link rel="stylesheet" href="{% static 'scss/_components.ie-banner.scss' %}" type="text/x-scss" />
+          <link rel="stylesheet" href="{% static 'edem-navigation/scss/edem.scss' %}" type="text/x-scss" />
+        {% endblock styles %}
+      {% endcompress %}
+    </head>
+
+    <body {% block body_properties %}{% endblock %}>
+
+      <div class="edem-content-wrapper">
+
+        {% block edem_navigation %}
+          {% include "components/edem-navigation.html" %}
+        {% endblock edem_navigation %}
+
+      </div>
+
+      {% block scripts %}
+
+        {% block addthis_call %}
+          <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56d59e5f7525348b"></script>
+        {% endblock addthis_call %}
+
+        {% block jquery_call %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        {% endblock jquery_call %}
+
+        <script src="{% static 'js/ie-check.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'edem-navigation/js/edem-navigation.js' %}"></script>
+      {% endblock scripts %}
+    </body>
+
+  {% else %}
+
+    <head></head>
+    <body>
+      <div class="edem-content-wrapper">
+
+      </div>
+    </body>
+
+  {% endif %}
+</html>

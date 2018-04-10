@@ -1,0 +1,63 @@
+ .info-banner {
+  background-color: #ffd853;
+  background: radial-gradient(circle at left 15% top 50%, #ffdc70 20%, #ffd853 0);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 1px 4px rgba(0,0,0,0.23);
+  left: 0;
+  margin: 0 auto;
+  max-width: 100%;
+  min-height: 95px;
+  overflow: hidden;
+  padding: 5px 20px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  width: 720px;
+  z-index: 1000001;
+}
+.info-banner__image {
+  display: inline-block;
+  height: 85px;
+  margin: 0 10px;
+  position: relative;
+  vertical-align: middle;
+}
+.info-banner__text {
+  color: #6c4b0c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  max-width: 570px;
+  text-align: center;
+}
+
+.info-banner__content {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.info-banner__links {
+  font-size: 22px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.info-banner__link {
+  color: #1281a5;
+  display: inline-block;
+  font-weight: 700;
+  margin: 0 10px;
+}
+
+.info-banner__link:hover {
+  color: hsla(195, 80%, 25%, 1);
+}
+
+.info-banner__links i {
+  color: #6c4b0c;
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+}

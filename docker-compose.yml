@@ -1,0 +1,305 @@
+version: '2'
+
+volumes:
+  wikilegis:
+  audiencias:
+  discourse:
+  pauta:
+
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./config/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./:/var/labhacker/edemocracia:z
+      - wikilegis:/var/labhacker/wikilegis:z
+      - audiencias:/var/labhacker/audiencias:z
+      - discourse:/var/www/discourse:z
+      - pauta:/var/labhacker/pauta-participativa:z
+    ports:
+      - "8000:80"
+    links:
+      - edemocracia
+
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: root
+
+  redis:
+    image: redis:alpine
+
+  edemocracia:
+    build: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/var/labhacker/edemocracia:z
+    command: ./runserver
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_PASSWORD: 123
+      ADMIN_USERNAME: admin
+      SITE_NAME:
+      SITE_LOGO:
+      SITE_URL: http://localhost:8000
+      DEBUG:
+      SECRET_KEY:
+      RECAPTCHA_SITE_KEY:
+      RECAPTCHA_PRIVATE_KEY:
+      ALLOWED_HOSTS:
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: edemocracia
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:
+      SOCIAL_AUTH_FACEBOOK_KEY:
+      SOCIAL_AUTH_FACEBOOK_SECRET:
+      SOCIAL_AUTH_CD_KEY:
+      SOCIAL_AUTH_CD_SECRET:
+      SOCIAL_AUTH_CD_VERIFY_SSL:
+      CD_AUTHORIZATION_URL:
+      CD_ACCESS_TOKEN_URL:
+      CD_METADATA_URL:
+      SOCIAL_AUTH_REDIRECT_IS_HTTPS:
+      LANGUAGE_CODE:
+      TIME_ZONE:
+      EMAIL_HOST:
+      EMAIL_PORT:
+      EMAIL_HOST_USER:
+      EMAIL_HOST_PASSWORD:
+      EMAIL_USE_TLS:
+      EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia" <edemocracia@camara.leg.br>'
+      STATIC_URL:
+      MEDIA_URL:
+      WIKILEGIS_ENABLED: 'True'
+      WIKILEGIS_UPSTREAM: http://wikilegis:8000
+      WIKILEGIS_API_URL: '/api/v1/'
+      WIKILEGIS_API_KEY: api_key
+      PAUTAS_ENABLED: 'True'
+      PAUTAS_UPSTREAM: http://pauta:8000
+      PAUTAS_API_URL:
+      PAUTAS_API_KEY: api_key
+      AUDIENCIAS_ENABLED: 'True'
+      AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
+      AUDIENCIAS_API_URL:
+      AUDIENCIAS_API_KEY:
+      DISCOURSE_ENABLED: 'True'
+      DISCOURSE_UPSTREAM: http://discourse:8080/expressao
+      DISCOURSE_SSO_SECRET: sso_secret
+
+  wikilegis:
+    image: labhackercd/wikilegis:dev
+    command: ./start.sh
+    links:
+      - db
+    depends_on:
+      - db
+    volumes:
+      - wikilegis:/var/labhacker/wikilegis
+    environment:
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      API_KEY: api_key
+      SECRET_KEY: secret_key
+      FORCE_SCRIPT_NAME: /wikilegis
+      DEBUG: 'True'
+      ALLOWED_HOSTS: '*'
+      LOGIN_URL: /
+      LOGIN_REDIRECT_URL: /
+      AUTH_USER_MODEL: accounts.User
+      ENABLE_REMOTE_USER: 'True'
+      SESSION_COOKIE_NAME: wikilegis_session
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[Wikilegis]" <edemocracia@camara.leg.br>'
+      LANGUAGE_CODE: pt-br
+      TIME_ZONE: America/Sao_Paulo
+      STATIC_URL: /wikilegis/static/
+      MEDIA_URL: /wikilegis/media/
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: wikilegis
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+    expose:
+      - "8000"
+
+  audienciasweb:
+    image: labhackercd/audiencias-publicas:dev
+    command: ./start-web.sh
+    restart: on-failure
+    links:
+      - db
+      - redis
+    volumes:
+      - audiencias:/var/labhacker/audiencias
+    environment:
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_USERNAME: admin
+      EMAIL_HOST: ''
+      EMAIL_HOST_USER: ''
+      EMAIL_HOST_PASSWORD: ''
+      EMAIL_PORT: 25
+      EMAIL_USE_TLS: 'False'
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
+      NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
+      DJANGO_SECRET_KEY: secret_key
+      DEBUG: 'False'
+      ENABLE_REMOTE_USER: 'True'
+      URL_PREFIX: audiencias
+      FORCE_SCRIPT_NAME: /audiencias
+      STATIC_URL: /audiencias/static/
+      SESSION_COOKIE_NAME: audiencias_session
+      LOGIN_URL: /home
+      LOGIN_REDIRECT_URL: /home
+      LOGOUT_REDIRECT_URL: /home
+      ALLOWED_HOSTS: 'audienciasweb, localhost, 127.0.0.1'
+      YOUTUBE_API_KEY: ''
+      YOUTUBE_CHANNEL_ID: ''
+      YOUTUBE_SEARCH_QUERY: ''
+      GOOGLE_ANALYTICS_ID: ''
+      OLARK_ID: ''
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: audiencias
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DEBUG: 'False'
+      REDIS_SERVER: redis
+      WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
+      COMPRESS_OFFLINE: 'True'
+    expose:
+      - "8000"
+    depends_on:
+      - db
+      - redis
+
+  audienciasworker:
+    image: labhackercd/audiencias-publicas:dev
+    command: ./start-worker.sh
+    links:
+      - redis
+      - db
+    environment:
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_USERNAME: admin
+      EMAIL_HOST: ''
+      EMAIL_HOST_USER: ''
+      EMAIL_HOST_PASSWORD: ''
+      EMAIL_PORT: 25
+      EMAIL_USE_TLS: 'False'
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
+      NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
+      DJANGO_SECRET_KEY: secret_key
+      DEBUG: 'False'
+      ENABLE_REMOTE_USER: 'True'
+      URL_PREFIX: audiencias
+      FORCE_SCRIPT_NAME: /audiencias
+      STATIC_URL: /audiencias/static/
+      SESSION_COOKIE_NAME: audiencias_session
+      LOGIN_URL: /home
+      LOGIN_REDIRECT_URL: /home
+      LOGOUT_REDIRECT_URL: /home
+      ALLOWED_HOSTS: 'audienciasweb, audienciasworker, localhost, 127.0.0.1'
+      YOUTUBE_API_KEY: ''
+      YOUTUBE_CHANNEL_ID: ''
+      YOUTUBE_SEARCH_QUERY: ''
+      GOOGLE_ANALYTICS_ID: ''
+      OLARK_ID: ''
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: audiencias
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DEBUG: 'False'
+      REDIS_SERVER: redis
+      WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
+      COMPRESS_OFFLINE: 'True'
+    volumes:
+      - audiencias:/var/labhacker/audiencias
+    depends_on:
+      - 'audienciasweb'
+
+  pauta:
+    image: labhackercd/pauta-participativa:dev
+    command: ./start.sh
+    volumes:
+      - pauta:/var/labhacker/pauta-participativa
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    environment:
+      SECRET_KEY:
+      API_KEY: api_key
+      RECAPTCHA_SITE_KEY:
+      RECAPTCHA_PRIVATE_KEY:
+      FORCE_SCRIPT_NAME: /pautaparticipativa
+      DEBUG: 'False'
+      ALLOWED_HOSTS: '*'
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: pauta
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      ENABLE_REMOTE_USER: 'True'
+      SESSION_COOKIE_NAME: pautas_session
+      EMAIL_HOST:
+      EMAIL_PORT:
+      EMAIL_HOST_USER:
+      EMAIL_HOST_PASSWORD:
+      EMAIL_USE_TLS:
+      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[pautaparticipativa]" <edemocracia@camara.leg.br>'
+      STATIC_URL: '/pautaparticipativa/static/'
+
+  discourse:
+    image: labhackercd/discourse-docker
+    command: ./start-web.sh
+    volumes:
+      - discourse:/var/www/discourse
+      - ./:/tmp/edemocracia
+    expose:
+      - "8080"
+    depends_on:
+      - db
+      - redis
+    environment:
+      ADMIN_EMAIL: 'admin@admin.com'
+      ADMIN_PASSWORD: '123'
+      ADMIN_USERNAME: 'admin'
+      RAILS_ENV: 'production'
+      DISCOURSE_DB_HOST: db
+      DISCOURSE_DB_PORT: '5432'
+      DISCOURSE_DB_NAME: 'discourse'
+      DISCOURSE_DB_USERNAME: 'root'
+      DISCOURSE_DB_PASSWORD: 'root'
+      DISCOURSE_HOSTNAME: 'localhost'
+      DISCOURSE_SMTP_ADDRESS:
+      DISCOURSE_SMTP_PORT: 587
+      DISCOURSE_SMTP_USER_NAME:
+      DISCOURSE_SMTP_PASSWORD:
+      DISCOURSE_DEVELOPER_EMAILS:
+      DISCOURSE_REDIS_HOST: 'redis'
+      DISCOURSE_REDIS_PORT: 6379
+      DISCOURSE_RELATIVE_URL_ROOT: '/expressao'
+      DISCOURSE_CONTACT_EMAIL:
+      DISCOURSE_CONTACT_URL: 'localhost'
+      DISCOURSE_NOTIFICATION_EMAIL: 'noreply@dicourse.org'
+      DISCOURSE_SSO_URL: 'http:\/\/127.0.0.1:8000'
+      DISCOURSE_SSO_SECRET: 'sso_secret'
+      DISCOURSE_FORCE_HOSTNAME: ''
