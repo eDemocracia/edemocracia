@@ -296,4 +296,4 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 # THIRD PARTY LIBRARIES
 GOOGLE_ANALYTICS_ID = config('GOOGLE_ANALYTICS_ID', default=None)
-OLARK_ID = config('GOOGLE_ANALYTICS_ID', default=None)
+OLARK_ID = config('OLARK_ID', default=None)
