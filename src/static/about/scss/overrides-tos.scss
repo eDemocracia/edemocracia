@@ -1,0 +1,21 @@
+$edem-topbar-height: 32px;
+
+body {
+  margin-top: $edem-topbar-height;
+}
+
+.edem-topbar {
+  min-height: 0;
+}
+
+.edem-sidebar {
+  top: 0;
+}
+
+.md-header {
+  top: $edem-topbar-height;
+}
+
+.md-sidebar[data-md-state=lock] {
+  margin-top: $edem-topbar-height;
+}

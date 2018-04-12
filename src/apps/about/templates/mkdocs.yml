@@ -1,0 +1,25 @@
+site_name: Sobre
+
+docs_dir: '{{mkdocs_dir}}/mkdocs_pages'
+site_dir: '{{mkdocs_dir}}/static/mkdocs_build'
+
+theme: 'material'
+theme_dir: '{{mkdocs_dir}}/theme'
+
+extra:
+  logo: ''
+  palette:
+    primary: 'green'
+    accent: 'amber'
+  social:
+    - type: 'github'
+      link: 'https://github.com/labhackercd/'
+pages:
+  - Página Inicial: index.md
+  - Wikilegis: wikilegis.md
+  - Audiências Interativas: wikilegis.md
+  - Expressão: expressao.md
+  - Termos de Serviço: tos.md
+
+extra_css:
+  - 'stylesheets/extra.css'

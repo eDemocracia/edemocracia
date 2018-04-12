@@ -109,3 +109,7 @@ node_modules/
 
 # Redis
 dump.rdb
+
+# mkdocs
+src/apps/about/static/mkdocs_build
+src/apps/about/mkdocs.yml

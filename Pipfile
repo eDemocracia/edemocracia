@@ -1,17 +1,12 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
-
 ipdb = "*"
 
-
 [packages]
-
 django = "*"
 python-decouple = "*"
 django-compressor = "*"
@@ -32,8 +27,8 @@ lxml = "< 3.4.99"
 django-macros = "*"
 django-widget-tweaks = "*"
 pydiscourse = "*"
-
+mkdocs = "*"
+mkdocs-material = "*"
 
 [requires]
-
 python_version = "3.6"
