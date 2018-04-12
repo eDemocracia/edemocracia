@@ -2,6 +2,9 @@ $edem-topbar-height: 32px;
 
 body {
   margin-top: $edem-topbar-height;
+  &.-sidebaropen .edem-content-wrapper {
+    margin-top: 0;
+  }
 }
 
 .edem-topbar {
