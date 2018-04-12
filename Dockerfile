@@ -13,6 +13,7 @@ RUN pip install 'pipenv==8.1.2' psycopg2 gunicorn
 RUN pipenv install --system
 
 RUN npm install && \
+    python3 src/manage.py build_mkdocs && \
     python3 src/manage.py collectstatic --no-input && \
     python3 src/manage.py compilemessages
 
