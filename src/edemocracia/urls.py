@@ -9,6 +9,7 @@ urlpatterns = [
     path('', index, name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.urls')),
+    path('sobre/', include('apps.about.urls')),
     path('api/v1/', api_root),
     path('api/v1/user/', UserListAPI.as_view(), name='user_list_api'),
 ]
