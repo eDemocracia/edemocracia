@@ -211,7 +211,7 @@ STATICFILES_FINDERS = default.STATICFILES_FINDERS + [
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/edem-navigation/static'),
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'about/static'),
+    os.path.join(BASE_DIR, 'apps/about/static'),
 ]
 
 NPM_ROOT_PATH = os.path.dirname(BASE_DIR)
