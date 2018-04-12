@@ -1,0 +1,8 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <before css:theme-children="head" css:content-children="head" />
+    <after css:theme-children=".edem-content-wrapper" css:content-children="body" />
+    <merge attributes="class" css:theme="body" css:content="body" />
+</rules>

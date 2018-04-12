@@ -1,0 +1,13 @@
+.md-header {
+  background-color: #134836;
+}
+
+.md-icon--home {
+  display: none;
+}
+
+.md-nav--secondary {
+  -webkit-transition: border-left .25s;
+  transition: border-left .25s;
+  border-left: .4rem solid #e9c23a;
+}
