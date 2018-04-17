@@ -1,15 +1,30 @@
 {% load staticfiles compress %}
 <!DOCTYPE html>
 <html>
-<header>
+<head>
     {% block meta %}
     {% endblock meta %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/favicon/apple-touch-icon.599988716651.png' %}">
+    <link rel="icon" type="image/png" href="{% static '/img/favicon/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static '/img/favicon/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="manifest" href="{% static '/img/favicon/manifest.d00545c3cbd4.json' %}">
+    <link rel="mask-icon" href="{% static '/img/favicon/safari-pinned-tab.a8f8412da2ac.svg' %}" color="#123533">
+    <link rel="shortcut icon" href="{% static '/img/favicon/favicon.ico' %}">
+    <meta name="apple-mobile-web-app-title" content="e-Democracia">
+    <meta name="application-name" content="e-Democracia">
+    <meta name="msapplication-config" content="{% static '/img/favicon/browserconfig.xml' %}">
+    <meta name="theme-color" content="#123533">
+
     <title>{% block title %}e-Democracia{% endblock %}</title>
     {% compress css %}
     <link rel="stylesheet" href="{% static 'edem-navigation/scss/edem.scss' %}" type="text/x-scss"/>
     <link rel="stylesheet" href="{% static 'scss/app.scss' %}" type="text/x-scss"/>
     {% endcompress %}
-</header>
+</head>
 <body>
 
     <div class="edem-content-wrapper">
