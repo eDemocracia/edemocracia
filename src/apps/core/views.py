@@ -7,6 +7,7 @@ from apps.discourse.data import get_discourse_index_data
 from apps.wikilegis.data import get_wikilegis_index_data
 from apps.pautas.data import get_pautas_index_data
 from apps.audiencias.data import get_audiencias_index_data
+from apps.core.utils import get_user_data
 
 
 class EdemProxyView(DiazoProxyView):
@@ -16,11 +17,7 @@ class EdemProxyView(DiazoProxyView):
         self.request = request
 
         if request.user.is_authenticated:
-            user_data = {
-                'name': request.user.first_name,
-                'email': request.user.email,
-            }
-
+            user_data = get_user_data(request.user)
             request.META['HTTP_REMOTE_USER_DATA'] = json.dumps(user_data)
 
         return super(EdemProxyView, self).dispatch(request, *args, **kwargs)
