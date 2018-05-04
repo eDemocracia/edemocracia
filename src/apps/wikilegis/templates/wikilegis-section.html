@@ -4,7 +4,7 @@
       <div class="section__info section__block e-columns small-12 large-3">
         <a href="/wikilegis/"><img class="section__logo" src="/static/img/logo-wikilegis.svg" ></a>
         <p class="section__text">
-          Edite e aprimore projetos de lei artigo por artigo.
+          {{ config.WIKILEGIS_DESCRIPTION }}
         </p>
       </div>
 
@@ -12,7 +12,7 @@
         <div class="section__content">
 
           <h1 class="section__title">
-            <a class="section__link" href="/wikilegis/" title="Veja todas as projetos">Contribua em projetos de lei</a>
+            <a class="section__link" href="/wikilegis/" title="Veja todas as projetos">{{ config.WIKILEGIS_TITLE }}</a>
           </h1>
 
           <div class="container container--card-list">
@@ -28,7 +28,7 @@
                 <li>
                   <div class="section__content-wrapper section__content-wrapper--center text-center">
                     <p class="section__text">
-                      Desculpe. Não encontramos nenhum projeto de lei.
+                      Desculpe. Não encontramos nenhum resultado.
                     </p>
                   </div>
                 </li>
