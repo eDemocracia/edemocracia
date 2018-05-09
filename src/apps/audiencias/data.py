@@ -18,7 +18,8 @@ def get_audiencias_index_data():
 
     if len(today_rooms) == 0:
         agenda_params = {
-            'date__gte': today, 'youtube_status': 0, 'ordering': 'date'}
+            'date__gte': tomorrow, 'youtube_status': 0, 'ordering': 'date',
+            'is_visible': 'True'}
         agenda_response = requests.get(
             url, params=agenda_params)
         extra_agenda_rooms = agenda_response.json()['results'][:10]
@@ -33,7 +34,8 @@ def get_audiencias_index_data():
     elif len(today_rooms) < 10:
         diff_cards = 10 - len(today_rooms)
         agenda_params = {
-            'date__gte': today, 'youtube_status': 0, 'ordering': 'date'}
+            'date__gte': tomorrow, 'youtube_status': 0, 'ordering': 'date',
+            'is_visible': 'True'}
         agenda_response = requests.get(
             url, params=agenda_params)
         extra_agenda_rooms = agenda_response.json()['results'][:diff_cards]

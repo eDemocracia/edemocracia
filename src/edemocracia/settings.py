@@ -292,6 +292,41 @@ DISCOURSE_SSO_SECRET = config('DISCOURSE_SSO_SECRET', default='sso_secret')
 
 # EDITABLE SETTINGS
 CONSTANCE_CONFIG = {
+    'DESCRIPTION': ('Este Portal foi criado para ampliar a participação '
+                    'social no processo legislativo e aproximar cidadãos e '
+                    'seus representantes por meio da interação digital.',
+                    'Descrição da barra superior e rodapé de site', str),
+    'TOS_DESCRIPTION': ('Condições gerais aplicáveis à utilização do site e '
+                        'de suas ferramentas associadas', 'Descrição dos '
+                        'Termos de Serviço', str),
+    'AUDIENCIAS_TITLE': ('FAÇA SUA PERGUNTA', 'Título da seção do Audiências '
+                         'Interativas', str),
+    'AUDIENCIAS_DESCRIPTION': ('Acompanhe audiências ao vivo e participe'
+                               'enviando perguntas.', 'Descrição da seção do '
+                               'Audiências Interativas', str),
+    'WIKILEGIS_TITLE': ('CONTRIBUA EM PROJETOS DE LEI', 'Título da seção do'
+                        'Wikilegis', str),
+    'WIKILEGIS_DESCRIPTION': ('Edite e aprimore projetos de lei artigo por '
+                              'artigo.', 'Descrição da seção do Wikilegis',
+                              str),
+    'EXPRESSAO_TITLE': ('PARTICIPE EM DISCUSSÕES', 'Título da seção do '
+                        'Expressão', str),
+    'EXPRESSAO_DESCRIPTION': ('Dê sua opinião sobre os assuntos que afetam '
+                              'a sua vida, discutindo soluções com outros '
+                              'cidadãos e os deputados.', 'Descrição da seção '
+                              'do Expressão', str),
+    'PAUTAS_TITLE': ('COLOQUE PROJETOS NA PAUTA', 'Título da seção do Pauta '
+                     'Participativa', str),
+    'PAUTAS_DESCRIPTION': ('Vote nos assustos a serem abordados em plenário.',
+                           'Título da seção do Pauta Participativa', str),
+}
+
+CONSTANCE_CONFIG_FIELDSETS = {
+    'General Options': ('DESCRIPTION', 'TOS_DESCRIPTION'),
+    'Audiências Options': ('AUDIENCIAS_TITLE', 'AUDIENCIAS_DESCRIPTION'),
+    'Wikilegis Options': ('WIKILEGIS_TITLE', 'WIKILEGIS_DESCRIPTION'),
+    'Expressão Options': ('EXPRESSAO_TITLE', 'EXPRESSAO_DESCRIPTION'),
+    'Pauta Participativa Options': ('PAUTAS_TITLE', 'PAUTAS_DESCRIPTION'),
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

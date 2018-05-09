@@ -5,7 +5,7 @@
       <div class="section__info section__block e-columns small-12 large-3">
         <a href="/expressao/"><img class="section__logo" src="/static/img/logo-expressao.svg" ></a>
         <p class="section__text">
-          Dê sua opinião sobre os assuntos que afetam a sua vida, discutindo soluções com outros cidadãos e os deputados.
+          {{ config.EXPRESSAO_DESCRIPTION }}
         </p>
       </div>
 
@@ -13,7 +13,7 @@
         <div class="section__content">
 
           <h1 class="section__title">
-            <a class="section__link" href="/expressao/" title="Veja todas as discussões">Participe em discussões</a>
+            <a class="section__link" href="/expressao/" title="Veja todas as discussões">{{ config.EXPRESSAO_TITLE }}</a>
           </h1>
 
           <div class="container container--card-list">
@@ -22,6 +22,14 @@
             <ul class="card-list">
               {% for topic in topics %}
                 {% include "discourse-card.html" %}
+              {% empty %}
+              <li>
+                <div class="section__content-wrapper section__content-wrapper--center text-center">
+                  <p class="section__text">
+                    Desculpe. Não encontramos nenhum resultado.
+                  </p>
+                </div>
+              </li>
               {% endfor %}
             </ul>
           </div>
