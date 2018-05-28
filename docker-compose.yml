@@ -180,6 +180,7 @@ services:
       REDIS_SERVER: redis
       WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
       COMPRESS_OFFLINE: 'True'
+      WORDS_BLACK_LIST: ''
     expose:
       - "8000"
     depends_on:
@@ -229,6 +230,7 @@ services:
       REDIS_SERVER: redis
       WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
       COMPRESS_OFFLINE: 'True'
+      WORDS_BLACK_LIST: ''
     volumes:
       - audiencias:/var/labhacker/audiencias
     depends_on:
