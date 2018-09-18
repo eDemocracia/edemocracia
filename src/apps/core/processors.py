@@ -12,7 +12,3 @@ def settings_variables(request):
         'DISCOURSE_ENABLED': settings.DISCOURSE_ENABLED,
         'AUDIENCIAS_ENABLED': settings.AUDIENCIAS_ENABLED,
     }
-
-
-def home_customization(request):
-    return {'site_name': settings.SITE_NAME, 'site_logo': settings.SITE_LOGO}
