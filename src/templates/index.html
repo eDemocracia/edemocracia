@@ -1,5 +1,6 @@
-
 {% extends 'components/base.html' %}
+
+{% load static %}
 {% block content %}
 
 <main class="main">
@@ -7,11 +8,12 @@
   <section class="owner-section">
     <div class="firsthalf">
       <div class="logo">
-        <img class="image" src="{{ site_logo }}" alt="e-Democracia da {{ site_name }}">
+        {% get_media_prefix as MEDIA_URL %}
+        <img class="image" src="{{ MEDIA_URL }}{{ config.SITE_LOGO }}" alt="e-Democracia da {{ config.SITE_NAME }}">
       </div>
     </div>
     <div class="secondhalf">
-      <p class="briefing">Bem-vindo ao e-Democracia <span class="owner">{{ site_name }}</span>. {{ config.DESCRIPTION }}</p>
+      <p class="briefing">Bem-vindo ao e-Democracia <span class="owner">{{ config.SITE_NAME }}</span>. {{ config.DESCRIPTION }}</p>
     </div>
   </section>
 
