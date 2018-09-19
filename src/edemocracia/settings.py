@@ -17,8 +17,6 @@ RECAPTCHA_PRIVATE_KEY = config(
     default='6LeqwioUAAAAAHs4i1Zq4D_9kc1I-OL0TmaUowq3'
 )
 
-SITE_NAME = config('SITE_NAME', default='Nome do site')
-SITE_LOGO = config('SITE_LOGO', default='https://exemple.com/img.png')
 SITE_URL = config('SITE_URL', default='http://localhost:8000')
 
 SITE_ID = 1
@@ -233,7 +231,6 @@ TEMPLATES = [
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
                 'apps.core.processors.settings_variables',
-                'apps.core.processors.home_customization',
             ],
         },
     },
@@ -291,7 +288,13 @@ DISCOURSE_SSO_SECRET = config('DISCOURSE_SSO_SECRET', default='sso_secret')
 
 
 # EDITABLE SETTINGS
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'image_field': ['django.forms.ImageField', {}]
+}
+
 CONSTANCE_CONFIG = {
+    'SITE_LOGO': ('logo-camara-color.svg', 'Logo do topo', 'image_field'),
+    'SITE_NAME': ('Câmara dos Deputados', 'Nome do site', str),
     'DESCRIPTION': ('Este Portal foi criado para ampliar a participação '
                     'social no processo legislativo e aproximar cidadãos e '
                     'seus representantes por meio da interação digital.',
@@ -301,7 +304,7 @@ CONSTANCE_CONFIG = {
                         'Termos de Serviço', str),
     'AUDIENCIAS_TITLE': ('FAÇA SUA PERGUNTA', 'Título da seção do Audiências '
                          'Interativas', str),
-    'AUDIENCIAS_DESCRIPTION': ('Acompanhe audiências ao vivo e participe'
+    'AUDIENCIAS_DESCRIPTION': ('Acompanhe audiências ao vivo e participe '
                                'enviando perguntas.', 'Descrição da seção do '
                                'Audiências Interativas', str),
     'WIKILEGIS_TITLE': ('CONTRIBUA EM PROJETOS DE LEI', 'Título da seção do'
@@ -322,7 +325,8 @@ CONSTANCE_CONFIG = {
 }
 
 CONSTANCE_CONFIG_FIELDSETS = {
-    'General Options': ('DESCRIPTION', 'TOS_DESCRIPTION'),
+    'General Options': ('SITE_NAME', 'SITE_LOGO', 'DESCRIPTION',
+                        'TOS_DESCRIPTION'),
     'Audiências Options': ('AUDIENCIAS_TITLE', 'AUDIENCIAS_DESCRIPTION'),
     'Wikilegis Options': ('WIKILEGIS_TITLE', 'WIKILEGIS_DESCRIPTION'),
     'Expressão Options': ('EXPRESSAO_TITLE', 'EXPRESSAO_DESCRIPTION'),
