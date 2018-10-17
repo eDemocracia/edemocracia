@@ -28,7 +28,7 @@ class CamaraOAuth2(BaseOAuth2):
 
 
 class AuthenticationEmailBackend(object):
-    def authenticate(self, username=None, password=None, **kwargs):
+    def authenticate(self, request, username=None, password=None, **kwargs):
         UserModel = get_user_model()
         try:
             user = UserModel.objects.get(email=username)
