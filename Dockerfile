@@ -9,7 +9,7 @@ RUN apk add --update --no-cache $BUILD_PACKAGES
 ADD . /var/labhacker/edemocracia
 WORKDIR /var/labhacker/edemocracia
 
-RUN pip install 'pipenv==8.1.2' psycopg2 gunicorn
+RUN pip install -U pipenv psycopg2 gunicorn
 RUN pipenv install --system
 
 RUN npm install && \
