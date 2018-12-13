@@ -247,7 +247,7 @@ NODE_MODULES = os.path.join(os.path.dirname(BASE_DIR), 'node_modules')
 COMPRESS_NODE_MODULES = NODE_MODULES
 COMPRESS_NODE_SASS_BIN = os.path.join(NODE_MODULES, '.bin/node-sass')
 COMPRESS_POSTCSS_BIN = os.path.join(NODE_MODULES, '.bin/postcss')
-COMPRESS_OFFLINE = config('COMPRESS_OFFLINE', default=False)
+COMPRESS_OFFLINE = config('COMPRESS_OFFLINE', cast=bool, default=False)
 
 if not DEBUG:
     COMPRESS_SCSS_COMPILER_CMD = '{node_sass_bin}' \

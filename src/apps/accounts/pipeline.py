@@ -30,9 +30,12 @@ def save_profile(backend, user, response, *args, **kwargs):
         birthdate = response.get('birthday', '')
         if birthdate:
             user.profile.birthdate = datetime.strptime(birthdate, '%m/%d/%Y')
-        location = response.get('location', '')
-        if location:
-            user.profile.country = location['name'].split(', ')[1]
+        try:
+            location = response.get('location', '')
+            if location:
+                user.profile.country = location['name'].split(', ')[1]
+        except IndexError:
+            pass
         if user.profile.avatar:
             user.profile.save()
         else:
