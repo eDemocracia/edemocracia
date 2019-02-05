@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.contrib.auth.models import User
-from apps.accounts.choices import GENDER_CHOICES, UF_CHOICES
 import string
 import random
 from django.template.defaultfilters import slugify
@@ -20,10 +19,9 @@ def generate_username(email):
 
 
 class UserProfile(models.Model):
-    gender = models.CharField(_('gender'), max_length=200,
-                              choices=GENDER_CHOICES, blank=True, null=True)
-    uf = models.CharField(max_length=2, choices=UF_CHOICES, null=True,
-                          blank=True)
+    gender = models.CharField(_('gender'), max_length=200, blank=True,
+                              null=True)
+    uf = models.CharField(max_length=200, null=True, blank=True)
     country = models.CharField(_('country'), max_length=200, null=True,
                                blank=True)
     birthdate = models.DateField(_('birthdate'), blank=True, null=True)
