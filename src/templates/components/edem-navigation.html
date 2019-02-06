@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {# Whitespace is added when defining these blocks, so DO NOT ident them! #}
+{% block edem_camara_login %}/accounts/login/camara_deputados/?next={{ request.path }}{% endblock %}
 {% block edem_facebook_url %}/accounts/login/facebook/?next={{ request.path }}{% endblock %}
 {% block edem_google_url %}/accounts/login/google-oauth2/?next={{ request.path }}{% endblock %}
 {% block edem_profile_url %}/accounts/profile{% endblock %}
