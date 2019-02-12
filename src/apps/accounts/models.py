@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 import string
 import random
 from django.template.defaultfilters import slugify
+from apps.accounts.storage import OverwriteStorage
 
 
 def generate_username(email):
@@ -27,7 +28,8 @@ class UserProfile(models.Model):
     birthdate = models.DateField(_('birthdate'), blank=True, null=True)
     user = models.OneToOneField(User, related_name='profile',
                                 on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
+    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True,
+                               storage=OverwriteStorage())
 
     class Meta:
         verbose_name = _('profile')

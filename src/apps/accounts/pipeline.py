@@ -12,10 +12,9 @@ def save_profile(backend, user, response, *args, **kwargs):
         if birthdate:
             user.profile.birthdate = datetime.strptime(
                 birthdate, "%d/%m/%Y").date()
-        if user.profile.avatar:
-            user.profile.save()
-        else:
-            url = response.get('urlFoto', '')
+
+        url = response.get('urlFoto', None)
+        if url:
             try:
                 response_image = request('GET', url, verify=False)
                 response_image.raise_for_status()
