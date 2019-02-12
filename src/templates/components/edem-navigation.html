@@ -10,7 +10,7 @@
 {% block edem_password_reset_url %}/accounts/password/reset/{% endblock %}
 {% block edem_root_url %}/{% endblock %}
 {% block edem_tos_url %}/sobre/tos/{% endblock %}
-{% block edem_avatar %}{% if user.profile.avatar %}style="background-image: url('{{ user.profile.avatar.url }}')" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="{% else %}src="{% static 'edem-navigation/img/user-icon.svg' %}"{% endif %}{% endblock %}
+{% block edem_avatar %}{% if user.profile.avatar %}style="background-image: url('{{ user.profile.avatar.url }}')"{% else %}style="background-image: url('{% static 'edem-navigation/img/user-icon.svg' %}')"{% endif %}{% endblock %}
 {% block edem_username %}{{ user.first_name }}{% endblock %}
 {% block edem_owner_name %}{{ config.SITE_NAME }}{% endblock %}
 {% block edem_recaptcha %}{{ RECAPTCHA_SITE_KEY }}{% endblock %}
