@@ -159,6 +159,8 @@ CAMARA_DEPUTADOS_METADATA_URL = config('CD_METADATA_URL', default='')
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = config('SOCIAL_AUTH_REDIRECT_IS_HTTPS',
                                        default=True, cast=bool)
 
+CAMARA_LOGIN = config('CAMARA_LOGIN', default=False, cast=bool)
+
 # API
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

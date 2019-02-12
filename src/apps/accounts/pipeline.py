@@ -5,14 +5,16 @@ from django.core.files.base import ContentFile
 
 def save_profile(backend, user, response, *args, **kwargs):
     if backend.name == 'camara_deputados':
-        user.profile.uf = response.get('uf', '')
-        user.profile.gender = response.get('sexo', '')
-        user.profile.country = response.get('pais', '')
-        user.profile.birthdate = response.get('dataNascimento', '')
-        if user.profile.avatar:
-            user.profile.save()
-        else:
-            url = response.get('foto', '')
+        user.profile.uf = response.get('ufDeNascimento', None)
+        user.profile.gender = response.get('sexo', None)
+        user.profile.country = response.get('paisDeNascimento', None)
+        birthdate = response.get('dataDeNascimento', None)
+        if birthdate:
+            user.profile.birthdate = datetime.strptime(
+                birthdate, "%d/%m/%Y").date()
+
+        url = response.get('urlFoto', None)
+        if url:
             try:
                 response_image = request('GET', url, verify=False)
                 response_image.raise_for_status()
