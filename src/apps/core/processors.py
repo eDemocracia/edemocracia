@@ -7,6 +7,7 @@ def settings_variables(request):
         'RECAPTCHA_SITE_KEY': settings.RECAPTCHA_SITE_KEY,
         'GOOGLE_ANALYTICS_ID': settings.GOOGLE_ANALYTICS_ID,
         'OLARK_ID': settings.OLARK_ID,
+        'NEW_WIKILEGIS_ENABLED': settings.NEW_WIKILEGIS_ENABLED,
         'WIKILEGIS_ENABLED': settings.WIKILEGIS_ENABLED,
         'PAUTAS_ENABLED': settings.PAUTAS_ENABLED,
         'DISCOURSE_ENABLED': settings.DISCOURSE_ENABLED,

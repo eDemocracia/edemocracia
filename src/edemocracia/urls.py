@@ -18,6 +18,10 @@ if settings.DEBUG is True:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
 
+if settings.NEW_WIKILEGIS_ENABLED:
+    urlpatterns.append(
+        path('new-wikilegis/', include('apps.new_wikilegis.urls')))
+
 if settings.WIKILEGIS_ENABLED:
     urlpatterns.append(path('wikilegis/', include('apps.wikilegis.urls')))
 

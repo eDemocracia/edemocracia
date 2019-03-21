@@ -20,15 +20,19 @@
   {% if AUDIENCIAS_ENABLED %}
     {% include 'audiencias-section.html' %}
   {% endif %}
-  
+
   {% if WIKILEGIS_ENABLED %}
     {% include 'wikilegis-section.html' %}
   {% endif %}
-  
+
+  {% if NEW_WIKILEGIS_ENABLED %}
+    {% include 'new-wikilegis-section.html' %}
+  {% endif %}
+
   {% if DISCOURSE_ENABLED %}
     {% include 'discourse-section.html' %}
   {% endif %}
-  
+
   {% if PAUTAS_ENABLED %}
     {% include 'pautas-section.html' %}
   {% endif %}

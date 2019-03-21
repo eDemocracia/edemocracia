@@ -61,6 +61,7 @@ INSTALLED_APPS = [
 
     'apps.core',
     'apps.wikilegis',
+    'apps.new_wikilegis',
     'apps.accounts',
     'apps.pautas',
     'apps.audiencias',

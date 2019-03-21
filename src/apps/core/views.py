@@ -5,6 +5,7 @@ import json
 
 from apps.discourse.data import get_discourse_index_data
 from apps.wikilegis.data import get_wikilegis_index_data
+from apps.new_wikilegis.data import get_new_wikilegis_index_data
 from apps.pautas.data import get_pautas_index_data
 from apps.audiencias.data import get_audiencias_index_data
 from apps.core.utils import get_user_data
@@ -27,6 +28,9 @@ def index(request):
     context = {}
     if settings.PAUTAS_ENABLED:
         context['pautas'] = get_pautas_index_data()
+
+    if settings.NEW_WIKILEGIS_ENABLED:
+        context['groups'] = get_new_wikilegis_index_data()
 
     if settings.WIKILEGIS_ENABLED:
         context['bills'] = get_wikilegis_index_data()

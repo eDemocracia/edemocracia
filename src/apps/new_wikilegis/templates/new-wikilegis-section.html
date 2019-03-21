@@ -1,0 +1,43 @@
+  <section class="section section--wikilegis">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/wikilegis/"><img class="section__logo" src="/static/img/logo-wikilegis.svg" ></a>
+        <p class="section__text">
+          NOVO WIKILEGIS
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/new-wikilegis/" title="Veja todas as projetos">TESTE</a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/new-wikilegis/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+              {% for group in groups %}
+                {% include "new-wikilegis-card.html" %}
+              {% empty %}
+                <li>
+                  <div class="section__content-wrapper section__content-wrapper--center text-center">
+                    <p class="section__text">
+                      Desculpe. Não encontramos nenhum resultado.
+                    </p>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
