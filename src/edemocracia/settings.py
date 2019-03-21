@@ -322,6 +322,11 @@ CONSTANCE_CONFIG = {
     'WIKILEGIS_DESCRIPTION': ('Edite e aprimore projetos de lei artigo por '
                               'artigo.', 'Descrição da seção do Wikilegis',
                               str),
+    'NEW_WIKILEGIS_TITLE': ('NOVO WIKILEGIS', 'Título da seção do'
+                            'Wikilegis', str),
+    'NEW_WIKILEGIS_DESCRIPTION': ('Descrição do novo wikilegis',
+                                  'Descrição da seção do Wikilegis',
+                                  str),
     'EXPRESSAO_TITLE': ('PARTICIPE EM DISCUSSÕES', 'Título da seção do '
                         'Expressão', str),
     'EXPRESSAO_DESCRIPTION': ('Dê sua opinião sobre os assuntos que afetam '
