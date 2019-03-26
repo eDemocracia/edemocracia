@@ -18,7 +18,7 @@ def new_wikilegis_login(sender, user, request, **kwargs):
 
 @receiver(user_logged_out)
 def new_wikilegis_logout(sender, user, request, **kwargs):
-    request.delete_cookies.append('wikilegis_session')
+    request.delete_cookies.append(NewWikilegisConfig.cookie_name)
 
 
 @receiver(post_save, sender=User)
@@ -26,7 +26,7 @@ def update_new_wikilegis_user(sender, instance, created, **kwargs):
     data = get_user_data(instance)
     data.pop('username', None)
 
-    requests.put(get_resource_url('user', pk=instance.username),
+    requests.put(get_resource_url('users', pk=instance.username),
                  data=json.dumps(data),
                  headers={'Content-Type': 'application/json'})
 

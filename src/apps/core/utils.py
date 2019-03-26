@@ -44,7 +44,8 @@ def get_user_data(user):
         user_data['uf'] = user.profile.uf
 
         if user.profile.birthdate:
-            user_data['birthdate'] = user.profile.birthdate.strftime("%x")
+            user_data['birthdate'] = user.profile.birthdate.strftime(
+                "%Y-%m-%d")
         else:
             user_data['birthdate'] = None
 
