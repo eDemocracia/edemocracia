@@ -13,7 +13,9 @@ RUN pip install -U pipenv psycopg2 gunicorn
 RUN pipenv install --system
 
 RUN npm install && \
-    python3 src/manage.py build_mkdocs && \
+    npm rebuild node-sass --force
+
+RUN python3 src/manage.py build_mkdocs && \
     python3 src/manage.py collectstatic --no-input && \
     python3 src/manage.py compilemessages
 

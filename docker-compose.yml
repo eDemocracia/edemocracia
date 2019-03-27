@@ -5,6 +5,7 @@ volumes:
   audiencias:
   discourse:
   pauta:
+  newwikilegis:
 
 services:
   nginx:
@@ -16,6 +17,7 @@ services:
       - audiencias:/var/labhacker/audiencias:z
       - discourse:/var/www/discourse:z
       - pauta:/var/labhacker/pauta-participativa:z
+      - newwikilegis:/var/labhacker/new-wikilegis/src/public:z
     ports:
       - "8000:80"
     links:
@@ -97,6 +99,44 @@ services:
       DISCOURSE_ENABLED: 'True'
       DISCOURSE_UPSTREAM: http://discourse:8080/expressao
       DISCOURSE_SSO_SECRET: sso_secret
+      NEW_WIKILEGIS_ENABLED: 'True'
+      NEW_WIKILEGIS_UPSTREAM: http://newwikilegis:8000
+      NEW_WIKILEGIS_API_URL: /api/v1/
+      NEW_WIKILEGIS_API_KEY: apikey
+
+  newwikilegis:
+    image: labhackercd/new-wikilegis:dev
+    command: ./start.sh
+    restart: on-failure
+    links:
+      - db
+    volumes:
+      - newwikilegis:/var/labhacker/new-wikilegis/src/public
+    environment:
+      ALLOWED_HOSTS: '*'
+      ADMIN_PASSWORD: 123
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_USERNAME: admin
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_NAME: newwikilegis
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DEBUG: 'True'
+      COMPRESS_OFFLINE: 'True'
+      SITE_DOMAIN: localhost:8000
+      SITE_NAME: new-wikilegis
+      STATIC_URL: /new-wikilegis/static/
+      MEDIA_URL: /new-wikilegis/media/
+      SECRET_KEY: apikey
+      ENABLE_REMOTE_USER: 1
+      FORCE_SCRIPT_NAME: /new-wikilegis
+      SESSION_COOKIE_NAME: new_wikilegis_session
+    expose:
+      - "8000"
+    depends_on:
+      - db
 
   wikilegis:
     image: labhackercd/wikilegis:dev
