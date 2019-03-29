@@ -198,6 +198,30 @@
   }
 }
 
+.section--new-wikilegis {
+  background: url(../img/new-wikilegis-bg.png) center center fixed;
+  background-size: cover;
+
+  & .section__text {
+    color: #474747;
+  }
+
+  & .section__title {
+    &::before {
+      background-color: #2DA965;
+    }
+  }
+
+  & .section__link {
+    color: #474747;
+  }
+
+  & .section__button {
+    background-image: linear-gradient(#2DA965, #2DA965);
+    color: #474747;
+  }
+}
+
 .section--pauta {
   background-color: whitesmoke;
 

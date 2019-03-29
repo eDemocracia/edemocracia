@@ -1,29 +1,38 @@
 {% load edem_extras %}
 
 <a class="info-card__link" href="/new-wikilegis/p/{{ group.id }}-{{ group.document.slug }}/">
-  <li class="info-card info-card--wikilegis">
+  <li class="info-card info-card--new-wikilegis">
     <div class="info-card__header">
-
-      <div class="info-card__icon info-card__icon{% if group.closing_date|is_closed %}--closed{% endif %}"><i class="icon icon-{{ group.theme.slug }}"></i></div>
-
       <h2 class="info-card__title"> {{ group.document.title|truncatechars:40 }}</h2>
     </div>
     <p class="info-card__text">
        {{ group.document.description|truncatechars:160 }}
     </p>
+    <div class="info-card__themes">
+      <span class="title">Temas:</span>
+      <div class="themes-list">
+        <div class="theme-tag">
+          <span class="dot" style="background-color: #e20f0f"></span>Saúde
+        </div>
+        <div class="theme-tag">
+          <span class="dot" style="background-color: #61d141"></span>Saúde
+        </div>
+        <div class="theme-tag">
+          <span class="dot" style="background-color: #e20f0f"></span>Saúde
+        </div>
+        <div class="theme-tag">
+          <span class="dot" style="background-color: #61d141"></span>Saúde
+        </div>
+      </div>
+    </div>
     <div class="info-card__footer">
       <div class="card-stats">
         <div class="card-stats__name">Propostas</div>
-
         <div class="card-stats__value card-stats__value{% if group.closing_date|is_closed %}--closed{% endif %}">{{ group.suggestions_count }}</div>
-
       </div>
-
       <div class="card-stats">
-
         <div class="card-stats__name">{% if group.closing_date|is_closed %}Encerrado em:{% else %}Participe até:{% endif %}</div>
         <div class="card-stats__value card-stats__value{% if group.closing_date|is_closed %}--closed{% endif %}">{{ group.closing_date|str_to_date }}</div>
-
       </div>
     </div>
   </li>

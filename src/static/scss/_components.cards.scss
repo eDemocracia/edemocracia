@@ -115,7 +115,6 @@
 }
 
 .info-card--wikilegis {
-
   & .info-card__header {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
@@ -146,7 +145,103 @@
         border: 0.2rem solid #bfbfbf;
       }
     }
+  }
 
+  & .info-card__title {
+    max-height: 4rem;
+
+    @include breakpoint(small only) {
+      font-size: 0.8rem;
+    }
+  }
+
+  & .card-stats__value {
+    color: #00d574;
+
+    &--closed {
+      color: #bfbfbf;
+    }
+  }
+}
+
+.info-card--new-wikilegis {
+  & .info-card__header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid black;
+    max-height: 5rem;
+  }
+
+  & .info-card__icon {
+    flex: 0 0 3.6rem;
+    height: 3.5rem;
+    border: 0.3rem solid #00d574;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+
+    @include breakpoint(small only) {
+      flex: 0 0 2.8rem;
+      height: 2.8rem;
+      border: 0.2rem solid #00d574;
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    &--closed {
+      border: 0.3rem solid #bfbfbf;
+
+      @include breakpoint(small only) {
+        border: 0.2rem solid #bfbfbf;
+      }
+    }
+  }
+
+  & .info-card__themes {
+    margin-bottom: 1rem;
+
+    & .title {
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 0.675rem;
+
+      @include breakpoint(small only) {
+        font-size: 0.8rem;
+      }
+    }
+
+    & .themes-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    & .theme-tag {
+      font-size: 0.625rem;
+      font-weight: bold;
+      margin-right: .5rem;
+      margin-bottom: .5rem;
+
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      color: #949494;
+
+      & > .dot {
+        display: inline-block;
+
+        width: .375rem;
+        height: .375rem;
+        margin-right: .375rem;
+
+        border-radius: 50%;
+      }
+    }
   }
 
   & .info-card__title {
