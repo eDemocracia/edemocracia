@@ -11,18 +11,11 @@
     <div class="info-card__themes">
       <span class="title">Temas:</span>
       <div class="themes-list">
+        {% for theme in group.document.themes %}
         <div class="theme-tag">
-          <span class="dot" style="background-color: #e20f0f"></span>Saúde
+          <span class="dot" style="background-color: {{ theme.color }}"></span>{{ theme.name }}
         </div>
-        <div class="theme-tag">
-          <span class="dot" style="background-color: #61d141"></span>Saúde
-        </div>
-        <div class="theme-tag">
-          <span class="dot" style="background-color: #e20f0f"></span>Saúde
-        </div>
-        <div class="theme-tag">
-          <span class="dot" style="background-color: #61d141"></span>Saúde
-        </div>
+        {% endfor %}
       </div>
     </div>
     <div class="info-card__footer">
