@@ -5,3 +5,21 @@
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'new-wikilegis/scss/overrides-new-wikilegis.scss' %}" type="text/x-scss" />
 {% endblock styles %}
+
+{% block scripts %}
+  {{ block.super }}
+  {% if CAMARA_LOGIN %}
+  <script type="text/javascript">
+    $(document).on('click', 'a.js-loginButton', function(e){
+      e.preventDefault();
+      window.open('/accounts/login/camara_deputados/?next={{ request.path }}', '_self');
+    });
+  </script>
+  {% else %}
+  <script src="{% static 'new-wikilegis/js/overrides-new-wikilegis.js' %}"></script>
+  {% endif %}
+{% endblock scripts %}
+Collapse
+
+
+
