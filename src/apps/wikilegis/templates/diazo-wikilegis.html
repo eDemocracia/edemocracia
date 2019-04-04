@@ -6,36 +6,6 @@
   <link rel="stylesheet" href="{% static 'wikilegis/scss/overrides-wikilegis.scss' %}" type="text/x-scss" />
 {% endblock styles %}
 
-
-{% block info_banner %}
-  <div class="temp-banner">
-    <img src="{% static 'img/warning.png' %}">
-    <p>Os trabalhos legislativos começam em <b>fevereiro</b>. Aguarde novos projetos de lei abertos à participação!</p>
-    <style>
-      .temp-banner {
-        display: flex;
-        flex: 0 0 auto;
-        justify-content: center;
-        align-items: center;
-        min-height: 2rem;
-        padding: 1.2rem;
-        border-bottom: 1px solid #d4d4d4;
-        background-color: whitesmoke;
-        z-index: 10;
-      }
-
-      .temp-banner img {
-        width: 1.5rem;
-        margin-right: 1.2rem;
-      }
-
-      .temp-banner p {
-        margin: 0;
-      }
-    </style>
-  </div>
-{% endblock info_banner %}
-
 {% block body_properties %}
   class="{% if 'report' in request.path %}report{% endif %}{% if 'widget' in request.path %}widget{% endif %}"
 {% endblock body_properties %}
