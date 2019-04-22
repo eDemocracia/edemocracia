@@ -14,9 +14,13 @@ class CamaraOAuth2(BaseOAuth2):
     DEFAULT_SCOPE = ['openid']
 
     def get_user_details(self, response):
-        return {'username': generate_username(response.get('email')),
-                'email': response.get('email'),
-                'first_name': response.get('nome')}
+        email = response.get('email')
+        nome = response.get('nome')
+        if nome == email:
+            nome = generate_username(email)
+        return {'username': generate_username(email),
+                'email': email,
+                'first_name': nome}
 
     def user_data(self, access_token, *args, **kwargs):
         return self.get_json(self.METADATA_URL, headers={
@@ -35,7 +39,8 @@ class AuthenticationEmailBackend(object):
         except UserModel.DoesNotExist:
             return None
         else:
-            if getattr(user, 'is_active', False) and user.check_password(password):
+            if (getattr(user, 'is_active', False) and
+                    user.check_password(password)):
                 return user
         return None
 

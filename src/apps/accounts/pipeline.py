@@ -1,6 +1,7 @@
 from datetime import datetime
 from requests import request, HTTPError
 from django.core.files.base import ContentFile
+from apps.accounts.models import generate_username
 
 
 def save_profile(backend, user, response, *args, **kwargs):
@@ -23,6 +24,15 @@ def save_profile(backend, user, response, *args, **kwargs):
             else:
                 user.profile.avatar.save('{0}_cd.jpg'.format(user.username),
                                          ContentFile(response_image.content))
+
+        email = response.get('email').strip()
+        nome = response.get('nome').strip()
+
+        if nome == email:
+            user.first_name = generate_username(email)
+        else:
+            user.first_name = nome
+        user.save()
 
     if backend.name == 'facebook':
         if 'email' in response.get('denied_scopes', '') and not user.email:
