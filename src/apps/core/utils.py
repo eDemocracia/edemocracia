@@ -36,6 +36,7 @@ def get_user_data(user):
         'is_superuser': user.is_superuser,
         'is_active': user.is_active,
         'email': user.email,
+        'username': user.username,
     }
 
     if hasattr(user, 'profile'):
