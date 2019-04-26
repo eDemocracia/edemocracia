@@ -10,17 +10,19 @@ while true; do
   sleep 10
 done
 
-while true; do
-  curl $DISCOURSE_UPSTREAM > /dev/null 2> /dev/null
-  DISCOURSE_STATUS=$?
+if [[ "$DISCOURSE_ENABLED" == "True" ]]; then
+  while true; do
+    curl $DISCOURSE_UPSTREAM > /dev/null 2> /dev/null
+    DISCOURSE_STATUS=$?
 
-  if [[ "$DISCOURSE_STATUS" -eq "0" ]]; then
-    break
-  fi
+    if [[ "$DISCOURSE_STATUS" -eq "0" ]]; then
+      break
+    fi
 
-  echo "Waiting Discourse Setup"
-  sleep 10
-done
+    echo "Waiting Discourse Setup"
+    sleep 10
+  done
+fi
 
 PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER -w -h $DATABASE_HOST -c "CREATE DATABASE ${DATABASE_NAME} OWNER ${DATABASE_USER}"
 
