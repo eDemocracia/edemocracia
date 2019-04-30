@@ -1,7 +1,93 @@
+$edem-bar-height: 32px;
+$addthis-bar-height: 32px;
+
+body, html { 
+  min-height: unset;
+  height: unset;
+}
+
+html {
+  min-height: 100%;
+}
+
+body::before { 
+  display: none;
+}
+
+body .edem-content-wrapper {
+  z-index: 0;
+}
+
+body .edem-content-wrapper::before {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  transition: opacity .3s ease;
+  pointer-events: none;
+  opacity: 0;
+  background-color: #000;
+}
+
+body.-no-scroll .edem-content-wrapper::before {
+  pointer-events: auto;
+  opacity: .6;
+}
+
 body > .edem-content-wrapper > .nav-bar {
-  top: 2rem;
+  margin-top: $edem-bar-height;
+}
+
+body > .edem-content-wrapper > .document-editor > .side-bar {
+  box-sizing: border-box;
+  border-top: $edem-bar-height solid transparent;
+
+  @media (max-width: 1024px) {
+    border-bottom: $addthis-bar-height solid transparent;
+  }
+}
+
+body > .edem-content-wrapper > .document-editor > .tool-bar {
+  box-sizing: border-box;
+  border-top: $edem-bar-height solid transparent;
+
+  @media (max-width: 1024px) {
+    padding-bottom: $addthis-bar-height;
+  }
 }
 
 body > .edem-content-wrapper > .howto-button {
-  top: 2.85rem;
+  margin-top: $edem-bar-height;
+}
+
+body > .edem-content-wrapper > .suggestion-input {
+  @media (max-width: 1024px) {
+    margin-bottom: $edem-bar-height;
+  }
+}
+
+body > .edem-content-wrapper > .app-modal {
+  border-top: $edem-bar-height solid transparent;
+
+
+  @media (max-width: 1024px) {
+    border-bottom: $addthis-bar-height solid transparent;
+  }
+}
+
+body > .edem-content-wrapper > .document-body > .info-button {
+  @media (max-width: 1024px) {
+    margin-bottom: $addthis-bar-height;
+  }
+}
+
+// Make sure addthis bottom bar stays hidden on desktop whenever the window is resized from small to large
+.at-share-dock-outer.addthis-smartlayers.addthis-smartlayers-mobile {
+  @media (min-width: 1024px) {
+    display: none;
+  }
 }
