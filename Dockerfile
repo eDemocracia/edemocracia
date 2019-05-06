@@ -19,5 +19,7 @@ RUN python3 src/manage.py build_mkdocs && \
     python3 src/manage.py collectstatic --no-input && \
     python3 src/manage.py compilemessages
 
+RUN python3 src/manage.py makemigrations auth
+
 EXPOSE 8000
 CMD ["python3", "src/manage.py", "runserver", "0.0.0.0:8000"]

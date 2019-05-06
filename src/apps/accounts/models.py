@@ -37,3 +37,7 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return '%s <%s>' % (self.user.get_full_name(), self.user.email)
+
+
+User._meta.get_field('first_name').max_length = 255
+User._meta.get_field('first_name').validators[0].limit_value = 255
