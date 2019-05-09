@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         emails = self.get_emails_list(options['emails'])
-        subject = "Nova ferramenta no e-Democracia!"
+        subject = "Teste o novo Wikilegis!"
         html = render_to_string('emails/mail_marketing.html',
                                 {'domain': Site.objects.get_current().domain})
         for email in emails:
