@@ -1,3 +1,6 @@
+## **Guias de administração e instalação das ferramentas**
+[Link para os guias do e-Democracia](http://www.edemocracia.leg.br/#links)
+
 ## **Configurando Ambiente de Desenvolvimento**
 
 Primeiramente, para rodar o e-Democracia, é preciso instalar algumas dependências e o [Node.js](https://nodejs.org/en/download/) no sistema para que algumas bibliotecas funcionem adequadamente:
