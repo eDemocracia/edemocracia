@@ -4,6 +4,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from apps.accounts.api import api_root, UserListAPI
 from apps.core.views import index
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('', index, name='home'),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('sobre/', include('apps.about.urls')),
     path('api/v1/', api_root),
     path('api/v1/user/', UserListAPI.as_view(), name='user_list_api'),
+    path('statistics/', TemplateView.as_view(template_name='statistics.html'), name='statistics'),
 ]
 
 if settings.DEBUG is True:
