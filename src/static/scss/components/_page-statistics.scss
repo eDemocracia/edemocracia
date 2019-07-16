@@ -1,26 +1,35 @@
 .page-statistics {
-  padding-right: 18rem;
+  display: flex;
+  justify-content: center;
   padding: 2rem;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin-top: 2rem;
 
   .side {
-    position: fixed;
     width: 16rem;
     padding: 2rem;
 
-    & > .label {
+    & > .wrapper {
+      position: sticky;
+      top: 4rem;
+    }
+
+    & > .wrapper > .date {
+      position: relative;
+    }
+
+    & > .wrapper > .label {
       font-weight: bold;
       font-size: 1rem;
       margin-bottom: .5rem;
       margin-top: 3rem;
     }
 
-    & > .label:first-child {
+    & > .wrapper > .label:first-child {
       margin-top: 1rem;
     }
 
-    & > .links {
+    & > .wrapper > .links {
       display: flex;
       flex-direction: column;
       margin: 0;
@@ -44,8 +53,9 @@
   }
 
   .content {
+    flex-basis: 70%;
     padding: 2rem;
-    padding-left: 18rem;
+    padding-left: 4rem;
     box-sizing: border-box;
 
     & > p {
@@ -65,6 +75,20 @@
       & > .pagination-container {
         margin-top: 2rem;
       }
+
+      & > canvas {
+        width: 100% !important;
+      }
     }
+  }
+}
+
+.lightpick {
+  top: 100% !important;
+  left: 0 !important;
+
+  & .lightpick__select {
+    width: auto !important;
+    direction: ltr;
   }
 }

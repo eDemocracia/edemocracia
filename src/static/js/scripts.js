@@ -249,4 +249,3 @@ $('#id_form_signup').submit(function(event) {
     });
   }
 });
-
