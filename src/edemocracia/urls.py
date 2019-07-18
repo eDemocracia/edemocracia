@@ -13,7 +13,12 @@ urlpatterns = [
     path('sobre/', include('apps.about.urls')),
     path('api/v1/', api_root),
     path('api/v1/user/', UserListAPI.as_view(), name='user_list_api'),
-    path('statistics/', TemplateView.as_view(template_name='statistics.html'), name='statistics'),
+    path('statistics/',
+         TemplateView.as_view(template_name='statistics.html'),
+         name='statistics'),
+    path('statistics/wikilegis/',
+         TemplateView.as_view(template_name='statistics-wikilegis.html'),
+         name='statistics_wikilegis'),
 ]
 
 if settings.DEBUG is True:
