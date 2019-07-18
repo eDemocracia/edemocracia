@@ -6,7 +6,7 @@ $(document).ready(function() {
     },
     dom: 'Bfrtip',
     buttons: [
-      'pageLength', 'csv', 'excel'
+      'csv', 'excel'
     ]
   });
 
