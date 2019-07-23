@@ -4,17 +4,53 @@
   padding: 2rem;
   box-sizing: border-box;
 
-  .side {
-    width: 16rem;
+  .menu {
+    min-width: 16rem;
     padding: 2rem;
+
+    @include bp-mediumdown {
+      position: fixed;
+      top: 2rem;
+      z-index: 2;
+      width: 100%;
+      padding: 1rem 4rem .5rem 4rem;
+      background-color: #134836;
+      color: #FFF;
+    }
+
+    @include bp-smallonly {
+      padding: 1rem 2rem .5rem 2rem;
+    }
 
     & > .wrapper {
       position: sticky;
       top: 4rem;
+
+      @include bp-mediumdown {
+        display: flex;
+        align-items: center;
+      }
     }
 
     & > .wrapper > .date {
       position: relative;
+    }
+
+    & > .wrapper > .date > p {
+      @include bp-mediumdown {
+        margin-bottom: .5rem;
+        font-size: .875rem;
+      }
+    }
+
+    & > .wrapper > .date > input {
+      width: 16rem;
+
+      @include bp-mediumdown {
+        background-color: $color-edem-green-xxxxdark;
+        color: #FFF;
+        border: none;
+      }
     }
 
     & > .wrapper > .label {
@@ -22,6 +58,24 @@
       font-size: 1rem;
       margin-bottom: .5rem;
       margin-top: 3rem;
+
+      @include bp-mediumdown {
+        &:first-of-type {
+          display: none;
+        }
+
+        margin: 0;
+        color: #FFF;
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        cursor: pointer;
+        font-weight: normal;
+
+        &.-active {
+          color: $color-edem-green;
+        }
+      }
     }
 
     & > .wrapper > .label:first-child {
@@ -32,6 +86,30 @@
       display: flex;
       flex-direction: column;
       margin: 0;
+      box-sizing: border-box;
+      transition: all .25s $swift-out;
+
+      &.-active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      @include bp-mediumdown {
+        opacity: 0;
+        transform: translateX(100%);
+        position: fixed;
+        top: 2rem;
+        right: 0;
+        background-color: #FFF;
+        height: calc(100% - 2rem);
+        flex-direction: column;
+        padding: 5rem 0;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+      }
+
+      @include bp-smallonly {
+        width: 100%;
+      }
 
       & > * + * {
         margin-top: .5rem;
@@ -39,6 +117,15 @@
 
       & > a {
         line-height: 1.6;
+
+        @include bp-mediumdown {
+          padding: .5rem 4rem;
+          text-align: right;
+        }
+
+        @include bp-smallonly {
+          padding: .5rem 2rem;
+        }
       }
 
       & > a:hover {
@@ -56,6 +143,17 @@
     padding: 2rem;
     padding-left: 4rem;
     box-sizing: border-box;
+
+    @include bp-mediumdown {
+      flex-basis: 100%;
+      padding-left: 2rem;
+      padding-top: 6.5rem;
+    }
+
+    @include bp-smallonly {
+      padding-left: 0;
+      padding-right: 0;
+    }
 
     & > p {
       max-width: 80ch;
@@ -89,5 +187,14 @@
   & .lightpick__select {
     width: auto !important;
     direction: ltr;
+  }
+
+  & .lightpick__month-title {
+    margin: 0;
+  }
+
+  & .lightpick__month-title-bar {
+    align-items: initial;
+    margin-bottom: 0;
   }
 }

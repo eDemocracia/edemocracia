@@ -79,3 +79,14 @@ var myLineChart = new Chart(ctx, {
       },
     },
 });
+
+$('.JS-toggleStatisticsLinks').click(function(){
+  $(this).toggleClass('-active');
+  $('.JS-statisticsLinks').toggleClass('-active');
+
+  if ($('.JS-toggleStatisticsLinks').hasClass('-active')) {
+    $(this).text('Fechar');
+  } else {
+    $(this).text('Menu');
+  }
+})

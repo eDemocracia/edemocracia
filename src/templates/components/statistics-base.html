@@ -12,7 +12,7 @@
 
 <main class="page-statistics">
 
-  <aside class="side">
+  <nav class="menu">
     <div class="wrapper">
       <label class="label">Data</label>
       <div class="date">
@@ -20,15 +20,15 @@
         <input type="text" id="datepicker" placeholder="Data inicial - Data final">
         <p id="result"></p>
       </div>
-      <label class="label">Links</label>
-      <ul class="links">
+      <label class="label JS-toggleStatisticsLinks">Menu</label>
+      <ul class="links JS-statisticsLinks">
         <a href="{% url 'statistics' %}" class="{% if request.path == '/statistics/' %}-active{% endif %}">Informações Gerais</a>
         <a href="{% url 'statistics_wikilegis' %}" class="{% if request.path == '/statistics/wikilegis/' %}-active{% endif %}">Wikilegis</a>
         <a href="#">Audiências Interativas</a>
         <a href="#">Expressão</a>
       </ul>
     </div>
-  </aside>
+  </nav>
 
   <div class="content">
     {% block statistics_content %}
