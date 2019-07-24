@@ -17,7 +17,9 @@
       <label class="label">Data</label>
       <div class="date">
         <p>Escolha a data inicial e a data final:</p>
-        <input type="text" id="datepicker" placeholder="Data inicial - Data final">
+        <input type="text" id="startDate" placeholder="Data inicial" value="{{request.GET.startDate}}" readonly>
+        <input type="text" id="endDate" placeholder="Data final" value="{{request.GET.endDate}}" readonly>
+        <button class="JS-updateDate">Enviar</button>
       </div>
       <label class="label JS-toggleStatisticsLinks">Menu</label>
       <ul class="links JS-statisticsLinks">
