@@ -1,0 +1,68 @@
+{% extends 'components/statistics-base.html' %}
+
+{% load static %}
+
+{% block statistics_content %}
+<h1>Informações Gerais</h1>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+  type specimen
+  book.</p>
+
+<!-- <div class="item">
+  <label class="label">Quantidade de usuários cadastrados:</label>
+  <canvas id="myLineChart"></canvas>
+</div> -->
+
+<div class="item">
+  <label class="label">Usuários cadastrados:</label>
+  <table id="users-table" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Qtd de perguntas</th>
+        <th>Qtd de mensagens</th>
+        <th>Qtd de votos</th>
+        <th>Total de participações</th>
+        <th>Votos recebidos</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<div class="item">
+  <label class="label">Salas criadas:</label>
+  <table id="rooms-table" class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Cód. reunião</th>
+        <th>Comissão</th>
+        <th>Sigla comissão</th>
+        <th>Tipo</th>
+        <th>Título</th>
+        <th>Pauta</th>
+        <th>Tema</th>
+        <th>Local</th>
+        <th>Data de criação</th>
+        <th>Data do evento</th>
+        <th>Máximo de usuários simultâneos</th>
+        <th>Qtd de perguntas</th>
+        <th>Qtd de perguntas respondidas</th>
+        <th>Qtd de mensagens</th>
+        <th>Qtd de votos</th>
+        <th>Qtd de participantes</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+{% endblock statistics_content %}
+
+{% block extrajs %}
+{{block.super}}
+<script type="text/javascript" src="{% static 'js/audiencias-statistics.js' %}"></script>
+{% endblock extrajs %}

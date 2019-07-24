@@ -19,6 +19,9 @@ urlpatterns = [
     path('statistics/wikilegis/',
          TemplateView.as_view(template_name='statistics-wikilegis.html'),
          name='statistics_wikilegis'),
+    path('statistics/audiencias/',
+         TemplateView.as_view(template_name='statistics-audiencias.html'),
+         name='statistics_audiencias'),
 ]
 
 if settings.DEBUG is True:
