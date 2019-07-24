@@ -5,6 +5,7 @@
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'lightpick/css/lightpick.css' %}">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css">
 {% endblock %}
 
@@ -44,9 +45,10 @@
 {% block extrajs %}
 <script type="text/javascript" src="{% static 'chart.js/dist/Chart.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'datatables/media/js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'datatables.net/js/jquery.dataTables.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'lightpick/lightpick.js' %}"></script>
 <script type="text/javascript" src="{% static 'jszip/dist/jszip.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/lightpick.js' %}"></script>

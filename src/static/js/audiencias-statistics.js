@@ -23,21 +23,30 @@ $(document).ready(function () {
         },
         dom: 'Bfrtip',
         buttons: [
-            'csv', 'excel'
+            {
+                extend: 'colvis',
+                collectionLayout: 'fixed three-column',
+                text: 'Mostrar/esconder colunas'
+            },
+            'csv',
+            'excel'
         ],
         data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/user/', []),
         "columns": [
             {
-                "data": "id"
+                "data": "id",
+                "bVisible": false
             },
             {
                 "data": "username"
             },
             {
-                "data": "first_name"
+                "data": "first_name",
+                "bVisible": false
             },
             {
-                "data": "last_name"
+                "data": "last_name",
+                "bVisible": false
             },
             {
                 "data": "questions_count"
@@ -65,51 +74,67 @@ $(document).ready(function () {
         },
         dom: 'Bfrtip',
         buttons: [
-            'csv', 'excel'
+            {
+                extend: 'colvis',
+                collectionLayout: 'fixed three-column',
+                text: 'Mostrar/esconder colunas'
+            },
+            'csv',
+            'excel'
         ],
         data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/room/', []),
         "columns": [
             {
-                "data": "id"
+                "data": "id",
+                "bVisible": false
             },
             {
-                "data": "cod_reunion"
+                "data": "cod_reunion",
+                "bVisible": false
             },
             {
-                "data": "legislative_body"
+                "data": "legislative_body",
+                "bVisible": false
             },
             {
-                "data": "legislative_body_initials"
+                "data": "legislative_body_initials",
             },
             {
-                "data": "reunion_type"
+                "data": "reunion_type",
+                "bVisible": false
             },
             {
-                "data": "title_reunion"
+                "data": "title_reunion",
+                "bVisible": false
             },
             {
-                "data": "reunion_object"
+                "data": "reunion_object",
+                "bVisible": false
             },
             {
-                "data": "reunion_theme"
+                "data": "reunion_theme",
             },
             {
-                "data": "location"
+                "data": "location",
+                "bVisible": false
             },
             {
-                "data": "created"
+                "data": "created",
+                "bVisible": false
             },
             {
                 "data": "date"
             },
             {
-                "data": "max_online_users"
+                "data": "max_online_users",
+                "bVisible": false
             },
             {
                 "data": "questions_count"
             },
             {
-                "data": "answered_questions_count"
+                "data": "answered_questions_count",
+                "bVisible": false
             },
             {
                 "data": "messages_count"
