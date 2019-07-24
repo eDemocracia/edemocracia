@@ -1,5 +1,5 @@
 function getResources(path, dataset, callback) {
-  var request = $.ajax('http://localhost:8888' + path);
+  var request = $.ajax(path);
   request.done(function(data) {
     dataset = dataset.concat(data.objects);
     if (data.meta.next) {
@@ -57,5 +57,5 @@ function loadBillTable(data) {
   });
 }
 
-getResources('/api/v1/user/', [], loadUserTable);
-getResources('/api/v1/bill/', [], loadBillTable);
+getResources('/wikilegis/api/v1/user/', [], loadUserTable);
+getResources('/wikilegis/api/v1/bill/', [], loadBillTable);
