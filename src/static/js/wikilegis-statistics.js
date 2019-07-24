@@ -28,7 +28,12 @@ function loadUserTable(data) {
     ],
     dom: 'Bfrtip',
     buttons: [
-      'csv', 'excel'
+      {
+        extend: 'colvis',
+        text: 'Mostrar/esconder colunas'
+      },
+      'csv',
+      'excel'
     ]
   });
 }
@@ -52,7 +57,12 @@ function loadBillTable(data) {
     ],
     dom: 'Bfrtip',
     buttons: [
-      'csv', 'excel'
+      {
+        extend: 'colvis',
+        text: 'Mostrar/esconder colunas'
+      },
+      'csv',
+      'excel'
     ]
   });
 }
