@@ -67,5 +67,35 @@ function loadBillTable(data) {
   });
 }
 
-getResources('/wikilegis/api/v1/user/', [], loadUserTable);
-getResources('/wikilegis/api/v1/bill/', [], loadBillTable);
+function usersUrlParams() {
+  var url= new URL(location);
+  var params = {}
+
+  if (url.searchParams.has('startDate')) {
+    params['date_joined__gte'] = picker.getStartDate().format('YYYY-MM-DD');
+  }
+
+  if (url.searchParams.has('endDate')) {
+    params['date_joined__lte'] = picker.getEndDate().format('YYYY-MM-DD');
+  }
+
+  return $.param(params);
+}
+
+function billsUrlParams() {
+  var url= new URL(location);
+  var params = {}
+
+  if (url.searchParams.has('startDate')) {
+    params['created__gte'] = picker.getStartDate().format('YYYY-MM-DD');
+  }
+
+  if (url.searchParams.has('endDate')) {
+    params['created__lte'] = picker.getEndDate().format('YYYY-MM-DD');
+  }
+
+  return $.param(params);
+}
+
+getResources('/wikilegis/api/v1/user/?' + usersUrlParams(), [], loadUserTable);
+getResources('/wikilegis/api/v1/bill/?' + billsUrlParams(), [], loadBillTable);
