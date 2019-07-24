@@ -31,7 +31,7 @@ $(document).ready(function () {
             'csv',
             'excel'
         ],
-        data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/user/', []),
+        data: getObjects('/audiencias/api/user/', []),
         "columns": [
             {
                 "data": "id",
@@ -82,7 +82,7 @@ $(document).ready(function () {
             'csv',
             'excel'
         ],
-        data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/room/', []),
+        data: getObjects('/audiencias/api/room/', []),
         "columns": [
             {
                 "data": "id",

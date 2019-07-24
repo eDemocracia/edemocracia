@@ -26,8 +26,7 @@
       <ul class="links JS-statisticsLinks">
         <a href="{% url 'statistics' %}" class="{% if request.path == '/statistics/' %}-active{% endif %}">Informações Gerais</a>
         <a href="{% url 'statistics_wikilegis' %}" class="{% if request.path == '/statistics/wikilegis/' %}-active{% endif %}">Wikilegis</a>
-        <a href="#">Audiências Interativas</a>
-        <a href="#">Expressão</a>
+        <a href="{% url 'statistics_audiencias' %}" class="{% if request.path == '/statistics/audiencias/' %}-active{% endif %}">Audiências Interativas</a>
       </ul>
     </div>
   </nav>
@@ -45,7 +44,7 @@
 {% block extrajs %}
 <script type="text/javascript" src="{% static 'chart.js/dist/Chart.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'moment/min/moment.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'datatables/media/js/jquery.dataTables.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
