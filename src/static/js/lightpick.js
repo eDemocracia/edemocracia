@@ -4,7 +4,7 @@ var picker = new Lightpick({
   secondField: document.getElementById('endDate'),
   singleDate: true,
   repipck: true,
-  parentEl: '.page-statistics > .menu > .wrapper > .date',
+  parentEl: '.page-statistics > .menu > .wrapper > .date > .inputs',
   minDate: moment().startOf('month').add(7, 'day'),
   maxDate: moment().endOf('month').subtract(7, 'day'),
 });

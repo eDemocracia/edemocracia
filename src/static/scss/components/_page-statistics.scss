@@ -32,8 +32,16 @@
       }
     }
 
-    & > .wrapper > .date {
-      position: relative;
+    & > .wrapper > .date > button {
+      display: block;
+      background-color: $color-edem-green;
+      color: #FFF;
+      cursor: pointer;
+      padding: .5rem .75rem;
+
+      &:hover {
+        background-color: lighten($color-edem-green, 5%);
+      }
     }
 
     & > .wrapper > .date > p {
@@ -43,13 +51,28 @@
       }
     }
 
-    & > .wrapper > .date > input {
-      width: 16rem;
+    & > .wrapper > .date > .inputs {
+      position: relative;
+      display: flex;
+      margin-bottom: 1rem;
+
+      & > input:first-child {
+        margin-right: .5rem;
+      }
+    }
+
+    & > .wrapper > .date > .inputs > input {
+      max-width: 6.5rem;
+      margin-bottom: 0;
 
       @include bp-mediumdown {
         background-color: $color-edem-green-xxxxdark;
         color: #FFF;
         border: none;
+      }
+
+      &[readonly] {
+        background-color: #FFF;
       }
     }
 

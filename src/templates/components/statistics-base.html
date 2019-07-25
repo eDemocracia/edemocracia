@@ -18,8 +18,10 @@
       <label class="label">Data</label>
       <div class="date">
         <p>Escolha a data inicial e a data final:</p>
-        <input type="text" id="startDate" placeholder="Data inicial" value="{{request.GET.startDate}}" readonly>
-        <input type="text" id="endDate" placeholder="Data final" value="{{request.GET.endDate}}" readonly>
+        <div class="inputs">
+          <input type="text" id="startDate" placeholder="Data inicial" value="{{request.GET.startDate}}" readonly>
+          <input type="text" id="endDate" placeholder="Data final" value="{{request.GET.endDate}}" readonly>
+        </div>
         <button class="JS-updateDate">Enviar</button>
       </div>
       <label class="label JS-toggleStatisticsLinks">Menu</label>
