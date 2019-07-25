@@ -19,7 +19,7 @@
     }
 
     @include bp-smallonly {
-      padding: 1rem 2rem .5rem 2rem;
+      padding: 1rem 2rem;
     }
 
     & > .wrapper {
@@ -42,6 +42,10 @@
 
       @include bp-mediumdown {
         flex-direction: row;
+      }
+
+      @include bp-smallonly {
+        padding-top: 1.5rem;
       }
     }
 
