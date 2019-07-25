@@ -199,6 +199,37 @@
       padding-right: 0;
     }
 
+    & > .header {
+      & > .date {
+        display: flex;
+        align-items: center;
+        font-size: .75rem;
+        color: $color-edem-green;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+
+        & > .remove {
+          font-size: .5rem;
+          color: $color-edem-red;
+          margin-left: 1rem;
+          cursor: pointer;
+          opacity: .8;
+          padding: .5rem;
+          border: 1px solid $color-edem-red;
+          transition: all .15s $swift-out;
+
+          &:hover {
+            opacity: 1;
+            color: #FFF;
+            background-color: $color-edem-red;
+          }
+        }
+      }
+    }
+
     & > p {
       max-width: 80ch;
       line-height: 1.8;
@@ -286,5 +317,24 @@
   & .lightpick__month-title-bar {
     align-items: initial;
     margin-bottom: 0;
+  }
+
+  & .lightpick__day.is-in-range {
+    background-color: rgba(#333, .05);
+  }
+
+  & .lightpick__day.is-start-date.is-in-range,
+  & .lightpick__day.is-end-date.is-in-range.is-flipped,
+  & .lightpick__day.is-end-date.is-in-range,
+  & .lightpick__day.is-start-date.is-in-range.is-flipped {
+    background-color: $color-edem-green;
+  }
+
+  & .lightpick__day.is-start-date,
+  & .lightpick__day.is-end-date,
+  & .lightpick__day.is-start-date:hover,
+  & .lightpick__day.is-end-date:hover,
+  & .lightpick__day.is-in-range:hover {
+    background-image: none;
   }
 }
