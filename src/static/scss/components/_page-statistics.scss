@@ -13,7 +13,7 @@
       top: 2rem;
       z-index: 2;
       width: 100%;
-      padding: 1rem 4rem .5rem 4rem;
+      padding: 1rem 3rem;
       background-color: #134836;
       color: #FFF;
     }
@@ -32,12 +32,32 @@
       }
     }
 
+    & > .wrapper > .date {
+      position: relative;
+      display: flex;
+      padding-top: 2rem;
+      width: 100%;
+      min-width: 16rem;
+      flex-direction: column;
+
+      @include bp-mediumdown {
+        flex-direction: row;
+      }
+    }
+
     & > .wrapper > .date > button {
       display: block;
+      width: 5rem;
       background-color: $color-edem-green;
       color: #FFF;
       cursor: pointer;
       padding: .5rem .75rem;
+      margin-top: 1.5rem;
+
+      @include bp-mediumdown {
+        margin-left: 1rem;
+        margin-top: 0;
+      }
 
       &:hover {
         background-color: lighten($color-edem-green, 5%);
@@ -45,6 +65,9 @@
     }
 
     & > .wrapper > .date > p {
+      position: absolute;
+      top: 0;
+
       @include bp-mediumdown {
         margin-bottom: .5rem;
         font-size: .875rem;
@@ -54,7 +77,6 @@
     & > .wrapper > .date > .inputs {
       position: relative;
       display: flex;
-      margin-bottom: 1rem;
 
       & > input:first-child {
         margin-right: .5rem;
@@ -64,12 +86,6 @@
     & > .wrapper > .date > .inputs > input {
       max-width: 6.5rem;
       margin-bottom: 0;
-
-      @include bp-mediumdown {
-        background-color: $color-edem-green-xxxxdark;
-        color: #FFF;
-        border: none;
-      }
 
       &[readonly] {
         background-color: #FFF;
@@ -165,6 +181,7 @@
     flex-basis: 70%;
     padding: 2rem;
     padding-left: 4rem;
+    overflow: hidden;
     box-sizing: border-box;
 
     @include bp-mediumdown {
