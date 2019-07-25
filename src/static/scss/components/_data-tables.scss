@@ -10,15 +10,7 @@
   display: flex;
   margin-top: 1.5rem;
 
-  &::before {
-    display: block;
-    content: 'Exportar';
-    font-size: 0.875rem;
-    font-weight: 300;
-    line-height: 1.8;
-    margin-right: 1rem;
-    position: absolute;
-  }
+
 
   & > * + * {
     margin-left: .5rem;
@@ -26,14 +18,19 @@
 
   & .dt-button {
     cursor: pointer;
-    color: #FFF;
-    border: none;
     background-image: none !important;
-    background-color: $color-edem-green-dark !important;
+    background-color: rgba(#000, .1) !important;
+    color: #333 !important;
+    border-color: transparent !important;
+    outline: transparent !important;
+    box-shadow: none !important;
 
-    &:hover:not(.disabled) {
-      border: none;
-      background-color: $color-edem-green !important;
+    &:hover {
+      background-color: rgba(#000, .2) !important;
+      color: #333 !important;
+      border-color: transparent !important;
+      outline: transparent !important;
+      box-shadow: none !important;
     }
   }
 }
@@ -134,8 +131,8 @@
 
   & > span > .paginate_button {
     &:hover {
-      background: rgba(#000, .1) !important;
-      background-color: rgba(#000, .1) !important;
+      background: rgba(#000, .2) !important;
+      background-color: rgba(#000, .2) !important;
       color: #333 !important;
       border-color: transparent !important;
       outline: transparent !important;
