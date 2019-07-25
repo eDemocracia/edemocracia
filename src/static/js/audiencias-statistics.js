@@ -1,20 +1,16 @@
-
-function getObjects(url, objectList) {
-    var result = objectList;
-    $.ajax({
-        url: url,
-        async: false,
-        success: function (data) {
-            result = result.concat(data.results)
-            if (data.next) {
-                getObjects(data.next, result);
-            }
+function getResources(path, dataset, callback) {
+    var request = $.ajax(path);
+    request.done(function (data) {
+        dataset = dataset.concat(data.results);
+        if (data.next) {
+            getResources(data.next, dataset, callback);
+        } else {
+            callback(dataset);
         }
-    });
-    return result;
+    })
 }
 
-$(document).ready(function () {
+function loadUserTable(data) {
     $('#users-table').DataTable({
       "initComplete": function (settings, json) {
         $('.JS-loading').remove();
@@ -35,7 +31,7 @@ $(document).ready(function () {
             'csv',
             'excel'
         ],
-        data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/user/', []),
+        data: data,
         "columns": [
             {
                 "data": "id",
@@ -69,7 +65,9 @@ $(document).ready(function () {
             }
         ]
     });
+};
 
+function loadRoomTable(data) {
     $('#rooms-table').DataTable({
         "pagingType": "full_numbers",
         "scrollX": true,
@@ -86,7 +84,7 @@ $(document).ready(function () {
             'csv',
             'excel'
         ],
-        data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/room/', []),
+        data: data,
         "columns": [
             {
                 "data": "id",
@@ -151,5 +149,37 @@ $(document).ready(function () {
             },
         ]
     });
+};
 
-});
+function usersUrlParams() {
+    var url = new URL(location);
+    var params = {}
+
+    if (url.searchParams.has('startDate')) {
+        params['date_joined__gte'] = url.searchParams.get('startDate');
+    }
+
+    if (url.searchParams.has('endDate')) {
+        params['date_joined__lte'] = url.searchParams.get('endDate');
+    }
+
+    return $.param(params);
+}
+
+function roomsUrlParams() {
+    var url = new URL(location);
+    var params = {}
+
+    if (url.searchParams.has('startDate')) {
+        params['date__gte'] = url.searchParams.get('startDate');
+    }
+
+    if (url.searchParams.has('endDate')) {
+        params['date__lte'] = url.searchParams.get('endDate');
+    }
+
+    return $.param(params);
+}
+
+getResources('/audiencias/api/user/?' + usersUrlParams(), [], loadUserTable);
+getResources('/audiencias/api/room/?' + roomsUrlParams(), [], loadRoomTable);
