@@ -16,6 +16,10 @@ function getObjects(url, objectList) {
 
 $(document).ready(function () {
     $('#users-table').DataTable({
+      "initComplete": function (settings, json) {
+        $('.JS-loading').remove();
+        $('.JS-tableContent').show();
+      },
         "pagingType": "full_numbers",
         "scrollX": true,
         "language": {
@@ -31,7 +35,7 @@ $(document).ready(function () {
             'csv',
             'excel'
         ],
-        data: getObjects('/audiencias/api/user/', []),
+        data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/user/', []),
         "columns": [
             {
                 "data": "id",
@@ -82,7 +86,7 @@ $(document).ready(function () {
             'csv',
             'excel'
         ],
-        data: getObjects('/audiencias/api/room/', []),
+        data: getObjects('https://dev.edemocracia.camara.leg.br/audiencias/api/room/', []),
         "columns": [
             {
                 "data": "id",

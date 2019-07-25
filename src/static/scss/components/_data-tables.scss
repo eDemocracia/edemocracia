@@ -6,6 +6,38 @@
   }
 }
 
+.dt-buttons {
+  display: flex;
+  margin-top: 1.5rem;
+
+  &::before {
+    display: block;
+    content: 'Exportar';
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-right: 1rem;
+    position: absolute;
+  }
+
+  & > * + * {
+    margin-left: .5rem;
+  }
+
+  & .dt-button {
+    cursor: pointer;
+    color: #FFF;
+    border: none;
+    background-image: none !important;
+    background-color: $color-edem-green-dark !important;
+
+    &:hover:not(.disabled) {
+      border: none;
+      background-color: $color-edem-green !important;
+    }
+  }
+}
+
 #data-tables_wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -26,100 +58,88 @@
       top: 4rem !important;
     }
   }
+}
 
-  .dataTables_length {
-    flex-basis: 10%;
-  }
+.dataTables_length {
+  flex-basis: 10%;
+}
 
-  .dataTables_filter {
-    flex-basis: 30%;
-    margin-left: auto;
-  }
+.dataTables_filter {
+  flex-basis: 30%;
+  margin-left: auto;
+}
 
-  .dataTables_info {
-    padding: 1rem 0;
-    display: none;
-  }
+.dataTables_info {
+  padding: 2rem 0 !important;
+}
 
-  .dt-buttons {
-    display: flex;
+.buttons-page-length {
+  display: none;
+}
 
-    &::before {
-      display: block;
-      content: 'Exportar';
-      font-size: 0.875rem;
-      font-weight: 300;
-      line-height: 1.8;
-      margin-right: 1rem;
-      position: absolute;
-    }
+.page-statistics .dataTables_paginate {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 0.8rem;
+  align-items: center;
 
-    & > * + * {
-      margin-left: 1rem;
-    }
+  & a {
+    font-size: .875rem;
+    color: $color-edem-green-xxxxdark;
+    padding: .5rem;
+    font-weight: bold;
 
-    & > .dt-button {
-      cursor: pointer;
-      text-decoration: underline;
+    &:hover {
+      color: $color-edem-green;
     }
   }
 
-  .buttons-page-length {
-    display: none;
+  & > span {
+    padding: .5rem;
   }
 
-  .dataTables_paginate {
-    display: flex;
-    margin: 0 auto;
-    margin-top: 1rem;
-    align-items: center;
+  & > span > a {
+    padding: .5rem 1rem;
+    margin: 0 .5rem;
+    background: #f1f1f1;
+    border: none;
 
-    & a {
-      font-size: .875rem;
-      color: $color-edem-green-xxxxdark;
-      padding: .5rem;
-      font-weight: bold;
-
-      &:hover {
-        color: $color-edem-green;
-      }
+    &:hover {
+      color: #000 !important;
+      background: darken(#f1f1f1, 10%);
     }
+  }
 
-    & > span {
-      padding: .5rem;
+  & > .disabled {
+    color: #a7a7a7 !important;
+  }
+
+  & > .paginate_button:not(.disabled) {
+    &:hover,
+    &:active {
+      background: transparent !important;
+      background-color: transparent !important;
+      color: $color-edem-green !important;
+      border-color: transparent !important;
+      outline: transparent !important;
+      box-shadow: none !important;
     }
+  }
 
-    & > span > a {
-      padding: .5rem 1rem;
-      margin: 0 .5rem;
-      background: #f1f1f1;
-      border: none;
+  & > span > .paginate_button.current {
+    background: $color-edem-green !important;
+    border: none !important;
+    color: #FFF !important;
+  }
 
-      &:hover {
-        color: #000 !important;
-        background: darken(#f1f1f1, 10%);
-      }
-    }
-
-    & > .disabled {
-      color: #a7a7a7 !important;
-    }
-
-    & > a:not(.disabled) {
-      &:hover,
-      &:active {
-        background: transparent;
-        background-color: transparent;
-        color: $color-edem-green !important;
-        border-color: transparent;
-        outline: transparent !important;
-        box-shadow: none !important;
-      }
-    }
-
-    & > span > a.current {
-      background: $color-edem-green-dark;
-      color: #FFF !important;
+  & > span > .paginate_button {
+    &:hover {
+      background: rgba(#000, .1) !important;
+      background-color: rgba(#000, .1) !important;
+      color: #333 !important;
+      border-color: transparent !important;
+      outline: transparent !important;
+      box-shadow: none !important;
     }
   }
 }
