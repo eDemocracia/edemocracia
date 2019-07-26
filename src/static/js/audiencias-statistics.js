@@ -1,5 +1,6 @@
 function getResources(path, dataset, callback) {
-    var request = $.ajax(path);
+    var url = path.replace('http://', 'https://')
+    var request = $.ajax(url);
     request.done(function (data) {
         dataset = dataset.concat(data.results);
         if (data.next) {
@@ -13,7 +14,8 @@ function getResources(path, dataset, callback) {
 function loadUserTable(data) {
     $('#users-table').DataTable({
       "initComplete": function (settings, json) {
-        hideLoading(this);
+        var dataTables = $(this).parent().parent();
+        hideLoading(dataTables);
       },
         "pagingType": "full_numbers",
         "scrollX": true,
@@ -69,7 +71,8 @@ function loadUserTable(data) {
 function loadRoomTable(data) {
     $('#rooms-table').DataTable({
       "initComplete": function (settings, json) {
-        hideLoading(this);
+        var dataTables = $(this).parent().parent();
+        hideLoading(dataTables);
       },
         "pagingType": "full_numbers",
         "scrollX": true,
@@ -124,10 +127,22 @@ function loadRoomTable(data) {
             },
             {
                 "data": "created",
-                "bVisible": false
+                "bVisible": false,
+                "render": function (data, type, full) {
+                    if (type == 'display')
+                        return moment(new Date(data)).locale('pt').format('DD/MM/YYYY HH:mm');
+                    else
+                        return moment(new Date(data)).format('YYYY/MM/DD HH:mm:ss');
+                }
             },
             {
-                "data": "date"
+                "data": "date",
+                "render": function (data, type, full) {
+                    if (type == 'display')
+                        return moment(new Date(data)).locale('pt').format('DD/MM/YYYY HH:mm');
+                    else
+                        return moment(new Date(data)).format('YYYY/MM/DD HH:mm:ss');
+                }
             },
             {
                 "data": "max_online_users",

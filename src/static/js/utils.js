@@ -1,4 +1,4 @@
-function hideLoading(table) {
-  $(table).parent().parent().parent().prev('.JS-loading').remove();
-  $(table).show();
+function hideLoading(dataTables) {
+  $(dataTables).parent().prev('.JS-loading').remove();
+  $(dataTables).find('table').show();
 }

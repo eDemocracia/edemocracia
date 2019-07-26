@@ -13,7 +13,8 @@ function getResources(path, dataset, callback) {
 function loadUserTable(data) {
   $('#user-table').DataTable( {
     "initComplete": function (settings, json) {
-      hideLoading(this);
+      var dataTables = $(this).parent().parent();
+      hideLoading(dataTables);
     },
     "pagingType": "full_numbers",
     "language": {
@@ -44,7 +45,8 @@ function loadUserTable(data) {
 function loadBillTable(data) {
   $('#bill-table').DataTable( {
     "initComplete": function (settings, json) {
-      hideLoading(this);
+      var dataTables = $(this).parent().parent();
+      hideLoading(dataTables);
     },
     "pagingType": "full_numbers",
     "language": {
