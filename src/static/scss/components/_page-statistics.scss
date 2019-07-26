@@ -341,4 +341,9 @@
   & .lightpick__day.is-in-range:hover {
     background-image: none;
   }
+
+  & .lightpick__day.is-start-date {
+    background-color: $color-edem-green;
+    border-radius: 50%;
+  }
 }
