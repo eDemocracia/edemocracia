@@ -12,6 +12,9 @@ function getResources(path, dataset, callback) {
 
 function loadUserTable(data) {
   $('#user-table').DataTable( {
+    "initComplete": function (settings, json) {
+      hideLoading(this);
+    },
     "pagingType": "full_numbers",
     "language": {
       "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
@@ -40,6 +43,9 @@ function loadUserTable(data) {
 
 function loadBillTable(data) {
   $('#bill-table').DataTable( {
+    "initComplete": function (settings, json) {
+      hideLoading(this);
+    },
     "pagingType": "full_numbers",
     "language": {
       "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"

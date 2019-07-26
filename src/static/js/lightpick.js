@@ -15,6 +15,7 @@ $('.JS-updateDate').click(function() {
   var endDate = $('#endDate').val();
 
   var url = new URL(location);
+
   if (startDate) {
     if (url.searchParams.has('startDate')) {
       url.searchParams.set('startDate', startDate);
@@ -37,3 +38,50 @@ $('.JS-updateDate').click(function() {
 
   window.location = url;
 })
+
+function showDate() {
+  var startDate = $('#startDate').val();
+  var endDate = $('#endDate').val();
+
+  if (startDate || endDate) {
+    $('.JS-statisticsDate').removeClass('hide');
+
+    $('.JS-tableTitle').each(function(){
+      var newTitle = $(this).text().replace(':', ' no período:');
+
+      $(this).text(newTitle);
+    });
+
+    if (startDate && endDate) {
+      $('.JS-statisticsTextDate').text(`Dados de ${startDate} à ${endDate}`);
+    } else if (startDate && !endDate) {
+      $('.JS-statisticsTextDate').text(`Dados a partir de ${startDate}`);
+    } else if (!startDate && endDate) {
+      $('.JS-statisticsTextDate').text(`Dados até ${endDate}`);
+    }
+  }
+}
+
+showDate();
+
+$('.JS-removeStatisticsDate').click(function(){
+  var startDate = $('#startDate').val();
+  var endDate = $('#endDate').val();
+
+  var url = new URL(location);
+
+  if (url.searchParams.has('startDate') || url.searchParams.has('endDate')) {
+    url.searchParams.delete('startDate');
+    url.searchParams.delete('endDate');
+
+    window.location = url;
+  }
+});
+
+$('.JS-inputDate').click(function(){
+  $(this).focus().on('keydown', function(e){
+    if (e.keyCode == 8) {
+      $(this).val('');
+    }
+  });
+});

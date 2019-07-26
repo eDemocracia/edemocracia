@@ -1,5 +1,8 @@
 $(document).ready(function() {
   var table = $('#data-tables').DataTable( {
+    "initComplete": function (settings, json) {
+      hideLoading(this);
+    },
     "pagingType": "full_numbers",
     "scrollX": true,
     "language": {

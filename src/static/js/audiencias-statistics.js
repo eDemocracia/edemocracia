@@ -13,8 +13,7 @@ function getResources(path, dataset, callback) {
 function loadUserTable(data) {
     $('#users-table').DataTable({
       "initComplete": function (settings, json) {
-        $('.JS-loading').remove();
-        $('.JS-tableContent').show();
+        hideLoading(this);
       },
         "pagingType": "full_numbers",
         "scrollX": true,
@@ -69,6 +68,9 @@ function loadUserTable(data) {
 
 function loadRoomTable(data) {
     $('#rooms-table').DataTable({
+      "initComplete": function (settings, json) {
+        hideLoading(this);
+      },
         "pagingType": "full_numbers",
         "scrollX": true,
         "language": {

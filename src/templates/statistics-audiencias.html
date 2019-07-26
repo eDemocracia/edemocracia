@@ -4,8 +4,11 @@
 
 {% block statistics_content %}
 <div class="header">
-  <div class="date">Dados de 19/07/2019 à 21/07/2019 <span class="remove">Remover filtro</span></div>
-  <h1>Informações Gerais</h1>
+  <div class="date JS-statisticsDate hide">
+    <p class="text JS-statisticsTextDate"></p>
+    <span class="remove JS-removeStatisticsDate">Remover filtro</span>
+  </div>
+  <h1>Audiências Interativas</h1>
 </div>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
   standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
@@ -18,9 +21,9 @@
 </div> -->
 
 <div class="item">
-  <label class="label">Usuários cadastrados:</label>
+  <label class="label JS-tableTitle">Usuários cadastrados:</label>
   <div class="loading JS-loading"><div></div><div></div><div></div></div>
-  <table id="users-table" class="display JS-tableContent" style="display: none;">
+  <table id="users-table" class="display" style="display: none;">
     <thead>
       <tr>
         <th>Id</th>
@@ -38,9 +41,9 @@
 </div>
 
 <div class="item">
-  <label class="label">Salas criadas:</label>
+  <label class="label JS-tableTitle">Salas criadas:</label>
   <div class="loading JS-loading"><div></div><div></div><div></div></div>
-  <table id="rooms-table" class="display JS-tableContent" style="display: none;">
+  <table id="rooms-table" class="display" style="display: none;">
     <thead>
       <tr>
         <th>Id</th>

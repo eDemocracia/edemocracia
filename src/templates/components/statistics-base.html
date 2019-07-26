@@ -19,8 +19,8 @@
       <div class="date">
         <p>Escolha a data inicial e a data final:</p>
         <div class="inputs">
-          <input type="text" id="startDate" placeholder="Data inicial" value="{{request.GET.startDate}}" readonly>
-          <input type="text" id="endDate" placeholder="Data final" value="{{request.GET.endDate}}" readonly>
+          <input class="JS-inputDate" type="text" id="startDate" placeholder="Data inicial" value="{{request.GET.startDate}}" readonly>
+          <input class="JS-inputDate" type="text" id="endDate" placeholder="Data final" value="{{request.GET.endDate}}" readonly>
         </div>
         <button class="JS-updateDate">Enviar</button>
       </div>
@@ -53,4 +53,5 @@
 <script type="text/javascript" src="{% static 'lightpick/lightpick.js' %}"></script>
 <script type="text/javascript" src="{% static 'jszip/dist/jszip.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/lightpick.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/utils.js' %}"></script>
 {% endblock %}

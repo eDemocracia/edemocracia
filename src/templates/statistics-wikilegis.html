@@ -3,48 +3,64 @@
 {% load static %}
 
 {% block statistics_content %}
-    <h1>Wikilegis</h1>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-      book.</p>
-
-    <div class="item">
-      <label class="label">Ranking de participação por usuário:</label>
-      <table id="user-table" class="display" style="width:100%">
-        <thead>
-          <tr>
-            <th>Usuário</th>
-            <th>Projetos Participados</th>
-            <th>Votos</th>
-            <th>Comentários</th>
-            <th>Emendas Aditivas</th>
-            <th>Emendas Modificadoras</th>
-            <th>Emendas Supressivas</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-
-    <div class="item">
-      <label class="label">Ranking de projetos:</label>
-      <table id="bill-table" class="display" style="width:100%">
-        <thead>
-          <tr>
-            <th>Projeto</th>
-            <th>Participantes</th>
-            <th>Votos</th>
-            <th>Comentários</th>
-            <th>Emendas</th>
-            <th>Emendas Aditivas</th>
-            <th>Emendas Modificadoras</th>
-            <th>Emendas Supressivas</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
+<div class="header">
+  <div class="date JS-statisticsDate hide">
+    <p class="text JS-statisticsTextDate"></p>
+    <span class="remove JS-removeStatisticsDate">Remover filtro</span>
   </div>
+  <h1>Wikilegis</h1>
+</div>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+  book.</p>
+
+<div class="item">
+  <label class="label JS-tableTitle">Ranking de participação por usuário:</label>
+  <div class="loading JS-loading">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <table id="user-table" class="display" style="display: none">
+    <thead>
+      <tr>
+        <th>Usuário</th>
+        <th>Projetos Participados</th>
+        <th>Votos</th>
+        <th>Comentários</th>
+        <th>Emendas Aditivas</th>
+        <th>Emendas Modificadoras</th>
+        <th>Emendas Supressivas</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<div class="item">
+  <label class="label JS-tableTitle">Ranking de projetos:</label>
+  <div class="loading JS-loading">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <table id="bill-table" class="display" style="display: none">
+    <thead>
+      <tr>
+        <th>Projeto</th>
+        <th>Participantes</th>
+        <th>Votos</th>
+        <th>Comentários</th>
+        <th>Emendas</th>
+        <th>Emendas Aditivas</th>
+        <th>Emendas Modificadoras</th>
+        <th>Emendas Supressivas</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+</div>
 {% endblock statistics_content %}
 
 {% block extrajs %}
-  {{block.super}}
-  <script type="text/javascript" src="{% static 'js/wikilegis-statistics.js' %}"></script>
+{{block.super}}
+<script type="text/javascript" src="{% static 'js/wikilegis-statistics.js' %}"></script>
 {% endblock extrajs %}

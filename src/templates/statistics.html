@@ -3,17 +3,28 @@
 {% load static %}
 
 {% block statistics_content %}
-<h1>Informações Gerais</h1>
+<div class="header">
+  <div class="date JS-statisticsDate hide">
+    <p class="text JS-statisticsTextDate"></p>
+    <span class="remove JS-removeStatisticsDate">Remover filtro</span>
+  </div>
+  <h1>Informações Gerais</h1>
+</div>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
   book.</p>
 
 <div class="item">
-  <label class="label">Quantidade de usuários cadastrados:</label>
+  <label class="label JS-tableTitle">Quantidade de usuários cadastrados:</label>
   <canvas id="myLineChart"></canvas>
 </div>
 
 <div class="item">
-  <label class="label">Usuários cadastrados:</label>
+  <label class="label JS-tableTitle">Usuários cadastrados:</label>
+  <div class="loading JS-loading">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
   <table id="data-tables" class="display" style="width:100%">
   </table>
 </div>
