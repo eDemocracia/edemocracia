@@ -1,12 +1,13 @@
-var picker = new Lightpick({
+var startPicker = new Lightpick({
   lang: 'auto',
   field: document.getElementById('startDate'),
-  secondField: document.getElementById('endDate'),
-  singleDate: true,
-  repipck: true,
   parentEl: '.page-statistics > .menu > .wrapper > .date > .inputs',
-  minDate: moment().startOf('month').add(7, 'day'),
-  maxDate: moment().endOf('month').subtract(7, 'day'),
+});
+
+var endPicker = new Lightpick({
+  lang: 'auto',
+  field: document.getElementById('endDate'),
+  parentEl: '.page-statistics > .menu > .wrapper > .date > .inputs',
 });
 
 $('.JS-updateDate').click(function() {

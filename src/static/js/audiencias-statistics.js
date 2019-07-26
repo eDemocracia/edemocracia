@@ -156,11 +156,11 @@ function usersUrlParams() {
     var params = {}
 
     if (url.searchParams.has('startDate')) {
-        params['date_joined__gte'] = url.searchParams.get('startDate');
+        params['date_joined__gte'] = startPicker.toString('YYYY-MM-DD');
     }
 
     if (url.searchParams.has('endDate')) {
-        params['date_joined__lte'] = url.searchParams.get('endDate');
+        params['date_joined__lte'] = endPicker.toString('YYYY-MM-DD');
     }
 
     return $.param(params);
@@ -171,15 +171,15 @@ function roomsUrlParams() {
     var params = {}
 
     if (url.searchParams.has('startDate')) {
-        params['date__gte'] = url.searchParams.get('startDate');
+        params['date__gte'] = startPicker.toString('YYYY-MM-DD');
     }
 
     if (url.searchParams.has('endDate')) {
-        params['date__lte'] = url.searchParams.get('endDate');
+        params['date__lte'] = endPicker.toString('YYYY-MM-DD');
     }
 
     return $.param(params);
 }
 
-getResources('/audiencias/api/user/?' + usersUrlParams(), [], loadUserTable);
-getResources('/audiencias/api/room/?' + roomsUrlParams(), [], loadRoomTable);
+getResources('https://dev.edemocracia.camara.leg.br/audiencias/api/user/?' + usersUrlParams(), [], loadUserTable);
+getResources('https://dev.edemocracia.camara.leg.br/audiencias/api/room/?' + roomsUrlParams(), [], loadRoomTable);
