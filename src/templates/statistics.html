@@ -13,10 +13,10 @@
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
   book.</p>
 
-<div class="item">
+<!-- <div class="item">
   <label class="label JS-tableTitle">Quantidade de usuários cadastrados:</label>
   <canvas id="myLineChart"></canvas>
-</div>
+</div> -->
 
 <div class="item">
   <label class="label JS-tableTitle">Usuários cadastrados:</label>
@@ -25,7 +25,20 @@
     <div></div>
     <div></div>
   </div>
-  <table id="data-tables" class="display" style="width:100%">
+  <table id="users-table" class="display" style="display: none; width: 100%;">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>Última visita</th>
+        <th>Data de registro</th>
+        <th>Gênero</th>
+        <th>UF</th>
+        <th>Data de nascimento</th>
+      </tr>
+    </thead>
   </table>
 </div>
 {% endblock statistics_content %}

@@ -1,7 +1,21 @@
-$(document).ready(function() {
-  var table = $('#data-tables').DataTable( {
+function getResources(path, dataset, callback) {
+  var url = path.replace('http://', 'https://')
+  var request = $.ajax(url);
+  request.done(function (data) {
+    dataset = dataset.concat(data.results);
+    if (data.next) {
+      getResources(data.next, dataset, callback);
+    } else {
+      callback(dataset);
+    }
+  })
+}
+
+function loadUserTable(data) {
+  $('#users-table').DataTable({
     "initComplete": function (settings, json) {
-      hideLoading(this);
+      var dataTables = $(this).parent().parent();
+      hideLoading(dataTables);
     },
     "pagingType": "full_numbers",
     "scrollX": true,
@@ -9,80 +23,93 @@ $(document).ready(function() {
       "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
     },
     dom: 'Bfrtip',
-    buttons: [
-      'csv', 'excel'
+    buttons: [{
+        extend: 'colvis',
+        collectionLayout: 'fixed three-column',
+        text: 'Mostrar/esconder colunas'
+      },
+      'csv',
+      'excel'
+    ],
+    data: data,
+    "columns": [{
+        "data": "id",
+        "bVisible": false
+      },
+      {
+        "data": "username"
+      },
+      {
+        "data": "first_name",
+      },
+      {
+        "data": "last_name",
+      },
+      {
+        "data": "last_login",
+        "bVisible": false,
+        "render": function (data, type, full) {
+          if (data == null)
+            return '';
+          else
+            if (type == 'display')
+              return moment(new Date(data)).locale('pt').format('DD/MM/YYYY HH:mm');
+            else
+              return moment(new Date(data)).format('YYYY/MM/DD HH:mm:ss');
+        }
+      },
+      {
+        "data": "date_joined",
+        "bVisible": false,
+        "render": function (data, type, full) {
+          if (data == null)
+            return '';
+          else
+            if (type == 'display')
+              return moment(new Date(data)).locale('pt').format('DD/MM/YYYY HH:mm');
+            else
+              return moment(new Date(data)).format('YYYY/MM/DD HH:mm:ss');
+        }
+      },
+      {
+        "data": "profile.gender"
+      },
+      {
+        "data": "profile.uf"
+      },
+      {
+        "data": "profile.birthdate",
+        "bVisible": false,
+        "render": function (data, type, full) {
+         if (data == null)
+           return '';
+         else
+          if (type == 'display')
+            return moment(new Date(data)).locale('pt').format('DD/MM/YYYY');
+          else
+            return moment(new Date(data)).format('YYYY/MM/DD');
+        }
+      }
     ]
   });
+};
 
-  $('a.toggle-vis').on( 'click', function (e) {
-    e.preventDefault();
+function usersUrlParams() {
+  var url = new URL(location);
+  var params = {}
 
-    // Get the column API object
-    var column = table.column( $(this).attr('data-column') );
+  if (url.searchParams.has('startDate')) {
+    params['date_joined__gte'] = startPicker.toString('YYYY-MM-DD');
+  }
 
-    // Toggle the visibility
-    column.visible( ! column.visible() );
-  });
-});
+  if (url.searchParams.has('endDate')) {
+    params['date_joined__lte'] = endPicker.toString('YYYY-MM-DD');
+  }
 
-var ctx = $('#myLineChart');
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [
-          'JAN',
-          'FEV',
-          'MAR',
-          'ABR',
-          'MAIO',
-          'JUN',
-          'JUL',
-          'AGO',
-          'SET',
-          'OUT',
-          'NOV',
-          'DEZ'
-        ],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-      legend: {
-        position: 'bottom'
-      },
-      scales: {
-          // xAxes: [{
-          //     gridLines: {
-          //         color: "rgba(0, 0, 0, 0)",
-          //     }
-          // }],
-          yAxes: [{
-              gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-              }
-          }]
-      },
-    },
-});
+  return $.param(params);
+}
+
+getResources('/api/v1/user/?' + usersUrlParams(), [], loadUserTable);
 
 $('.JS-toggleStatisticsLinks').click(function(){
   $(this).toggleClass('-active');

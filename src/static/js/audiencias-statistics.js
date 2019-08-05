@@ -198,5 +198,5 @@ function roomsUrlParams() {
     return $.param(params);
 }
 
-getResources('https://dev.edemocracia.camara.leg.br/audiencias/api/user/?' + usersUrlParams(), [], loadUserTable);
-getResources('https://dev.edemocracia.camara.leg.br/audiencias/api/room/?' + roomsUrlParams(), [], loadRoomTable);
+getResources('/audiencias/api/user/?' + usersUrlParams(), [], loadUserTable);
+getResources('/audiencias/api/room/?' + roomsUrlParams(), [], loadRoomTable);
