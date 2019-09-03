@@ -60,6 +60,15 @@ body > .edem-content-wrapper > .document-editor > .tool-bar {
   }
 }
 
+body > .edem-content-wrapper > .document-editor > .text-diff {
+  width: 100vw;
+  height: 75vh;
+}
+
+body > .edem-content-wrapper > .document-editor > .close-diff {
+  margin-top: $edem-bar-height;
+}
+
 body > .edem-content-wrapper > .howto-button {
   margin-top: $edem-bar-height;
 }
