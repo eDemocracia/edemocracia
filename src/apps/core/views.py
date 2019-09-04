@@ -26,19 +26,19 @@ class EdemProxyView(DiazoProxyView):
 
 def index(request):
     context = {}
-    if settings.PAUTAS_ENABLED:
+    if settings.PAUTAS_VISIBLE:
         context['pautas'] = get_pautas_index_data()
 
-    if settings.NEW_WIKILEGIS_ENABLED:
+    if settings.NEW_WIKILEGIS_VISIBLE:
         context['groups'] = get_new_wikilegis_index_data()
 
-    if settings.WIKILEGIS_ENABLED:
+    if settings.WIKILEGIS_VISIBLE:
         context['bills'] = get_wikilegis_index_data()
 
-    if settings.DISCOURSE_ENABLED:
+    if settings.DISCOURSE_VISIBLE:
         context['topics'] = get_discourse_index_data()
 
-    if settings.AUDIENCIAS_ENABLED:
+    if settings.AUDIENCIAS_VISIBLE:
         rooms = get_audiencias_index_data()
 
         context['history_rooms'] = rooms['history_rooms']

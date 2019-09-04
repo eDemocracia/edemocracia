@@ -17,23 +17,23 @@
     </div>
   </section>
 
-  {% if AUDIENCIAS_ENABLED %}
+  {% if AUDIENCIAS_VISIBLE %}
     {% include 'audiencias-section.html' %}
   {% endif %}
 
-  {% if WIKILEGIS_ENABLED %}
+  {% if WIKILEGIS_VISIBLE %}
     {% include 'wikilegis-section.html' %}
   {% endif %}
 
-  {% if NEW_WIKILEGIS_ENABLED %}
+  {% if NEW_WIKILEGIS_VISIBLE %}
     {% include 'new-wikilegis-section.html' %}
   {% endif %}
 
-  {% if DISCOURSE_ENABLED %}
+  {% if DISCOURSE_VISIBLE %}
     {% include 'discourse-section.html' %}
   {% endif %}
 
-  {% if PAUTAS_ENABLED %}
+  {% if PAUTAS_VISIBLE %}
     {% include 'pautas-section.html' %}
   {% endif %}
 
