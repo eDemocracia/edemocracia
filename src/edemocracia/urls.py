@@ -20,10 +20,10 @@ if settings.DEBUG is True:
 
 if settings.NEW_WIKILEGIS_ENABLED:
     urlpatterns.append(
-        path('new-wikilegis/', include('apps.new_wikilegis.urls')))
+        path('wikilegis/', include('apps.new_wikilegis.urls')))
 
 if settings.WIKILEGIS_ENABLED:
-    urlpatterns.append(path('wikilegis/', include('apps.wikilegis.urls')))
+    urlpatterns.append(path('wikilegis-arquivo/', include('apps.wikilegis.urls')))
 
 if settings.PAUTAS_ENABLED:
     urlpatterns.append(path('pautaparticipativa/',

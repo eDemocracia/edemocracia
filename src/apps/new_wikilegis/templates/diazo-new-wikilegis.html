@@ -3,7 +3,7 @@
 
 {% block styles %}
   {{ block.super }}
-  <link rel="stylesheet" href="{% static 'new-wikilegis/scss/overrides-new-wikilegis.scss' %}" type="text/x-scss" />
+  <link rel="stylesheet" href="{% static 'wikilegis/scss/overrides-new-wikilegis.scss' %}" type="text/x-scss" />
 {% endblock styles %}
 
 {% block scripts %}
@@ -23,21 +23,9 @@
 
   {% else %}
 
-    <script src="{% static 'new-wikilegis/js/overrides-new-wikilegis.js' %}"></script>
+    <script src="{% static 'wikilegis/js/overrides-new-wikilegis.js' %}"></script>
 
   {% endif %}
-
-  <script type="text/javascript">
-    $('.js-closeTestBanner').click(function(){
-      $('.js-testBanner').removeClass('-active');
-
-      document.cookie = "testBannerClosed=true"
-    });
-
-    if (document.cookie.indexOf('testBannerClosed') == -1) {
-      $('.js-testBanner').addClass('-active');
-    }
-  </script>
 
 {% endblock scripts %}
 
@@ -45,14 +33,5 @@
 {% endblock jquery_call %}
 
 {% block extra_content %}
-
-  <div class="test-banner js-testBanner">
-    <img src="{% static 'img/lab.svg' %}" alt="Tubos de ensaio">
-    <div class="content">
-      <h2>Esta é uma versão de teste do novo Wikilegis.<span> 🧪</span></h2>
-      <p>Você poderá opinar no projeto que contém os dez primeiros incisos do artigo 5.º da Constituição. Participe para nos ajudar a melhorar o Wikilegis! 😉</p>
-    </div>
-    <button aria-label="Fechar" class="js-closeTestBanner"></button>
-  </div>
 
 {% endblock extra_content %}

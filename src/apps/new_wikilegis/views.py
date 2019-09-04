@@ -6,12 +6,12 @@ class NewWikilegisProxyView(EdemProxyView):
     upstream = settings.NEW_WIKILEGIS_UPSTREAM
     diazo_theme_template = 'diazo-new-wikilegis.html'
     rewrite = (
-        (r'/new-wikilegis/admin/login/?$', '/admin/login'),
-        (r'/new-wikilegis/admin/login/\?([^=\n]+)\=([^&\n]+)$',
+        (r'/wikilegis/admin/login/?$', '/admin/login'),
+        (r'/wikilegis/admin/login/\?([^=\n]+)\=([^&\n]+)$',
          r'/admin/login/?next=\2'),
-        (r'/new-wikilegis/admin/logout/?$', '/admin/logout'),
-        (r'/new-wikilegis/login/?$', '/accounts/login'),
-        (r'/new-wikilegis/login/\?([^=\n]+)\=([^&\n]+)$',
+        (r'/wikilegis/admin/logout/?$', '/admin/logout'),
+        (r'/wikilegis/login/?$', '/accounts/login'),
+        (r'/wikilegis/login/\?([^=\n]+)\=([^&\n]+)$',
          r'/accounts/login/?next=\2'),
-        (r'/new-wikilegis/logout/?$', '/accounts/logout'),
+        (r'/wikilegis/logout/?$', '/accounts/logout'),
     )

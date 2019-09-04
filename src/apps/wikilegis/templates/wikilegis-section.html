@@ -2,7 +2,7 @@
     <div class="e-row e-expanded">
 
       <div class="section__info section__block e-columns small-12 large-3">
-        <a href="/wikilegis/"><img class="section__logo" src="/static/img/logo-wikilegis.svg" ></a>
+        <a href="/wikilegis-arquivo/"><img class="section__logo" src="/static/img/logo-wikilegis.svg"></a>
         <p class="section__text">
           {{ config.WIKILEGIS_DESCRIPTION }}
         </p>
@@ -12,16 +12,17 @@
         <div class="section__content">
 
           <h1 class="section__title">
-            <a class="section__link" href="/wikilegis/" title="Veja todas as projetos">{{ config.WIKILEGIS_TITLE }}</a>
+            <a class="section__link" href="/wikilegis-arquivo/"
+              title="Veja todas as projetos">{{ config.WIKILEGIS_TITLE }}</a>
           </h1>
 
           <div class="container container--card-list">
 
-            <a class="section__button" href="/wikilegis/">
+            <a class="section__button" href="/wikilegis-arquivo/">
               Ver todos
             </a>
 
-            <ul class="card-list">    
+            <ul class="card-list">
               {% for bill in bills %}
                 {% include "wikilegis-card.html" %}
               {% empty %}
