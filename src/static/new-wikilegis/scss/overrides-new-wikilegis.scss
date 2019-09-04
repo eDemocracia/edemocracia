@@ -42,6 +42,11 @@ body > .edem-content-wrapper > .nav-bar {
   margin-top: $edem-bar-height;
 }
 
+
+body > .edem-content-wrapper > .start-header {
+  height: calc(100vh - 9.5rem - #{$edem-bar-height})
+}
+
 body > .edem-content-wrapper > .document-editor > .side-bar {
   box-sizing: border-box;
   border-top: $edem-bar-height solid transparent;
