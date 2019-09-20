@@ -24,6 +24,9 @@ done
 
 PGPASSWORD=$DATABASE_PASSWORD psql -U $DATABASE_USER -w -h $DATABASE_HOST -c "CREATE DATABASE ${DATABASE_NAME} OWNER ${DATABASE_USER}"
 
+npm rebuild node-sass --force
 python3 src/manage.py migrate
+python3 src/manage.py compress --force
+python3 src/manage.py collectstatic --no-input
 python3 src/manage.py initdb
 python3 src/manage.py runserver 0.0.0.0:8000
