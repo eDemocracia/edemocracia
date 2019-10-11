@@ -19,6 +19,8 @@ class UserFilter(FilterSet):
             'profile__uf': ['exact'],
             'profile__gender': ['exact'],
             'profile__country': ['exact'],
+            'id': ['exact'],
+            'email': ['exact'],
         }
 
 
@@ -30,7 +32,6 @@ class UserListAPI(generics.ListAPIView):
         django_filters.DjangoFilterBackend,
         filters.SearchFilter,
     )
-    filter_fields = ('id', 'profile__uf')
     search_fields = ('username', 'first_name', 'last_name')
 
 
