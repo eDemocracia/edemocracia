@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-  {% if not '/admin/' in request.path %}
+  {% if not '/admin/' in request.path and not '/graphql/' in request.path%}
 
     <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,7 +22,7 @@
 
       <div class="edem-content-wrapper">
         {% block extra_content %}
-          
+
         {% endblock extra_content %}
 
         {% block edem_navigation %}
