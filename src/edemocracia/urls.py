@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from apps.accounts.api import api_root, UserListAPI
+from apps.accounts.api import api_root, UserListAPI, get_participation_user
 from apps.core.views import index
 
 urlpatterns = [
@@ -12,6 +12,8 @@ urlpatterns = [
     path('sobre/', include('apps.about.urls')),
     path('api/v1/', api_root),
     path('api/v1/user/', UserListAPI.as_view(), name='user_list_api'),
+    path('api/v1/participation/<uuid:user>/', get_participation_user,
+         name='participation_user_api'),
 ]
 
 if settings.DEBUG is True:

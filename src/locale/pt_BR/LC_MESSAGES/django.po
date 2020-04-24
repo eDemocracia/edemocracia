@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-02 19:06+0000\n"
+"POT-Creation-Date: 2020-04-25 12:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,19 @@ msgstr ""
 #: src/apps/accounts/admin.py:28 src/templates/registration/profile.html:5
 msgid "Profile"
 msgstr "perfil"
+
+#: src/apps/accounts/api.py:72
+msgid "User not found"
+msgstr "Usuário não encontrado"
+
+#: src/apps/accounts/api.py:114 src/apps/accounts/api.py:171
+msgid "User not found."
+msgstr "Usuário não encontrado"
+
+#: src/apps/accounts/api.py:116 src/apps/accounts/api.py:118
+#: src/apps/accounts/api.py:173 src/apps/accounts/api.py:175
+msgid "API unavailable."
+msgstr "API indisponível"
 
 #: src/apps/accounts/captcha.py:7
 msgid "reCAPTCHA: The secret parameter is missing."
@@ -89,11 +102,11 @@ msgstr ""
 msgid "gender"
 msgstr "gênero"
 
-#: src/apps/accounts/models.py:27
+#: src/apps/accounts/models.py:26
 msgid "country"
 msgstr "país"
 
-#: src/apps/accounts/models.py:29
+#: src/apps/accounts/models.py:28
 msgid "birthdate"
 msgstr "data de nascimento"
 
@@ -280,23 +293,21 @@ msgid "Last name"
 msgstr "Sobrenome"
 
 #: src/templates/registration/profile.html:90
-#: src/templates/registration/profile.html:93
 msgid "Gender"
 msgstr "Sexo"
 
-#: src/templates/registration/profile.html:103
-#: src/templates/registration/profile.html:106
+#: src/templates/registration/profile.html:105
 msgid "UF"
 msgstr "UF"
 
-#: src/templates/registration/profile.html:116
+#: src/templates/registration/profile.html:120
 msgid "Date of birth"
 msgstr "Data de nascimento"
 
-#: src/templates/registration/profile.html:131
+#: src/templates/registration/profile.html:135
 msgid "E-mail"
 msgstr "Email"
 
-#: src/templates/registration/profile.html:137
+#: src/templates/registration/profile.html:141
 msgid "Update data"
 msgstr "Atualizar dados"
