@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'compressor',
     'compressor_toolkit',
     'widget_tweaks',
+    'corsheaders',
 
     'apps.core',
     'apps.wikilegis',
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -340,3 +342,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 # THIRD PARTY LIBRARIES
 GOOGLE_ANALYTICS_ID = config('GOOGLE_ANALYTICS_ID', default=None)
 OLARK_ID = config('OLARK_ID', default=None)
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'

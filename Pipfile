@@ -29,6 +29,7 @@ django-widget-tweaks = "*"
 pydiscourse = "*"
 mkdocs = "*"
 mkdocs-material = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.6"
