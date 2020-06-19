@@ -7,7 +7,7 @@ name = "pypi"
 ipdb = "*"
 
 [packages]
-django = "*"
+Django = "==2.2.10"
 python-decouple = "*"
 django-compressor = "*"
 django-compressor-toolkit = "*"
@@ -27,8 +27,8 @@ lxml = "*"
 django-macros = "*"
 django-widget-tweaks = "*"
 pydiscourse = "*"
-mkdocs = "*"
-mkdocs-material = "*"
+mkdocs = "==1.0.4"
+mkdocs-material = "==4.1.1"
 django-cors-headers = "*"
 
 [requires]
