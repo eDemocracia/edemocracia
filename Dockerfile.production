@@ -2,7 +2,8 @@ FROM labhackercd/alpine-python3-nodejs
 
 ENV BUILD_PACKAGES python3 python3-dev linux-headers curl \
     git ca-certificates gcc postgresql-dev build-base bash \
-    postgresql-client gettext libxml2-dev libxslt-dev zlib-dev jpeg-dev
+    postgresql-client gettext libxml2-dev libxslt-dev zlib-dev jpeg-dev \
+    libffi-dev
 
 RUN apk add --update --no-cache $BUILD_PACKAGES
 
