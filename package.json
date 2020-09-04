@@ -16,7 +16,7 @@
     "fontastic-labhacker": "git+https://github.com/labhackercd/fontastic-labhacker.git",
     "foundation-sites": "^6.4.4-rc1",
     "jquery": "^3.2.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "postcss": "^6.0.16",
     "postcss-cli": "^4.1.1"
   }
