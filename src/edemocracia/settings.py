@@ -144,7 +144,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET',
 
 SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY', default='')
 SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET', default='')
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_birthday', 'user_location']
+SOCIAL_AUTH_FACEBOOK_SCOPE = config('SOCIAL_AUTH_FACEBOOK_SCOPE',
+                                    cast=Csv(lambda x: x.strip().strip(',').strip()), # noqa
+                                    default='email, user_birthday, user_location')    # noqa
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email,gender,picture,birthday,location'
 }
