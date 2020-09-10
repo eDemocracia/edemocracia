@@ -53,10 +53,10 @@ def save_profile(backend, user, response, *args, **kwargs):
 
     if backend.name == 'google-oauth2':
         user.profile.gender = response.get('gender', '')
-        if response.get('image').get('isDefault') or user.profile.avatar:
+        if user.profile.avatar:
             user.profile.save()
         else:
-            url = response.get('image').get('url').replace('?sz=50', '?sz=200')
+            url = response.get('picture', '')
             try:
                 response_image = request('GET', url, verify=False)
                 response_image.raise_for_status()
