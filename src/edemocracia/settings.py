@@ -147,6 +147,8 @@ SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET', default='')
 SOCIAL_AUTH_FACEBOOK_SCOPE = config('SOCIAL_AUTH_FACEBOOK_SCOPE',
                                     cast=Csv(lambda x: x.strip().strip(',').strip()), # noqa
                                     default='email, user_birthday, user_location')    # noqa
+SOCIAL_AUTH_FACEBOOK_API_VERSION = config('SOCIAL_AUTH_FACEBOOK_API_VERSION',
+                                          default='3.2')
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email,gender,picture,birthday,location'
 }
