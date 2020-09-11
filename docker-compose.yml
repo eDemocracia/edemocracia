@@ -85,12 +85,12 @@ services:
       SOCIAL_AUTH_FACEBOOK_API_VERSION:
       SOCIAL_AUTH_CD_KEY:
       SOCIAL_AUTH_CD_SECRET:
-      SOCIAL_AUTH_CD_VERIFY_SSL: 'False'
+      SOCIAL_AUTH_CD_VERIFY_SSL: 
       CD_AUTHORIZATION_URL:
       CD_ACCESS_TOKEN_URL:
       CD_METADATA_URL:
-      SOCIAL_AUTH_REDIRECT_IS_HTTPS: 'False'
-      CAMARA_LOGIN: 'False'
+      SOCIAL_AUTH_REDIRECT_IS_HTTPS: 
+      CAMARA_LOGIN: 
       LANGUAGE_CODE:
       TIME_ZONE:
       EMAIL_HOST:
@@ -156,7 +156,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:3.4.3
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -208,7 +208,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:3.4.3
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-worker.sh
     links:
       - redis

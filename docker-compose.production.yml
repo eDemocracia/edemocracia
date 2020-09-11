@@ -53,7 +53,7 @@ services:
       SITE_NAME: 
       SITE_LOGO: https://enderecodaimagem.com
       SITE_URL: https://enderecodoedemocracia.leg.br
-      DEBUG: 'False'
+      DEBUG: 
       SECRET_KEY: 
       RECAPTCHA_SITE_KEY:  
       RECAPTCHA_PRIVATE_KEY:  
@@ -144,7 +144,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:3.4.3
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -193,7 +193,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:3.4.3
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-worker.sh
     links:
       - redis
