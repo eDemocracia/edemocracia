@@ -53,7 +53,7 @@ services:
       SITE_NAME: 
       SITE_LOGO: https://enderecodaimagem.com
       SITE_URL: https://enderecodoedemocracia.leg.br
-      DEBUG: 'False'
+      DEBUG: 
       SECRET_KEY: 
       RECAPTCHA_SITE_KEY:  
       RECAPTCHA_PRIVATE_KEY:  
@@ -68,6 +68,8 @@ services:
       SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: 
       SOCIAL_AUTH_FACEBOOK_KEY: 
       SOCIAL_AUTH_FACEBOOK_SECRET: 
+      SOCIAL_AUTH_FACEBOOK_SCOPE:
+      SOCIAL_AUTH_FACEBOOK_API_VERSION:
       SOCIAL_AUTH_CD_KEY: 
       SOCIAL_AUTH_CD_SECRET: 
       SOCIAL_AUTH_CD_VERIFY_SSL: 
@@ -142,7 +144,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:3.4.3
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -180,7 +182,6 @@ services:
       DATABASE_USER: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DEBUG: 'False'
       REDIS_SERVER: redis
       WEBSERVICE_URL:
       COMPRESS_OFFLINE: 'True'
@@ -192,7 +193,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:3.4.3
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-worker.sh
     links:
       - redis
@@ -230,7 +231,6 @@ services:
       DATABASE_USER: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DEBUG: 'False'
       REDIS_SERVER: redis
       WEBSERVICE_URL:
       COMPRESS_OFFLINE: 'True'
@@ -244,10 +244,8 @@ services:
     image: labhackercd/discourse-docker:2.0.20180703
     command: ./start-web.sh
     volumes:
-      - discourse_assets:/var/www/discourse/public/assets/:z
-      - discourse_js:/var/www/discourse/public/javascripts/:z
-      - discourse_img:/var/www/discourse/public/images/:z
-      - discourse_cache:/var/www/discourse/tmp/stylesheet-cache/:z
+     - discourse:/var/www/discourse:z
+     - ./:/tmp/data:z
     expose:
       - "8080"
     depends_on:
