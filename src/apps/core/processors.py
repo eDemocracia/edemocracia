@@ -11,4 +11,5 @@ def settings_variables(request):
         'PAUTAS_ENABLED': settings.PAUTAS_ENABLED,
         'DISCOURSE_ENABLED': settings.DISCOURSE_ENABLED,
         'AUDIENCIAS_ENABLED': settings.AUDIENCIAS_ENABLED,
+        'CAMARA_LOGIN': settings.CAMARA_LOGIN,
     }

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'compressor',
     'compressor_toolkit',
     'widget_tweaks',
+    'corsheaders',
 
     'apps.core',
     'apps.wikilegis',
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -142,7 +144,11 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET',
 
 SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY', default='')
 SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET', default='')
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_birthday', 'user_location']
+SOCIAL_AUTH_FACEBOOK_SCOPE = config('SOCIAL_AUTH_FACEBOOK_SCOPE',
+                                    cast=Csv(lambda x: x.strip().strip(',').strip()), # noqa
+                                    default='email, user_birthday, user_location')    # noqa
+SOCIAL_AUTH_FACEBOOK_API_VERSION = config('SOCIAL_AUTH_FACEBOOK_API_VERSION',
+                                          default='3.2')
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email,gender,picture,birthday,location'
 }
@@ -158,6 +164,8 @@ CAMARA_DEPUTADOS_METADATA_URL = config('CD_METADATA_URL', default='')
 
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = config('SOCIAL_AUTH_REDIRECT_IS_HTTPS',
                                        default=True, cast=bool)
+
+CAMARA_LOGIN = config('CAMARA_LOGIN', default=False, cast=bool)
 
 # API
 REST_FRAMEWORK = {
@@ -338,3 +346,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 # THIRD PARTY LIBRARIES
 GOOGLE_ANALYTICS_ID = config('GOOGLE_ANALYTICS_ID', default=None)
 OLARK_ID = config('OLARK_ID', default=None)
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'

@@ -17,7 +17,7 @@ extra:
 pages:
   - Página Inicial: index.md
   - Wikilegis: wikilegis.md
-  - Audiências Interativas: wikilegis.md
+  - Audiências Interativas: audiencias.md
   - Expressão: expressao.md
   - Termos de Serviço: tos.md
 

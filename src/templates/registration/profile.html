@@ -89,12 +89,14 @@
             <i class="form__icon icon icon-transgender input-group-label" aria-hidden="true"></i>
             <span class="show-for-sr">{% trans "Gender" %}</span>
             <div class="form__input-container">
-              <select class="form__input input-group-field" id="id_gender" name="gender">
-                <option value="" hidden selected disabled>{% trans "Gender" %}</option>
-                {% for choice in form.gender.field.choices %}
-                  <option value="{{choice.0}}" {% ifequal form.gender.value choice.0 %}selected="selected"{% endifequal %}>{{choice.1}}</option>
-                {% endfor %}
-              </select>
+              {{ form.gender|append_attr:"class: form__input input input-group-field"|append_attr:"placeholder: Gênero" }}
+              {% if form.gender.errors %}
+                {# XXX extend foundation class in css #}
+                <div class="form__error form-error">
+                  <span class="form__error-message">ERRO</span>
+                  <i class="form__error-icon icon icon-are-row-circle-left"></i>
+                </div>
+              {% endif %}
             </div>
           </label>
 
@@ -102,12 +104,14 @@
             <i class="form__icon icon icon-map-marker input-group-label" aria-hidden="true"></i>
             <span class="show-for-sr">{% trans "UF" %}</span>
             <div class="form__input-container">
-              <select class=" form__input input-group-field" id="id_uf" name="uf">
-                <option value="" hidden selected disabled>{% trans "UF" %}</option>
-                {% for choice in form.uf.field.choices %}
-                  <option value="{{choice.0}}" {% ifequal form.uf.value choice.0 %}selected="selected"{% endifequal %}>{{choice.1}}</option>
-                {% endfor %}
-              </select>
+              {{ form.uf|append_attr:"class: form__input input input-group-field"|append_attr:"placeholder: UF" }}
+              {% if form.uf.errors %}
+                {# XXX extend foundation class in css #}
+                <div class="form__error form-error">
+                  <span class="form__error-message">ERRO</span>
+                  <i class="form__error-icon icon icon-are-row-circle-left"></i>
+                </div>
+              {% endif %}
             </div>
           </label>
 

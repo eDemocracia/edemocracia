@@ -1,21 +1,29 @@
 version: '2'
 
 volumes:
-  wikilegis:
+  pg_data:
+    driver: local
+  edemocracia:
+    driver: local
   audiencias:
+    driver: local
+  wikilegis:
+    driver: local
   discourse:
+    driver: local
   pauta:
+    driver: local
 
 services:
   nginx:
     image: nginx
     volumes:
       - ./config/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./:/var/labhacker/edemocracia:z
-      - wikilegis:/var/labhacker/wikilegis:z
-      - audiencias:/var/labhacker/audiencias:z
-      - discourse:/var/www/discourse:z
-      - pauta:/var/labhacker/pauta-participativa:z
+      - edemocracia:/var/labhacker/edemocracia/src/public/
+      - wikilegis:/var/labhacker/wikilegis/wikilegis/public/
+      - audiencias:/var/labhacker/audiencias/public/
+      - discourse:/var/www/discourse
+      - pauta:/var/labhacker/pauta-participativa/src/public/
     ports:
       - "8000:80"
     links:
@@ -27,6 +35,11 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: root
+      PGDATA : /var/lib/postgresql/data/
+    volumes:
+     - pg_data:/var/lib/postgresql/data/
+    ports:
+     - "5432:5432"
 
   redis:
     image: redis:alpine
@@ -36,7 +49,8 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ./:/var/labhacker/edemocracia:z
+      - edemocracia:/var/labhacker/edemocracia/src/public/:z
+      - ./:/tmp/data:z
     command: ./runserver
     links:
       - db
@@ -51,8 +65,8 @@ services:
       SITE_URL: http://localhost:8000
       DEBUG:
       SECRET_KEY:
-      RECAPTCHA_SITE_KEY:
-      RECAPTCHA_PRIVATE_KEY:
+      RECAPTCHA_SITE_KEY: 
+      RECAPTCHA_PRIVATE_KEY: 
       ALLOWED_HOSTS:
       DATABASE_ENGINE: postgresql_psycopg2
       DATABASE_NAME: edemocracia
@@ -60,17 +74,20 @@ services:
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:
-      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:
-      SOCIAL_AUTH_FACEBOOK_KEY:
-      SOCIAL_AUTH_FACEBOOK_SECRET:
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: 
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: 
+      SOCIAL_AUTH_FACEBOOK_KEY: 
+      SOCIAL_AUTH_FACEBOOK_SECRET: 
+      SOCIAL_AUTH_FACEBOOK_SCOPE:
+      SOCIAL_AUTH_FACEBOOK_API_VERSION:
       SOCIAL_AUTH_CD_KEY:
       SOCIAL_AUTH_CD_SECRET:
-      SOCIAL_AUTH_CD_VERIFY_SSL:
+      SOCIAL_AUTH_CD_VERIFY_SSL: 
       CD_AUTHORIZATION_URL:
       CD_ACCESS_TOKEN_URL:
       CD_METADATA_URL:
-      SOCIAL_AUTH_REDIRECT_IS_HTTPS:
+      SOCIAL_AUTH_REDIRECT_IS_HTTPS: 
+      CAMARA_LOGIN: 
       LANGUAGE_CODE:
       TIME_ZONE:
       EMAIL_HOST:
@@ -86,27 +103,28 @@ services:
       WIKILEGIS_UPSTREAM: http://wikilegis:8000
       WIKILEGIS_API_URL: '/api/v1/'
       WIKILEGIS_API_KEY: api_key
+      AUDIENCIAS_ENABLED: 'True'
+      AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
+      AUDIENCIAS_API_URL:
+      AUDIENCIAS_API_KEY: secret_key
       PAUTAS_ENABLED: 'True'
       PAUTAS_UPSTREAM: http://pauta:8000
       PAUTAS_API_URL:
       PAUTAS_API_KEY: api_key
-      AUDIENCIAS_ENABLED: 'True'
-      AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
-      AUDIENCIAS_API_URL:
-      AUDIENCIAS_API_KEY:
       DISCOURSE_ENABLED: 'True'
       DISCOURSE_UPSTREAM: http://discourse:8080/expressao
       DISCOURSE_SSO_SECRET: sso_secret
 
   wikilegis:
-    image: labhackercd/wikilegis:dev
+    image: labhackercd/wikilegis:2.3.1
     command: ./start.sh
     links:
       - db
     depends_on:
       - db
     volumes:
-      - wikilegis:/var/labhacker/wikilegis
+      - wikilegis:/var/labhacker/wikilegis/wikilegis/public/:z
+      - ./:/tmp/data:z
     environment:
       ADMIN_PASSWORD: 123
       ADMIN_EMAIL: admin@admin.com
@@ -135,14 +153,15 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:dev
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-web.sh
     restart: on-failure
     links:
       - db
       - redis
     volumes:
-      - audiencias:/var/labhacker/audiencias
+      - audiencias:/var/labhacker/audiencias/public/:z
+      - ./:/tmp/data:z
     environment:
       ADMIN_PASSWORD: 123
       ADMIN_EMAIL: admin@admin.com
@@ -155,7 +174,9 @@ services:
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
       NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
       DJANGO_SECRET_KEY: secret_key
+      RECAPTCHA_SITE_KEY:
       DEBUG: 'False'
+      CAMARA_LOGIN: 'False'
       ENABLE_REMOTE_USER: 'True'
       URL_PREFIX: audiencias
       FORCE_SCRIPT_NAME: /audiencias
@@ -164,10 +185,7 @@ services:
       LOGIN_URL: /home
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasweb, localhost, 127.0.0.1'
-      YOUTUBE_API_KEY: ''
-      YOUTUBE_CHANNEL_ID: ''
-      YOUTUBE_SEARCH_QUERY: ''
+      ALLOWED_HOSTS: '*'
       GOOGLE_ANALYTICS_ID: ''
       OLARK_ID: ''
       DATABASE_ENGINE: postgresql_psycopg2
@@ -176,11 +194,10 @@ services:
       DATABASE_USER: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DEBUG: 'False'
       REDIS_SERVER: redis
       WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
       COMPRESS_OFFLINE: 'True'
-      WORDS_BLACK_LIST: ''
+      WORDS_BLACK_LIST: 'merda,cu,cuzao,cuzona,cusao,cusona,bunda,fodido,fodida,foda,foder,fodedor,fudido,fudida,fuder,chupa,chupada,chupador,chupadora,boquete,boqueteira,boquetera,boketeira,boketera,xupa,xupada,xupador,xupadora,pauduro,pauzudo,xoxota,chochota,buceta,boceta,busseta,bosseta,cacete,cassete,caceta,kacete,kassete,caralho,karalho,caraleo,pinto,pica,rola,roludo,gozado,gozada,goso,gosa,gosado,gosado,puta,puto,putinho,putinha,putona,putana,putaria,grelo,grelinho,filhodaputa,filhosdaputa,puta,fdps,siririca,punheta,trepar,trepada,trepadeira,caralho,caralhu,karalho,karalhu,tomarnocu,tomanocu,vadia,bosta,quenga,rabo,bolsa,cuzinho,piroca,pqp,puta que pariu,porra,carai,cú,viado,fdp,vtnc,corno,bicha,bixa,viado,viadinho,pederasta,filho da puta,bundao,bundão,filho de uma egua,filho de uma égua,achacador,achacadora,achacadores,achacar,babaca,bucetas,cagar,cagaram,cambada,caráleo,corja,cornão,covarde,covardes,cretino,cus,cús,cusão,cuzão,cuzinho,cuzona,danar,desgraça,drosoba,enrabar,escória,escroto,escrotas,escrotos,fodão,fodona,fudendo,fuder,idiota,imundo,imundos,ku,kú,lascar,merdas,patifaria,pilantra,pilantragem,pilantras,poha,porcaria,putas,putos,sacanagem,safadeza,safado,safados,salafrário,salafrários,vagabundagem,vagabundo,vagabundos,veadinho,veadinhos'
     expose:
       - "8000"
     depends_on:
@@ -188,7 +205,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:dev
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-worker.sh
     links:
       - redis
@@ -205,7 +222,9 @@ services:
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
       NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
       DJANGO_SECRET_KEY: secret_key
+      RECAPTCHA_SITE_KEY:
       DEBUG: 'False'
+      CAMARA_LOGIN: 'False'
       ENABLE_REMOTE_USER: 'True'
       URL_PREFIX: audiencias
       FORCE_SCRIPT_NAME: /audiencias
@@ -214,10 +233,7 @@ services:
       LOGIN_URL: /home
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasweb, audienciasworker, localhost, 127.0.0.1'
-      YOUTUBE_API_KEY: ''
-      YOUTUBE_CHANNEL_ID: ''
-      YOUTUBE_SEARCH_QUERY: ''
+      ALLOWED_HOSTS: '*'
       GOOGLE_ANALYTICS_ID: ''
       OLARK_ID: ''
       DATABASE_ENGINE: postgresql_psycopg2
@@ -226,13 +242,13 @@ services:
       DATABASE_USER: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DEBUG: 'False'
       REDIS_SERVER: redis
       WEBSERVICE_URL: https://infoleg.camara.leg.br/ws-pauta/evento/interativo
       COMPRESS_OFFLINE: 'True'
-      WORDS_BLACK_LIST: ''
+      WORDS_BLACK_LIST: 'merda,cu,cuzao,cuzona,cusao,cusona,bunda,fodido,fodida,foda,foder,fodedor,fudido,fudida,fuder,chupa,chupada,chupador,chupadora,boquete,boqueteira,boquetera,boketeira,boketera,xupa,xupada,xupador,xupadora,pauduro,pauzudo,xoxota,chochota,buceta,boceta,busseta,bosseta,cacete,cassete,caceta,kacete,kassete,caralho,karalho,caraleo,pinto,pica,rola,roludo,gozado,gozada,goso,gosa,gosado,gosado,puta,puto,putinho,putinha,putona,putana,putaria,grelo,grelinho,filhodaputa,filhosdaputa,puta,fdps,siririca,punheta,trepar,trepada,trepadeira,caralho,caralhu,karalho,karalhu,tomarnocu,tomanocu,vadia,bosta,quenga,rabo,bolsa,cuzinho,piroca,pqp,puta que pariu,porra,carai,cú,viado,fdp,vtnc,corno,bicha,bixa,viado,viadinho,pederasta,filho da puta,bundao,bundão,filho de uma egua,filho de uma égua,achacador,achacadora,achacadores,achacar,babaca,bucetas,cagar,cagaram,cambada,caráleo,corja,cornão,covarde,covardes,cretino,cus,cús,cusão,cuzão,cuzinho,cuzona,danar,desgraça,drosoba,enrabar,escória,escroto,escrotas,escrotos,fodão,fodona,fudendo,fuder,idiota,imundo,imundos,ku,kú,lascar,merdas,patifaria,pilantra,pilantragem,pilantras,poha,porcaria,putas,putos,sacanagem,safadeza,safado,safados,salafrário,salafrários,vagabundagem,vagabundo,vagabundos,veadinho,veadinhos'
     volumes:
-      - audiencias:/var/labhacker/audiencias
+      - audiencias:/var/labhacker/audiencias/public/:z
+      - ./:/tmp/data:z
     depends_on:
       - 'audienciasweb'
 
@@ -240,7 +256,8 @@ services:
     image: labhackercd/pauta-participativa:dev
     command: ./start.sh
     volumes:
-      - pauta:/var/labhacker/pauta-participativa
+      - pauta:/var/labhacker/pauta-participativa/src/public/:z
+      - ./:/tmp/data:z
     expose:
       - "8000"
     depends_on:
@@ -270,11 +287,11 @@ services:
       STATIC_URL: '/pautaparticipativa/static/'
 
   discourse:
-    image: labhackercd/discourse-docker
+    image: labhackercd/discourse-docker:2.0.20180703
     command: ./start-web.sh
     volumes:
-      - discourse:/var/www/discourse
-      - ./:/tmp/edemocracia
+      - discourse:/var/www/discourse:z
+      - ./:/tmp/edemocracia:z
     expose:
       - "8080"
     depends_on:

@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx:
-    image: labhackercd/nginx-edemocracia
+    image: labhackercd/nginx-edemocracia:1.0.0
     depends_on:
       - edemocracia
       - audienciasweb
@@ -10,10 +10,9 @@ services:
       - edemocracia:/var/labhacker/edemocracia/src/public/
       - wikilegis:/var/labhacker/wikilegis/wikilegis/public/
       - audiencias:/var/labhacker/audiencias/public/
-      - discourse:/var/www/discourse
-      - pauta:/var/labhacker/pauta-participativa/src/public/
+      - discourse:/var/www/discourse/
     ports:
-      - "8000:80"
+      - "8080:80"
     links:
       - edemocracia
     environment:
@@ -33,9 +32,10 @@ services:
     image: redis:alpine
 
   edemocracia:
-    image: labhackercd/edemocracia:1.2.0
+    image: labhackercd/edemocracia:dev
     volumes:
       - edemocracia:/var/labhacker/edemocracia/src/public/:z
+      - /var/labhacker/edemocracia/src/edemocracia/
     command: ./runserver-production
     expose:
       - "8000"
@@ -44,16 +44,16 @@ services:
     depends_on:
       - db
     environment:
-      ADMIN_EMAIL: email@admin.com
+      ADMIN_EMAIL: admin@admin.com
       ADMIN_PASSWORD: 123
       ADMIN_USERNAME: admin
-      SITE_NAME:
-      SITE_LOGO:
-      SITE_URL: http://localhost:8000
-      DEBUG:
-      SECRET_KEY:
-      RECAPTCHA_SITE_KEY:
-      RECAPTCHA_PRIVATE_KEY:
+      SITE_NAME: 
+      SITE_LOGO: https://enderecodaimagem.com
+      SITE_URL: https://enderecodoedemocracia.leg.br
+      DEBUG: 
+      SECRET_KEY: 
+      RECAPTCHA_SITE_KEY:  
+      RECAPTCHA_PRIVATE_KEY:  
       ALLOWED_HOSTS:
       DATABASE_ENGINE: postgresql_psycopg2
       DATABASE_NAME: edemocracia
@@ -61,24 +61,27 @@ services:
       DATABASE_PASSWORD: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY:
-      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET:
-      SOCIAL_AUTH_FACEBOOK_KEY:
-      SOCIAL_AUTH_FACEBOOK_SECRET:
-      SOCIAL_AUTH_CD_KEY:
-      SOCIAL_AUTH_CD_SECRET:
-      SOCIAL_AUTH_CD_VERIFY_SSL:
-      CD_AUTHORIZATION_URL:
-      CD_ACCESS_TOKEN_URL:
-      CD_METADATA_URL:
-      SOCIAL_AUTH_REDIRECT_IS_HTTPS:
-      LANGUAGE_CODE:
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: 
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: 
+      SOCIAL_AUTH_FACEBOOK_KEY: 
+      SOCIAL_AUTH_FACEBOOK_SECRET: 
+      SOCIAL_AUTH_FACEBOOK_SCOPE:
+      SOCIAL_AUTH_FACEBOOK_API_VERSION:
+      SOCIAL_AUTH_CD_KEY: 
+      SOCIAL_AUTH_CD_SECRET: 
+      SOCIAL_AUTH_CD_VERIFY_SSL: 
+      CD_AUTHORIZATION_URL: 
+      CD_ACCESS_TOKEN_URL: 
+      CD_METADATA_URL: 
+      CAMARA_LOGIN:
+      SOCIAL_AUTH_REDIRECT_IS_HTTPS: 
+      LANGUAGE_CODE: pt-br
       TIME_ZONE:
-      EMAIL_HOST:
-      EMAIL_PORT:
-      EMAIL_HOST_USER:
+      EMAIL_HOST: 
+      EMAIL_PORT: 
+      EMAIL_HOST_USER: 
       EMAIL_HOST_PASSWORD:
-      EMAIL_USE_TLS:
+      EMAIL_USE_TLS: 'False'
       EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia" <edemocracia@camara.leg.br>'
       STATIC_URL:
@@ -87,20 +90,16 @@ services:
       WIKILEGIS_UPSTREAM: http://wikilegis:8000
       WIKILEGIS_API_URL: '/api/v1/'
       WIKILEGIS_API_KEY: api_key
-      PAUTAS_ENABLED: 'True'
-      PAUTAS_UPSTREAM: http://pauta:8000
-      PAUTAS_API_URL:
-      PAUTAS_API_KEY: api_key
-      AUDIENCIAS_ENABLED: 'True'
+      AUDIENCIAS_ENABLED: 'False'
       AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
       AUDIENCIAS_API_URL:
-      AUDIENCIAS_API_KEY:
-      DISCOURSE_ENABLED: 'True'
+      AUDIENCIAS_API_KEY: api_key
+      DISCOURSE_ENABLED: 'False'
       DISCOURSE_UPSTREAM: http://discourse:8080/expressao
-      DISCOURSE_SSO_SECRET: sso_secret
+      DISCOURSE_SSO_SECRET: 
 
   wikilegis:
-    image: labhackercd/wikilegis:2.0.0
+    image: labhackercd/wikilegis:2.3.1
     command: ./start.sh
     links:
       - db
@@ -109,25 +108,26 @@ services:
     volumes:
       - wikilegis:/var/labhacker/wikilegis/wikilegis/public/:z
     environment:
+      ADMIN_EMAIL: admin@admin.com
       ADMIN_PASSWORD: 123
-      ADMIN_EMAIL: email@admin.com
+      ADMIN_USERNAME: admin
       API_KEY: api_key
       SECRET_KEY: secret_key
       FORCE_SCRIPT_NAME: /wikilegis
-      DEBUG: 'True'
+      LANGUAGE_CODE: pt-br
+      DEBUG: 'False'
       ALLOWED_HOSTS: '*'
       LOGIN_URL: /
       LOGIN_REDIRECT_URL: /
       AUTH_USER_MODEL: accounts.User
       ENABLE_REMOTE_USER: 'True'
       SESSION_COOKIE_NAME: wikilegis_session
-      EMAIL_HOST:
-      EMAIL_PORT:
-      EMAIL_HOST_USER:
+      EMAIL_HOST: 
+      EMAIL_PORT: 25
+      EMAIL_HOST_USER: 
       EMAIL_HOST_PASSWORD:
-      EMAIL_USE_TLS:
+      EMAIL_USE_TLS: 'False'
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia[Wikilegis]" <edemocracia@camara.leg.br>'
-      LANGUAGE_CODE: pt-br
       TIME_ZONE: America/Sao_Paulo
       STATIC_URL: /wikilegis/static/
       MEDIA_URL: /wikilegis/media/
@@ -141,7 +141,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:2.1.0
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -150,29 +150,27 @@ services:
     volumes:
       - audiencias:/var/labhacker/audiencias/public/:z
     environment:
+      ADMIN_EMAIL: admin@admin.com
       ADMIN_PASSWORD: 123
-      ADMIN_EMAIL: email@admin.com
       ADMIN_USERNAME: admin
-      SITE_NAME:
-      SITE_DOMAIN:
-      EMAIL_HOST: ''
-      EMAIL_HOST_USER: ''
+      EMAIL_HOST:
+      EMAIL_HOST_USER:
       EMAIL_HOST_PASSWORD: ''
       EMAIL_PORT: 25
       EMAIL_USE_TLS: 'False'
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
-      NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
-      DJANGO_SECRET_KEY: secret_key
+      NOTIFICATION_EMAIL_LIST: ''
+      DJANGO_SECRET_KEY:
       DEBUG: 'False'
       ENABLE_REMOTE_USER: 'True'
       URL_PREFIX: audiencias
       FORCE_SCRIPT_NAME: /audiencias
       STATIC_URL: /audiencias/static/
       SESSION_COOKIE_NAME: audiencias_session
-      LOGIN_URL: /home
-      LOGIN_REDIRECT_URL: /home
-      LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasweb, localhost, 127.0.0.1'
+      LOGIN_URL: /
+      LOGIN_REDIRECT_URL: /
+      LOGOUT_REDIRECT_URL: /
+      ALLOWED_HOSTS:
       GOOGLE_ANALYTICS_ID: ''
       OLARK_ID: ''
       DATABASE_ENGINE: postgresql_psycopg2
@@ -181,10 +179,10 @@ services:
       DATABASE_USER: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DEBUG: 'False'
       REDIS_SERVER: redis
       WEBSERVICE_URL:
       COMPRESS_OFFLINE: 'True'
+      WORDS_BLACK_LIST: 'merda,cu,cuzao,cuzona,cusao,cusona,bunda,fodido,fodida,foda,foder,fodedor,fudido,fudida,fuder,chupa,chupada,chupador,chupadora,boquete,boqueteira,boquetera,boketeira,boketera,xupa,xupada,xupador,xupadora,pauduro,pauzudo,xoxota,chochota,buceta,boceta,busseta,bosseta,cacete,cassete,caceta,kacete,kassete,caralho,karalho,caraleo,pinto,pica,rola,roludo,gozado,gozada,goso,gosa,gosado,gosado,puta,puto,putinho,putinha,putona,putana,putaria,grelo,grelinho,filhodaputa,filhosdaputa,puta,fdps,siririca,punheta,trepar,trepada,trepadeira,caralho,caralhu,karalho,karalhu,tomarnocu,tomanocu,vadia,bosta,quenga,rabo,bolsa,cuzinho,piroca,pqp,puta que pariu,porra,carai,cú,viado,fdp,vtnc,corno,bicha,bixa,viado,viadinho,pederasta,filho da puta,bundao,bundão,filho de uma egua,filho de uma égua,achacador,achacadora,achacadores,achacar,babaca,bucetas,cagar,cagaram,cambada,caráleo,corja,cornão,covarde,covardes,cretino,cus,cús,cusão,cuzão,cuzinho,cuzona,danar,desgraça,drosoba,enrabar,escória,escroto,escrotas,escrotos,fodão,fodona,fudendo,fuder,idiota,imundo,imundos,ku,kú,lascar,merdas,patifaria,pilantra,pilantragem,pilantras,poha,porcaria,putas,putos,sacanagem,safadeza,safado,safados,salafrário,salafrários,vagabundagem,vagabundo,vagabundos,veadinho,veadinhos'
     expose:
       - "8000"
     depends_on:
@@ -192,24 +190,23 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:2.1.0
+    image: labhackercd/audiencias-publicas:3.4.4
     command: ./start-worker.sh
     links:
       - redis
       - db
     environment:
+      ADMIN_EMAIL: admin@admin.com
       ADMIN_PASSWORD: 123
-      ADMIN_EMAIL: email@admin.com
       ADMIN_USERNAME: admin
-      SITE_NAME: Olar
-      EMAIL_HOST: ''
-      EMAIL_HOST_USER: ''
+      EMAIL_HOST:
+      EMAIL_HOST_USER:
       EMAIL_HOST_PASSWORD: ''
       EMAIL_PORT: 25
       EMAIL_USE_TLS: 'False'
       DEFAULT_FROM_EMAIL: '"Portal e-Democracia[audiencias]" <edemocracia@camara.leg.br>'
-      NOTIFICATION_EMAIL_LIST: edemocracia@camara.leg.br,portalconteudo.lista@camara.leg.br
-      DJANGO_SECRET_KEY: secret_key
+      NOTIFICATION_EMAIL_LIST: ''
+      DJANGO_SECRET_KEY:
       DEBUG: 'False'
       ENABLE_REMOTE_USER: 'True'
       URL_PREFIX: audiencias
@@ -219,7 +216,7 @@ services:
       LOGIN_URL: /home
       LOGIN_REDIRECT_URL: /home
       LOGOUT_REDIRECT_URL: /home
-      ALLOWED_HOSTS: 'audienciasweb, audienciasworker, localhost, 127.0.0.1'
+      ALLOWED_HOSTS:
       YOUTUBE_API_KEY: ''
       YOUTUBE_CHANNEL_ID: ''
       YOUTUBE_SEARCH_QUERY: ''
@@ -231,69 +228,37 @@ services:
       DATABASE_USER: root
       DATABASE_HOST: db
       DATABASE_PORT: 5432
-      DEBUG: 'False'
       REDIS_SERVER: redis
       WEBSERVICE_URL:
       COMPRESS_OFFLINE: 'True'
+      WORDS_BLACK_LIST: 'merda,cu,cuzao,cuzona,cusao,cusona,bunda,fodido,fodida,foda,foder,fodedor,fudido,fudida,fuder,chupa,chupada,chupador,chupadora,boquete,boqueteira,boquetera,boketeira,boketera,xupa,xupada,xupador,xupadora,pauduro,pauzudo,xoxota,chochota,buceta,boceta,busseta,bosseta,cacete,cassete,caceta,kacete,kassete,caralho,karalho,caraleo,pinto,pica,rola,roludo,gozado,gozada,goso,gosa,gosado,gosado,puta,puto,putinho,putinha,putona,putana,putaria,grelo,grelinho,filhodaputa,filhosdaputa,puta,fdps,siririca,punheta,trepar,trepada,trepadeira,caralho,caralhu,karalho,karalhu,tomarnocu,tomanocu,vadia,bosta,quenga,rabo,bolsa,cuzinho,piroca,pqp,puta que pariu,porra,carai,cú,viado,fdp,vtnc,corno,bicha,bixa,viado,viadinho,pederasta,filho da puta,bundao,bundão,filho de uma egua,filho de uma égua,achacador,achacadora,achacadores,achacar,babaca,bucetas,cagar,cagaram,cambada,caráleo,corja,cornão,covarde,covardes,cretino,cus,cús,cusão,cuzão,cuzinho,cuzona,danar,desgraça,drosoba,enrabar,escória,escroto,escrotas,escrotos,fodão,fodona,fudendo,fuder,idiota,imundo,imundos,ku,kú,lascar,merdas,patifaria,pilantra,pilantragem,pilantras,poha,porcaria,putas,putos,sacanagem,safadeza,safado,safados,salafrário,salafrários,vagabundagem,vagabundo,vagabundos,veadinho,veadinhos'
     volumes:
       - audiencias:/var/labhacker/audiencias/public/:z
     depends_on:
       - 'audienciasweb'
 
-  pauta:
-    image: labhackercd/pauta-participativa:latest
-    command: ./start.sh
-    volumes:
-      - pauta:/var/labhacker/pauta-participativa/src/public/:z
-    expose:
-      - "8000"
-    depends_on:
-      - db
-    environment:
-      SECRET_KEY:
-      API_KEY: api_key
-      RECAPTCHA_SITE_KEY:
-      RECAPTCHA_PRIVATE_KEY:
-      FORCE_SCRIPT_NAME: /pautaparticipativa
-      DEBUG: 'False'
-      ALLOWED_HOSTS: '*'
-      DATABASE_ENGINE: postgresql_psycopg2
-      DATABASE_NAME: pauta
-      DATABASE_PASSWORD: root
-      DATABASE_USER: root
-      DATABASE_HOST: db
-      DATABASE_PORT: 5432
-      ENABLE_REMOTE_USER: 'True'
-      SESSION_COOKIE_NAME: pautas_session
-      EMAIL_HOST:
-      EMAIL_PORT:
-      EMAIL_HOST_USER:
-      EMAIL_HOST_PASSWORD:
-      EMAIL_USE_TLS:
-      DEFAULT_FROM_EMAIL: '"Portal e-Democracia[pautaparticipativa]" <edemocracia@camara.leg.br>'
-      STATIC_URL: '/pautaparticipativa/static/'
-
   discourse:
-    image: labhackercd/discourse-docker
+    image: labhackercd/discourse-docker:2.0.20180703
     command: ./start-web.sh
     volumes:
-      - discourse:/var/www/discourse:z
+     - discourse:/var/www/discourse:z
+     - ./:/tmp/data:z
     expose:
       - "8080"
     depends_on:
       - db
       - redis
     environment:
-      ADMIN_EMAIL: 'email@admin.com'
-      ADMIN_PASSWORD: '123'
-      ADMIN_USERNAME: 'admin'
+      ADMIN_EMAIL: admin@admin.com
+      ADMIN_PASSWORD: 123
+      ADMIN_USERNAME: admin
       RAILS_ENV: 'production'
       DISCOURSE_DB_HOST: db
       DISCOURSE_DB_PORT: '5432'
       DISCOURSE_DB_NAME: 'discourse'
       DISCOURSE_DB_USERNAME: 'root'
       DISCOURSE_DB_PASSWORD: 'root'
-      DISCOURSE_HOSTNAME: 'localhost'
+      DISCOURSE_HOSTNAME: 
       DISCOURSE_SMTP_ADDRESS:
       DISCOURSE_SMTP_PORT: 587
       DISCOURSE_SMTP_USER_NAME:
@@ -303,11 +268,11 @@ services:
       DISCOURSE_REDIS_PORT: 6379
       DISCOURSE_RELATIVE_URL_ROOT: '/expressao'
       DISCOURSE_CONTACT_EMAIL:
-      DISCOURSE_CONTACT_URL: 'localhost'
+      DISCOURSE_CONTACT_URL:
       DISCOURSE_NOTIFICATION_EMAIL: 'noreply@dicourse.org'
-      DISCOURSE_SSO_URL: 'http:\/\/127.0.0.1:8000'
-      DISCOURSE_SSO_SECRET: 'sso_secret'
-      DISCOURSE_FORCE_HOSTNAME: ''
+      DISCOURSE_SSO_URL: 'http:\/\/dev.edemocracia.labhackercd.leg.br:8000'
+      DISCOURSE_SSO_SECRET:
+      DISCOURSE_FORCE_HOSTNAME: 'dev.edemocracia.labhackercd.leg.br/expressao'
 
 volumes:
   pg_data:
@@ -319,6 +284,4 @@ volumes:
   wikilegis:
     driver: local
   discourse:
-    driver: local
-  pauta:
     driver: local
