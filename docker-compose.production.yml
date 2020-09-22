@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx:
-    image: labhackercd/nginx-edemocracia:1.1.2
+    image: labhackercd/nginx-edemocracia:1.0.0
     depends_on:
       - edemocracia
       - audienciasweb
@@ -10,10 +10,7 @@ services:
       - edemocracia:/var/labhacker/edemocracia/src/public/
       - wikilegis:/var/labhacker/wikilegis/wikilegis/public/
       - audiencias:/var/labhacker/audiencias/public/
-      - discourse_assets:/var/www/discourse/public/assets/
-      - discourse_js:/var/www/discourse/public/javascripts/
-      - discourse_img:/var/www/discourse/public/images/
-      - discourse_cache:/var/www/discourse/tmp/stylesheet-cache/
+      - discourse:/var/www/discourse/
     ports:
       - "8080:80"
     links:
@@ -92,7 +89,7 @@ services:
       WIKILEGIS_ENABLED: 'True'
       WIKILEGIS_UPSTREAM: http://wikilegis:8000
       WIKILEGIS_API_URL: '/api/v1/'
-      WIKILEGIS_API_KEY:
+      WIKILEGIS_API_KEY: api_key
       AUDIENCIAS_ENABLED: 'False'
       AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
       AUDIENCIAS_API_URL:
@@ -102,7 +99,7 @@ services:
       DISCOURSE_SSO_SECRET: 
 
   wikilegis:
-    image: labhackercd/wikilegis:2.3.2
+    image: labhackercd/wikilegis:2.3.1
     command: ./start.sh
     links:
       - db
@@ -286,11 +283,5 @@ volumes:
     driver: local
   wikilegis:
     driver: local
-  discourse_assets:
-    driver: local
-  discourse_js:
-    driver: local
-  discourse_img:
-    driver: local
-  discourse_cache:
+  discourse:
     driver: local

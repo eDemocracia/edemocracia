@@ -13,8 +13,6 @@ volumes:
     driver: local
   pauta:
     driver: local
-  newwikilegis:
-    driver: local
 
 services:
   nginx:
@@ -26,7 +24,6 @@ services:
       - audiencias:/var/labhacker/audiencias/public/
       - discourse:/var/www/discourse
       - pauta:/var/labhacker/pauta-participativa/src/public/
-      - newwikilegis:/var/labhacker/new-wikilegis/src/public/
     ports:
       - "8000:80"
     links:
@@ -119,7 +116,7 @@ services:
       DISCOURSE_SSO_SECRET: sso_secret
 
   wikilegis:
-    image: labhackercd/wikilegis:2.3.0
+    image: labhackercd/wikilegis:2.3.1
     command: ./start.sh
     links:
       - db
@@ -293,8 +290,8 @@ services:
     image: labhackercd/discourse-docker:2.0.20180703
     command: ./start-web.sh
     volumes:
-      - discourse:/var/www/discourse
-      - ./:/tmp/edemocracia
+      - discourse:/var/www/discourse:z
+      - ./:/tmp/edemocracia:z
     expose:
       - "8080"
     depends_on:
