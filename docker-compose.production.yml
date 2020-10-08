@@ -2,21 +2,20 @@ version: '2'
 
 services:
   nginx:
-    image: labhackercd/nginx-edemocracia:1.0.0
+    image: nginx
     depends_on:
       - edemocracia
       - audienciasweb
     volumes:
+      - /var/lib/docker/volumes/edemocracia_nginx-config/_data:/etc/nginx/conf.d/
       - edemocracia:/var/labhacker/edemocracia/src/public/
       - wikilegis:/var/labhacker/wikilegis/wikilegis/public/
       - audiencias:/var/labhacker/audiencias/public/
       - discourse:/var/www/discourse/
     ports:
-      - "8080:80"
+      - "8000:80"
     links:
       - edemocracia
-    environment:
-      NAME_RESOLVER: '127.0.0.11'
 
   db:
     image: postgres:9.6
@@ -32,10 +31,10 @@ services:
     image: redis:alpine
 
   edemocracia:
-    image: labhackercd/edemocracia:dev
+    image: labhackercd/edemocracia:latest
     volumes:
       - edemocracia:/var/labhacker/edemocracia/src/public/:z
-      - /var/labhacker/edemocracia/src/edemocracia/
+      - nginx-config:/var/labhacker/edemocracia/config/etc/nginx/conf.d/:z
     command: ./runserver-production
     expose:
       - "8000"
@@ -278,6 +277,8 @@ volumes:
   pg_data:
     driver: local
   edemocracia:
+    driver: local
+  nginx-config:
     driver: local
   audiencias:
     driver: local
