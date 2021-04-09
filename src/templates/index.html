@@ -17,10 +17,6 @@
     </div>
   </section>
 
-  {% if PAUTAS_VISIBLE %}
-    {% include 'pautas-section.html' %}
-  {% endif %}
-
   {% if AUDIENCIAS_VISIBLE %}
     {% include 'audiencias-section.html' %}
   {% endif %}
@@ -31,6 +27,10 @@
 
   {% if NEW_WIKILEGIS_VISIBLE %}
     {% include 'new-wikilegis-section.html' %}
+  {% endif %}
+
+  {% if PAUTAS_VISIBLE %}
+    {% include 'pautas-section.html' %}
   {% endif %}
 
   {% if DISCOURSE_VISIBLE %}
