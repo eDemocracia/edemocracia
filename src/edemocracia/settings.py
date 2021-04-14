@@ -367,4 +367,4 @@ OLARK_ID = config('OLARK_ID', default=None)
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/.*$'
+CORS_URLS_REGEX = r'^.*/api/.*$'
