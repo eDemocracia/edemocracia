@@ -30,6 +30,9 @@ pydiscourse = "*"
 mkdocs = "==1.0.4"
 mkdocs-material = "==4.1.1"
 django-cors-headers = "*"
+pytest-django = "*"
+pytest-cov = "*"
+mixer = "*"
 
 [requires]
 python_version = "3.6"
