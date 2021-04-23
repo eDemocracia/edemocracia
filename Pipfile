@@ -33,6 +33,9 @@ django-cors-headers = "*"
 pytest-django = "*"
 pytest-cov = "*"
 mixer = "*"
+celery = {extras = ["redis"]}
+django_celery_results = "*"
+django_celery_beat = "*"
 
 [requires]
 python_version = "3.6"
