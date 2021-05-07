@@ -7,7 +7,7 @@ name = "pypi"
 ipdb = "*"
 
 [packages]
-Django = "==2.2.10"
+Django = "==2.2.16"
 python-decouple = "==3.3"
 django-compressor = "==2.4"
 django-compressor-toolkit = "==0.6.0"
@@ -30,13 +30,14 @@ pydiscourse = "==1.0.0"
 mkdocs = "==1.0.4"
 mkdocs-material = "==4.1.1"
 cryptography = "==2.9.2"
-django-cors-headers = "*"
+django-cors-headers = "==3.7.0"
 pytest-django = "==4.1.0"
 pytest-cov = "==2.11.1"
 mixer = "==6.3.0"
 celery = {extras = ["redis"]}
-django_celery_results = "*"
-django_celery_beat = "*"
+django_celery_results = "==2.0.1"
+django_celery_beat = "==2.2.0"
+drf-yasg = "==1.20.0"
 
 [requires]
 python_version = "3.6"
