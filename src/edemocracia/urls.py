@@ -1,10 +1,32 @@
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from apps.accounts.api import api_root, UserListAPI, get_participation_user
 from apps.core.views import index
 from apps.reports import urls as reports_urls
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from django.contrib.sites.models import Site
+
+
+current_site = Site.objects.get_current()
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="eDemocracia API",
+        default_version='v1',
+        description="Portal criado para ampliar a participação social no \
+                     processo legislativo e aproximar cidadãos e seus \
+                     representantes por meio da interação digital.",
+        contact=openapi.Contact(email="labhacker@camara.leg.br"),
+        license=openapi.License(name="GNU General Public License v3.0"),
+    ),
+    url='https://' + current_site.domain,
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('', index, name='home'),
@@ -16,6 +38,15 @@ urlpatterns = [
     path('api/v1/participation/<uuid:user>/', get_participation_user,
          name='participation_user_api'),
     path('reports/', include(reports_urls)),
+]
+
+urlpatterns += [
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$',
+            schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
+         name='schema-redoc'),
 ]
 
 if settings.DEBUG is True:
