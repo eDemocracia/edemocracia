@@ -100,7 +100,7 @@ def get_new_users_yearly(start_date=None):
     last_day = calendar.monthrange(today.year, today.month)[1]
 
     if not start_date:
-        start_date = today.replace(day=1).strftime('%Y-%m-%d')
+        start_date = today.replace(day=1, month=1).strftime('%Y-%m-%d')
 
     registers_monthly = NewUsersReport.objects.filter(
         period='monthly',
