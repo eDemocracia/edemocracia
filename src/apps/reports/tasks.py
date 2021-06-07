@@ -2,14 +2,15 @@ from edemocracia import celery_app
 from django.contrib.auth import get_user_model
 from apps.reports.models import NewUsersReport
 from collections import Counter
-from datetime import date, datetime, timedelta
+from datetime import timedelta
 import calendar
 from django.db.models.functions import TruncMonth, TruncYear
 from django.db.models import Sum
+from django.utils import timezone
 
 
 def create_new_users_object(registers_by_date, period='daily'):
-    yesterday = date.today() - timedelta(days=1)
+    yesterday = timezone.now().date() - timedelta(days=1)
 
     if period == 'daily':
         registers_count = registers_by_date[1]
@@ -48,7 +49,7 @@ def create_new_users_object(registers_by_date, period='daily'):
 @celery_app.task(name="get_new_users_daily")
 def get_new_users_daily(start_date=None):
     batch_size = 100
-    yesterday = datetime.now() - timedelta(days=1)
+    yesterday = timezone.now() - timedelta(days=1)
     yesterday = yesterday.replace(hour=23, minute=59, second=59)
 
     if not start_date:
@@ -72,7 +73,7 @@ def get_new_users_daily(start_date=None):
 @celery_app.task(name="get_new_users_monthly")
 def get_new_users_monthly(start_date=None):
     batch_size = 100
-    end_date = date.today()
+    end_date = timezone.now().date()
 
     if not start_date:
         start_date = end_date.replace(day=1).strftime('%Y-%m-%d')
@@ -96,7 +97,7 @@ def get_new_users_monthly(start_date=None):
 @celery_app.task(name="get_new_users_yearly")
 def get_new_users_yearly(start_date=None):
     batch_size = 100
-    today = date.today()
+    today = timezone.now().date()
     last_day = calendar.monthrange(today.year, today.month)[1]
 
     if not start_date:
