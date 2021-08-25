@@ -41,8 +41,9 @@ def index(request):
     if settings.AUDIENCIAS_VISIBLE:
         rooms = get_audiencias_index_data()
 
-        context['history_rooms'] = rooms['history_rooms']
-        context['agenda_rooms'] = rooms['agenda_rooms']
-        context['live_rooms'] = rooms['live_rooms']
+        if rooms:
+            context['history_rooms'] = rooms['history_rooms']
+            context['agenda_rooms'] = rooms['agenda_rooms']
+            context['live_rooms'] = rooms['live_rooms']
 
     return render(request, 'index.html', context)
