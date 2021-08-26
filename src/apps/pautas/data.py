@@ -9,6 +9,6 @@ def get_pautas_index_data():
         response = requests.get(url, params=params)
         pautas = response.json()['objects']
     except:
-        pautas = []
+        pautas = 500 # Server Error
 
     return pautas
