@@ -9,6 +9,6 @@ def get_wikilegis_index_data():
         response = requests.get(url, params=params)
         bills = response.json()['objects']
     except:
-        bills = []
+        bills = 500 # Server Error
 
     return bills
