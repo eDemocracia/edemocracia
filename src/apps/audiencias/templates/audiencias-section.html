@@ -22,7 +22,17 @@
             </a>
 
             <ul class="card-list">
-              {% if not live_rooms and not agenda_rooms and not history_rooms %}
+              
+              {% if status_code == 500 %}
+                <li>
+                  <div class="section__content-wrapper section__content-wrapper--center text-center">
+                    <p class="section__text">
+                      Desculpe. Serviço temporariamente indisponível.
+                    </p>
+                  </div>
+                </li>
+              {% else %}
+                {% if not live_rooms and not agenda_rooms and not history_rooms %}
                 <li>
                   <div class="section__content-wrapper section__content-wrapper--center text-center">
                     <p class="section__text">
@@ -30,16 +40,17 @@
                     </p>
                   </div>
                 </li>
-              {% else %}
-                {% for room in live_rooms %}
-                  {% include "audiencias-card.html" with status="live" %}
-                {% endfor %}
-                {% for room in agenda_rooms %}
-                  {% include "audiencias-card.html" with status="calendar" %}
-                {% endfor %}
-                {% for room in history_rooms %}
-                  {% include "audiencias-card.html" with status="old-video" %}
-                {% endfor %}
+                {% else %}
+                  {% for room in live_rooms %}
+                    {% include "audiencias-card.html" with status="live" %}
+                  {% endfor %}
+                  {% for room in agenda_rooms %}
+                    {% include "audiencias-card.html" with status="calendar" %}
+                  {% endfor %}
+                  {% for room in history_rooms %}
+                    {% include "audiencias-card.html" with status="old-video" %}
+                  {% endfor %}
+                {% endif %}
               {% endif %}
             </ul>
 

@@ -46,6 +46,6 @@ def get_audiencias_index_data():
         rooms['agenda_rooms'] = agenda_rooms
         rooms['live_rooms'] = live_rooms
     except:
-        rooms = []
+        rooms = 500
 
     return rooms
