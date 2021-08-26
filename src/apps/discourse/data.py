@@ -28,6 +28,6 @@ def get_discourse_index_data():
 
             topics.append(topic)
     except:
-        topics = []
+        topics = 500 # Server Error
 
     return topics
