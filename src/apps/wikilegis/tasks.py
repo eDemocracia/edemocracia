@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 import requests
 import json
-
+import logging
 from apps.core.tasks import default_login
 from apps.core.utils import get_user_data
 from apps.wikilegis.apps import WikilegisConfig
@@ -13,7 +13,10 @@ from apps.wikilegis.api import get_resource_url
 
 @receiver(user_logged_in)
 def wikilegis_login(sender, user, request, **kwargs):
-    default_login(user, request, WikilegisConfig)
+    try:
+        default_login(user, request, WikilegisConfig)
+    except requests.exceptions.ConnectionError:
+        logging.exception("Can't login in Wikilegis")
 
 
 @receiver(user_logged_out)
@@ -26,9 +29,12 @@ def update_wikilegis_user(sender, instance, created, **kwargs):
     data = get_user_data(instance)
     data.pop('username', None)
 
-    requests.put(get_resource_url('user', pk=instance.username),
-                 data=json.dumps(data),
-                 headers={'Content-Type': 'application/json'})
+    try:
+        requests.put(get_resource_url('user', pk=instance.username),
+                    data=json.dumps(data),
+                    headers={'Content-Type': 'application/json'})
+    except requests.exceptions.ConnectionError:
+        logging.exception("Wikilegis Connection refused")
 
 
 @receiver(post_delete, sender=User)

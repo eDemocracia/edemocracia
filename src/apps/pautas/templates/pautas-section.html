@@ -23,19 +23,27 @@
 
             <ul class="card-list">
 
-
-            {% for pauta in pautas %}
-              {% include "pautas-card.html" %}
-            {% empty %}
+            {% if pautas == 500 %}
               <li>
                 <div class="section__content-wrapper section__content-wrapper--center text-center">
                   <p class="section__text">
-                    Desculpe. Não encontramos nenhum resultado.
+                    Desculpe. Serviço temporariamente indisponível.
                   </p>
                 </div>
               </li>
-            {% endfor %}
-
+            {% else %}
+              {% for pauta in pautas %}
+                {% include "pautas-card.html" %}
+              {% empty %}
+                <li>
+                  <div class="section__content-wrapper section__content-wrapper--center text-center">
+                    <p class="section__text">
+                      Desculpe. Não encontramos nenhum resultado.
+                    </p>
+                  </div>
+                </li>
+              {% endfor %}
+            {% endif %}
 
             </ul>
 

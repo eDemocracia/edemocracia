@@ -23,6 +23,15 @@
             </a>
 
             <ul class="card-list">
+            {% if bills == 500 %}
+              <li>
+                <div class="section__content-wrapper section__content-wrapper--center text-center">
+                  <p class="section__text">
+                    Desculpe. Serviço temporariamente indisponível.
+                  </p>
+                </div>
+              </li>
+            {% else %}
               {% for bill in bills %}
                 {% include "wikilegis-card.html" %}
               {% empty %}
@@ -34,6 +43,7 @@
                   </div>
                 </li>
               {% endfor %}
+            {% endif %}
             </ul>
 
           </div>

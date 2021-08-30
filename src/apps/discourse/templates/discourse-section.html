@@ -19,17 +19,27 @@
             <a class="section__button" href="/expressao/">Ver todos</a>
 
             <ul class="card-list">
-              {% for topic in topics %}
-                {% include "discourse-card.html" %}
-              {% empty %}
-              <li>
-                <div class="section__content-wrapper section__content-wrapper--center text-center">
-                  <p class="section__text">
-                    Desculpe. Não encontramos nenhum resultado.
-                  </p>
-                </div>
-              </li>
-              {% endfor %}
+              {% if topics == 500 %}
+                <li>
+                  <div class="section__content-wrapper section__content-wrapper--center text-center">
+                    <p class="section__text">
+                      Desculpe. Serviço temporariamente indisponível.
+                    </p>
+                  </div>
+                </li>
+              {% else %}
+                {% for topic in topics %}
+                  {% include "discourse-card.html" %}
+                {% empty %}
+                <li>
+                  <div class="section__content-wrapper section__content-wrapper--center text-center">
+                    <p class="section__text">
+                      Desculpe. Não encontramos nenhum resultado.
+                    </p>
+                  </div>
+                </li>
+                {% endfor %}
+              {% endif %}
             </ul>
           </div>
         </div>
