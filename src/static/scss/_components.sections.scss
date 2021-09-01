@@ -316,6 +316,33 @@
   }
 }
 
+.section--painelParticipacao{
+  background-color: #212121;
+
+  & .section__info {
+    background-color: #0D0D0D;
+  }
+
+  & .section__text {
+    color: #FFFFFF;
+  }
+
+  & .section__title {
+    &::before {
+      background-color: #ffffff;
+    }
+  }
+
+  & .section__link {
+    color: white;
+  }
+
+  & .section__button {
+    background-image: linear-gradient(white, white);
+    color: white;
+  }
+}
+
 .section--user-profile {
   background-color: #1c5c44;
   color: white;
