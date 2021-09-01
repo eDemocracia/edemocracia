@@ -13,4 +13,5 @@ def settings_variables(request):
         'DISCOURSE_VISIBLE': settings.DISCOURSE_VISIBLE,
         'AUDIENCIAS_VISIBLE': settings.AUDIENCIAS_VISIBLE,
         'CAMARA_LOGIN': settings.CAMARA_LOGIN,
+        'PAINEL_PARTICIPACAO_VISIBLE': settings.PAINEL_PARTICIPACAO_VISIBLE,
     }

@@ -281,23 +281,23 @@ WIKILEGIS_UPSTREAM = config('WIKILEGIS_UPSTREAM',
 WIKILEGIS_API_URL = config('WIKILEGIS_API_URL', default='/api/v1/')
 WIKILEGIS_API_KEY = config('WIKILEGIS_API_KEY', default='apikey')
 
-NEW_WIKILEGIS_ENABLED = config('NEW_WIKILEGIS_ENABLED', default=True,
+NEW_WIKILEGIS_ENABLED = config('NEW_WIKILEGIS_ENABLED', default=False,
                                cast=bool)
-NEW_WIKILEGIS_VISIBLE = config('NEW_WIKILEGIS_VISIBLE', default=True,
+NEW_WIKILEGIS_VISIBLE = config('NEW_WIKILEGIS_VISIBLE', default=False,
                                cast=bool)
 NEW_WIKILEGIS_UPSTREAM = config('NEW_WIKILEGIS_UPSTREAM',
                                 default='http://localhost:7000')
 NEW_WIKILEGIS_API_URL = config('NEW_WIKILEGIS_API_URL', default='/api/v1/')
 NEW_WIKILEGIS_API_KEY = config('NEW_WIKILEGIS_API_KEY', default='apikey')
 
-PAUTAS_ENABLED = config('PAUTAS_ENABLED', default=True, cast=bool)
-PAUTAS_VISIBLE = config('PAUTAS_VISIBLE', default=True, cast=bool)
+PAUTAS_ENABLED = config('PAUTAS_ENABLED', default=False, cast=bool)
+PAUTAS_VISIBLE = config('PAUTAS_VISIBLE', default=False, cast=bool)
 PAUTAS_UPSTREAM = config('PAUTAS_UPSTREAM', default='http://localhost:9000')
 PAUTAS_API_URL = config('PAUTAS_API_URL', default='/api/v1/')
 PAUTAS_API_KEY = config('PAUTAS_API_KEY', default='api_key')
 
-AUDIENCIAS_ENABLED = config('AUDIENCIAS_ENABLED', default=True, cast=bool)
-AUDIENCIAS_VISIBLE = config('AUDIENCIAS_VISIBLE', default=True, cast=bool)
+AUDIENCIAS_ENABLED = config('AUDIENCIAS_ENABLED', default=False, cast=bool)
+AUDIENCIAS_VISIBLE = config('AUDIENCIAS_VISIBLE', default=False, cast=bool)
 AUDIENCIAS_UPSTREAM = config('AUDIENCIAS_UPSTREAM',
                              default='http://localhost:6000/audiencias')
 AUDIENCIAS_API_URL = config('AUDIENCIAS_API_URL', default='/api/')
@@ -308,9 +308,7 @@ DISCOURSE_VISIBLE = config('DISCOURSE_VISIBLE', default=False, cast=bool)
 DISCOURSE_UPSTREAM = config('DISCOURSE_UPSTREAM',
                             default='http://localhost:3000/expressao')
 DISCOURSE_SSO_SECRET = config('DISCOURSE_SSO_SECRET', default='sso_secret')
-
-PAINEL_PARTICIPACAO_ENABLED = config('PAINEL_PARTICIPACAO_ENABLED', default=True, cast=bool)
-PAINEL_PARTICIPACAO_VISIBLE = config('PAINEL_PARTICIPACAO_VISIBLE', default=True, cast=bool)
+PAINEL_PARTICIPACAO_VISIBLE = config('PAINEL_PARTICIPACAO_VISIBLE', default=False, cast=bool)
 
 
 # EDITABLE SETTINGS
@@ -353,10 +351,13 @@ CONSTANCE_CONFIG = {
                      'Participativa', str),
     'PAUTAS_DESCRIPTION': ('Vote nos assustos a serem abordados em plenário.',
                            'Título da seção do Pauta Participativa', str),
-    'PAINEL_PARTICIPACAO_TITLE': ('What is Lorem Ipsum?', ' What is Lorem Ipsum? 2 '
-                     'What is Lorem Ipsum? 2', str),
-    'PAINEL_PARTICIPACAO_DESCRIPTION': ('Descrição 1.',
-                           'Descrição 2', str),
+    'PAINEL_PARTICIPACAO_TITLE': ('Conheça os números das ferramentas de '
+                                  'participação', 'Título da seção do Painel da '
+                                  'Participação', str),
+    'PAINEL_PARTICIPACAO_DESCRIPTION': ('Painel de estatísticas da participação dos '
+                                        'cidadãos nas audiências públicas e '
+                                        'propostas legislativas', 'Descrição da seção '
+                                        'do Painel da Participação', str),
 }
 
 CONSTANCE_CONFIG_FIELDSETS = {
@@ -368,7 +369,8 @@ CONSTANCE_CONFIG_FIELDSETS = {
                                'NEW_WIKILEGIS_DESCRIPTION'),
     'Expressão Options': ('EXPRESSAO_TITLE', 'EXPRESSAO_DESCRIPTION'),
     'Pauta Participativa Options': ('PAUTAS_TITLE', 'PAUTAS_DESCRIPTION'),
-    'Painel da Participação Options': ('PAINEL_PARTICIPACAO_TITLE', 'PAINEL_PARTICIPACAO_DESCRIPTION'),
+    'Painel da Participação Options': ('PAINEL_PARTICIPACAO_TITLE',
+                                       'PAINEL_PARTICIPACAO_DESCRIPTION'),
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
