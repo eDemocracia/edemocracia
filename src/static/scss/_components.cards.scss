@@ -120,6 +120,7 @@
     margin-bottom: 1rem;
     border-bottom: 2px solid black;
     max-height: 5rem;
+
   }
 
   & .info-card__icon {
@@ -149,7 +150,6 @@
 
   & .info-card__title {
     max-height: 4rem;
-
     @include breakpoint(small only) {
       font-size: 0.8rem;
     }
@@ -379,7 +379,7 @@
 
   & .info-card__title {
     max-height: 4rem;
-
+    text-transform: capitalize;
     @include breakpoint(small only) {
       font-size: 0.8rem;
     }
@@ -387,10 +387,10 @@
 
   & .card-stats__value {
     color: white;
+  }
 
-    &--closed {
-      color: #bfbfbf;
-    }
+  & .card-stats__name {
+    text-transform: capitalize;
   }
 }
 
@@ -410,7 +410,7 @@
 
   & .info-card__title {
     max-height: 4rem;
-
+    text-transform: capitalize;
     @include breakpoint(small only) {
       font-size: 0.8rem;
     }
@@ -418,11 +418,12 @@
 
   & .card-stats__value {
     color: white;
-
-    &--closed {
-      color: #bfbfbf;
-    }
   }
+
+  & .card-stats__name {
+    text-transform: capitalize;
+  }
+
 }
 
 .info-card--painel-edemocracia-aberto {
@@ -441,18 +442,15 @@
 
   & .info-card__title {
     max-height: 4rem;
-
+    text-transform: capitalize;
     @include breakpoint(small only) {
       font-size: 0.8rem;
     }
   }
+  
 
   & .card-stats__value {
     color: white;
-
-    &--closed {
-      color: #bfbfbf;
-    }
   }
 }
 
