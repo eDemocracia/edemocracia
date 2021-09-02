@@ -29,9 +29,15 @@
     {% include 'new-wikilegis-section.html' %}
   {% endif %}
 
+  {% if PAINEL_PARTICIPACAO_VISIBLE %}
+    {% include 'components/painelParticipacaoSection/painelParticipacao-section.html' %}
+  {% endif %}
+
   {% if PAUTAS_VISIBLE %}
     {% include 'pautas-section.html' %}
   {% endif %}
+
+   
 
   {% if DISCOURSE_VISIBLE %}
     {% include 'discourse-section.html' %}

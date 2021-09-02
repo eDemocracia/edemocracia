@@ -308,6 +308,7 @@ DISCOURSE_VISIBLE = config('DISCOURSE_VISIBLE', default=False, cast=bool)
 DISCOURSE_UPSTREAM = config('DISCOURSE_UPSTREAM',
                             default='http://localhost:3000/expressao')
 DISCOURSE_SSO_SECRET = config('DISCOURSE_SSO_SECRET', default='sso_secret')
+PAINEL_PARTICIPACAO_VISIBLE = config('PAINEL_PARTICIPACAO_VISIBLE', default=False, cast=bool)
 
 
 # EDITABLE SETTINGS
@@ -350,6 +351,13 @@ CONSTANCE_CONFIG = {
                      'Participativa', str),
     'PAUTAS_DESCRIPTION': ('Vote nos assustos a serem abordados em plenário.',
                            'Título da seção do Pauta Participativa', str),
+    'PAINEL_PARTICIPACAO_TITLE': ('Conheça os números das ferramentas de '
+                                  'participação', 'Título da seção do Painel da '
+                                  'Participação', str),
+    'PAINEL_PARTICIPACAO_DESCRIPTION': ('Painel de estatísticas da participação dos '
+                                        'cidadãos nas audiências públicas e '
+                                        'propostas legislativas', 'Descrição da seção '
+                                        'do Painel da Participação', str),
 }
 
 CONSTANCE_CONFIG_FIELDSETS = {
@@ -361,6 +369,8 @@ CONSTANCE_CONFIG_FIELDSETS = {
                                'NEW_WIKILEGIS_DESCRIPTION'),
     'Expressão Options': ('EXPRESSAO_TITLE', 'EXPRESSAO_DESCRIPTION'),
     'Pauta Participativa Options': ('PAUTAS_TITLE', 'PAUTAS_DESCRIPTION'),
+    'Painel da Participação Options': ('PAINEL_PARTICIPACAO_TITLE',
+                                       'PAINEL_PARTICIPACAO_DESCRIPTION'),
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

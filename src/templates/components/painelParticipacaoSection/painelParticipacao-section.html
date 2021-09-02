@@ -1,0 +1,37 @@
+<section class="section section--painelParticipacao">
+    <div class="e-row e-expanded">
+
+      <div class="section__info section__block e-columns small-12 large-3">
+        <a href="/participacao/"><img class="section__logo" src="/static/img/logo-painelParticipacao-title.svg" ></a>
+        <p class="section__text">
+          {{ config.PAINEL_PARTICIPACAO_DESCRIPTION }}
+        </p>
+      </div>
+
+      <div class="section__block e-columns small-12 large-9">
+        <div class="section__content">
+
+          <h1 class="section__title">
+            <a class="section__link" href="/participacao/" title="Veja todas as audiências">
+              {{ config.PAINEL_PARTICIPACAO_TITLE }}
+            </a>
+          </h1>
+
+          <div class="container container--card-list">
+
+            <a class="section__button" href="/participacao/">
+              Ver todos
+            </a>
+
+            <ul class="card-list">
+              {% include "components/painelParticipacaoSection/cards/painelParticipacao-card-audiencias.html" %}
+              {% include "components/painelParticipacaoSection/cards/painelParticipacao-card-wikilegis.html" %}
+              {% include "components/painelParticipacaoSection/cards/painelParticipacao-card-apis.html" %}
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
