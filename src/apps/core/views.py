@@ -10,16 +10,18 @@ from apps.pautas.data import get_pautas_index_data
 from apps.audiencias.data import get_audiencias_index_data
 from apps.core.utils import get_user_data
 import requests
-
+import logging
 
 def get_painel_audiencias_data():
     reports_api_url = (settings.AUDIENCIAS_UPSTREAM +
-                       'reports/api/')
+                       '/reports/api/')
     try:
         rooms_response = requests.get(reports_api_url +
                                       'rooms/?period=yearly')
         total_rooms = rooms_response.json()['sum_total_results']
     except:
+        logging.exception("Connection refused in url "
+                          "%srooms/?period=yearly" % reports_api_url)
         total_rooms = '-' # Server Error
     
     try:
@@ -27,6 +29,8 @@ def get_painel_audiencias_data():
             reports_api_url + 'participants/?period=all')
         total_participants = participants_response.json()['sum_total_results']
     except:
+        logging.exception("Connection refused in url "
+                          "%sparticipants/?period=al" % reports_api_url)
         total_participants = '-' # Server Error
 
     return total_rooms, total_participants
@@ -34,12 +38,14 @@ def get_painel_audiencias_data():
 
 def get_painel_wikielgis_data():
     reports_api_url = (settings.NEW_WIKILEGIS_UPSTREAM +
-                       'reports/api/')
+                       '/reports/api/')
     try:
         documents_response = requests.get(reports_api_url +
                                           'documents/?period=yearly')
         total_documents = documents_response.json()['sum_total_results']
     except:
+        logging.exception("Connection refused in url "
+                          "%sdocuments/?period=yearly" % reports_api_url)
         total_documents = '-' # Server Error
     
     try:
@@ -47,6 +53,8 @@ def get_painel_wikielgis_data():
             reports_api_url + 'participants/?period=all')
         total_participants = participants_response.json()['sum_total_results']
     except:
+        logging.exception("Connection refused in url "
+                          "%sparticipants/?period=all" % reports_api_url)
         total_participants = '-' # Server Error
 
     return total_documents, total_participants
