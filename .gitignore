@@ -55,7 +55,6 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-*.ini
 
 # Flask stuff:
 instance/
@@ -113,3 +112,9 @@ dump.rdb
 # mkdocs
 src/apps/about/static/mkdocs_build
 src/apps/about/mkdocs.yml
+
+# VSCode
+.vscode/
+
+### Django Decouple ###
+edemocracia/*.ini

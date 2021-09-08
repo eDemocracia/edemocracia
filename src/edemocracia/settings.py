@@ -59,6 +59,10 @@ INSTALLED_APPS = [
     'compressor_toolkit',
     'widget_tweaks',
     'corsheaders',
+    'celery',
+    'django_celery_beat',
+    'django_celery_results',
+    'drf_yasg',
 
     'apps.core',
     'apps.wikilegis',
@@ -68,6 +72,7 @@ INSTALLED_APPS = [
     'apps.audiencias',
     'apps.discourse',
     'apps.about',
+    'apps.reports',
 ]
 
 MIDDLEWARE = [
@@ -303,6 +308,7 @@ DISCOURSE_VISIBLE = config('DISCOURSE_VISIBLE', default=False, cast=bool)
 DISCOURSE_UPSTREAM = config('DISCOURSE_UPSTREAM',
                             default='http://localhost:3000/expressao')
 DISCOURSE_SSO_SECRET = config('DISCOURSE_SSO_SECRET', default='sso_secret')
+PAINEL_PARTICIPACAO_VISIBLE = config('PAINEL_PARTICIPACAO_VISIBLE', default=False, cast=bool)
 
 
 # EDITABLE SETTINGS
@@ -345,6 +351,13 @@ CONSTANCE_CONFIG = {
                      'Participativa', str),
     'PAUTAS_DESCRIPTION': ('Vote nos assustos a serem abordados em plenário.',
                            'Título da seção do Pauta Participativa', str),
+    'PAINEL_PARTICIPACAO_TITLE': ('Conheça os números das ferramentas de '
+                                  'participação', 'Título da seção do Painel da '
+                                  'Participação', str),
+    'PAINEL_PARTICIPACAO_DESCRIPTION': ('Painel de estatísticas da participação dos '
+                                        'cidadãos nas audiências públicas e '
+                                        'propostas legislativas', 'Descrição da seção '
+                                        'do Painel da Participação', str),
 }
 
 CONSTANCE_CONFIG_FIELDSETS = {
@@ -356,6 +369,8 @@ CONSTANCE_CONFIG_FIELDSETS = {
                                'NEW_WIKILEGIS_DESCRIPTION'),
     'Expressão Options': ('EXPRESSAO_TITLE', 'EXPRESSAO_DESCRIPTION'),
     'Pauta Participativa Options': ('PAUTAS_TITLE', 'PAUTAS_DESCRIPTION'),
+    'Painel da Participação Options': ('PAINEL_PARTICIPACAO_TITLE',
+                                       'PAINEL_PARTICIPACAO_DESCRIPTION'),
 }
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
@@ -366,4 +381,15 @@ OLARK_ID = config('OLARK_ID', default=None)
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/.*$'
+CORS_URLS_REGEX = r'^.*/api/.*$'
+
+# CELERY related settings
+REDIS_SERVER = config('REDIS_SERVER', default='redis://localhost:6379/0')
+CELERY_BROKER_URL = REDIS_SERVER
+CELERY_RESULT_BACKEND = 'django_celery_results.backends.DatabaseBackend'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
