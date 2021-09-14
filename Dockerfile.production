@@ -1,4 +1,4 @@
-FROM labhackercd/alpine-python3-nodejs
+FROM dockerhub-pub.camara.leg.br/labhacker/alpine-python3-nodejs:1.0.0
 
 ENV BUILD_PACKAGES python3 python3-dev linux-headers curl \
     git ca-certificates gcc postgresql-dev build-base bash \
