@@ -18,7 +18,7 @@ volumes:
 
 services:
   nginx:
-    image: nginx
+    image: nginx:1.15.10
     depends_on:
       - edemocracia
       - audienciasweb
@@ -113,16 +113,16 @@ services:
       AUDIENCIAS_UPSTREAM: http://audienciasweb:8000/audiencias
       AUDIENCIAS_API_URL:
       AUDIENCIAS_API_KEY: secret_key
-      PAUTAS_ENABLED: 'True'
+      PAUTAS_ENABLED: 'False'
       PAUTAS_UPSTREAM: http://pauta:8000
       PAUTAS_API_URL:
       PAUTAS_API_KEY: api_key
-      DISCOURSE_ENABLED: 'True'
+      DISCOURSE_ENABLED: 'False'
       DISCOURSE_UPSTREAM: http://discourse:8080/expressao
       DISCOURSE_SSO_SECRET: sso_secret
 
   wikilegis:
-    image: labhackercd/wikilegis:2.3.1
+    image: dockerhub-pub.camara.leg.br/labhacker/wikilegis:2.3.3
     command: ./start.sh
     links:
       - db
@@ -159,7 +159,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:3.4.4
+    image: dockerhub-pub.camara.leg.br/labhacker/audiencias-publicas:3.5.1
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -211,7 +211,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:3.4.4
+    image: dockerhub-pub.camara.leg.br/labhacker/audiencias-publicas:3.5.1
     command: ./start-worker.sh
     links:
       - redis
@@ -259,7 +259,7 @@ services:
       - 'audienciasweb'
 
   pauta:
-    image: labhackercd/pauta-participativa:dev
+    image: dockerhub-pub.camara.leg.br/labhacker/pauta-participativa:1.1.0
     command: ./start.sh
     volumes:
       - pauta:/var/labhacker/pauta-participativa/src/public/:z
@@ -293,7 +293,7 @@ services:
       STATIC_URL: '/pautaparticipativa/static/'
 
   discourse:
-    image: labhackercd/discourse-docker:2.0.20180703
+    image: dockerhub-pub.camara.leg.br/labhacker/discourse-docker:2.0.20180703
     command: ./start-web.sh
     volumes:
       - discourse:/var/www/discourse:z

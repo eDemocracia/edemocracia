@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx:
-    image: nginx
+    image: nginx:1.15.10
     depends_on:
       - edemocracia
       - audienciasweb
@@ -31,7 +31,7 @@ services:
     image: redis:alpine
 
   edemocracia:
-    image: labhackercd/edemocracia:latest
+    image: dockerhub-pub.camara.leg.br/labhacker/edemocracia:1.4.2
     volumes:
       - edemocracia:/var/labhacker/edemocracia/src/public/:z
       - nginx-config:/var/labhacker/edemocracia/config/etc/nginx/conf.d/:z
