@@ -98,7 +98,7 @@ services:
       DISCOURSE_SSO_SECRET: 
 
   wikilegis:
-    image: labhackercd/wikilegis:2.3.1
+    image: dockerhub-pub.camara.leg.br/labhacker/wikilegis:2.3.5
     command: ./start.sh
     links:
       - db
@@ -140,7 +140,7 @@ services:
       - "8000"
 
   audienciasweb:
-    image: labhackercd/audiencias-publicas:3.4.4
+    image: dockerhub-pub.camara.leg.br/labhacker/audiencias-publicas:3.5.1
     command: ./start-web.sh
     restart: on-failure
     links:
@@ -189,7 +189,7 @@ services:
       - redis
 
   audienciasworker:
-    image: labhackercd/audiencias-publicas:3.4.4
+    image: dockerhub-pub.camara.leg.br/labhacker/audiencias-publicas:3.5.1
     command: ./start-worker.sh
     links:
       - redis
@@ -237,7 +237,7 @@ services:
       - 'audienciasweb'
 
   discourse:
-    image: labhackercd/discourse-docker:2.0.20180703
+    image: dockerhub-pub.camara.leg.br/labhacker/discourse-docker:2.0.20180703
     command: ./start-web.sh
     volumes:
      - discourse:/var/www/discourse:z
