@@ -351,7 +351,7 @@ CONSTANCE_CONFIG = {
                      'Participativa', str),
     'PAUTAS_DESCRIPTION': ('Vote nos assustos a serem abordados em plenário.',
                            'Título da seção do Pauta Participativa', str),
-    'PAINEL_PARTICIPACAO_TITLE': ('Conheça os números das ferramentas de '
+    'PAINEL_PARTICIPACAO_TITLE': ('Números das ferramentas de '
                                   'participação', 'Título da seção do Painel da '
                                   'Participação', str),
     'PAINEL_PARTICIPACAO_DESCRIPTION': ('Painel de estatísticas da participação dos '
